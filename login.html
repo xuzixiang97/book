@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/login.css">
+    <title>登录</title>
+</head>
+<body>
+    <div id="loginform">
+        <img src="images/laofz.png" />
+        <div id="form">
+            <div class="text">
+                用&nbsp;&nbsp;户&nbsp;&nbsp;名：<input id="user" type="text" name="user" placeholder="请填写用户名">
+            </div>
+            <div class="text">
+                密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：<input id="password" type="password" name="password" placeholder="请填写密码">
+            </div>
+            <div class="text" id = "pass1">
+                确认密码：<input id="password1" type="password" name="password" placeholder="请确认密码">
+            </div>
+            <div id="radio">
+                <input type="radio" name="usertype" value="0" checked>普通用户
+                <input type="radio" name="usertype" value="1">客服
+                <input type="radio" name="usertype" value="2">管理员
+            </div>
+            <div class="btn">
+                <button id="login" type="submit">登录</button>
+                <button id="register" type="submit">注册</button>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/login.js"></script>
+</body>
+</html>

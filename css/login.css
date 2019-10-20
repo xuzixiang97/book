@@ -1,0 +1,66 @@
+
+#loginform{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+#form{
+    width: 400px;
+    height: 200px;
+    padiing: 100px;
+}
+
+img{
+    width: 600px;
+}
+
+.text{
+    width: 500px;
+    height: 40px;
+    margin: 10px;
+}
+
+.text a{
+    width: 60px;
+    text-align: right;
+}
+
+.text input{
+    height: 32px;
+    width: 250px;
+    border: 1px solid #ececec;
+}
+
+#pass1{
+    display: none;
+}
+
+#radio{
+    width: 400px;
+    padding: 20px 80px 20px;
+}
+
+.btn{
+    width: 380px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button{
+    width: 140px;
+    height: 36px;
+    background-color: blue;
+    border: none;
+    outline: none;
+    margin: 5px 10px 5px 0px;
+    color: white;
+    font-size: 18px;
+}
+
+#register{
+    background-color: #ececec;
+}
