@@ -1,6 +1,7 @@
-package com.laofuzi.book;
+package com.laofuzi.book.mapper;
 
 
+import com.laofuzi.book.BookApplication;
 import com.laofuzi.book.dao.UserMapper;
 import com.laofuzi.book.entity.User;
 import org.junit.Test;
@@ -15,7 +16,7 @@ import java.util.Date;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ContextConfiguration(classes = BookApplication.class)
-public class MapperTests {
+public class UserMapperTest {
 
     @Autowired
     private UserMapper userMapper;
