@@ -34,10 +34,6 @@ img{
     border: 1px solid #ececec;
 }
 
-#pass1{
-    display: none;
-}
-
 #radio{
     width: 400px;
     padding: 20px 80px 20px;
@@ -61,6 +57,11 @@ button{
     font-size: 18px;
 }
 
-#register{
-    background-color: #ececec;
+.linkaa{
+    margin: 80px 30px 0px;
+    font-size: 14px;
+}
+
+.link{
+    margin-right: 200px;
 }

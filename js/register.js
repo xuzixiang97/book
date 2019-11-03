@@ -18,39 +18,30 @@
 //     }
 // });
 
-
-let btn = document.getElementById("login");
-let usertype = document.getElementsByName("usertype");
-
 let name = "ys";
-let pass = "123456";
-let utype = "1";
-let ctype = null;
+let reg = document.getElementById("register");
 
-btn.addEventListener("click",function(){
+reg.addEventListener("click",function(){
     let username = document.getElementById("user").value;
     let password = document.getElementById("password").value;
-    for(let i =0; i < usertype.length; i++){
-        if(usertype[i].checked){
-           ctype = usertype[i].value;
-           // console.log(ctype);
-        }
-    }
-    if(username != '' && username === name){
-        if(password != ''){
-            if(password === pass){
-                if(utype === ctype){
-                    window.location.href("index.html");
+    let password1 = document.getElementById("password1").value;
+    if(username != '') {
+        if(username === name) {
+            alert("用户已存在！");
+        }else {
+            if(password != ''){
+                if(password1 != ''){
+                    if(password === password1) {
+                        alert("注册成功，请登录");
+                    }else{
+                        alert("确认密码填写错误");
+                    }
                 }else{
-                    alert("用户类型选择错误");
+                    alert("请再次填写密码以进行确认");
                 }
             }else{
-                alert("密码错误");
+                alert("请设置密码");
             }
-        }else{
-            alert("请填写密码");
         }
-    }else {
-        alert("用户不存在！");
     }
 })
