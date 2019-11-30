@@ -8,7 +8,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,7 +31,7 @@ public class UserServiceImpl implements UserService {
         }
 
         // 验证账号
-        User user = userMapper.selectByName(username);
+        User user = userMapper.selectByPrimaryKey(1L);
         if (user == null) {
             map.put("usernameMsg", "该账号不存在!");
             return map;
@@ -55,5 +54,18 @@ public class UserServiceImpl implements UserService {
         map.put("ticket", loginTicket);
 
         return map;
+    }
+
+    @Override
+    public Map<String, Object> register(User user) {
+        Map<String, Object> map = new HashMap<>();
+        int insert = userMapper.insert(user);
+        if(insert > 0 ){
+            map.put("Msg", "注册成功!");
+            return map;
+        }else{
+            map.put("Msg", "注册失败!");
+            return map;
+        }
     }
 }

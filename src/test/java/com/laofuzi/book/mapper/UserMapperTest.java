@@ -11,8 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Date;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ContextConfiguration(classes = BookApplication.class)
@@ -24,7 +22,7 @@ public class UserMapperTest {
 
     @Test
     public void testSelectUser() {
-        User user = userMapper.selectById(1);
+        User user = userMapper.selectByPrimaryKey(1L);
         System.out.println(user);
     }
 

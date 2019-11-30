@@ -10,6 +10,7 @@ public interface UserService {
     Map<String, Object> login(String username, String password);
 
     //用户注册
+    Map<String, Object> register(User user);
 
 
 }

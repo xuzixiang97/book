@@ -45,6 +45,7 @@ public class UserController {
         if (map.containsKey("ticket")) {
             Cookie cookie = new Cookie("ticket", map.get("ticket").toString());
             cookie.setPath(contextPath);
+            StringBuffer stringBuffer = new StringBuffer();
 
             // todo 设一个常量保存记住我状态
             cookie.setMaxAge(3600 * 12);
@@ -54,6 +55,8 @@ public class UserController {
             model.addAttribute("usernameMsg", map.get("usernameMsg"));
             model.addAttribute("passwordMsg", map.get("passwordMsg"));
             return "/site/login";
+
+
         }
     }
 }

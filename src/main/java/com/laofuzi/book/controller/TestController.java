@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class TestController {
 
     @RequestMapping("/index")
-    @ResponseBody
+
+    //@ResponseBody
     public String test(){
-        return "主页";
+        return "/index";
     }
 }

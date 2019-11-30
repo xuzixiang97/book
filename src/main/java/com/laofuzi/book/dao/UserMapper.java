@@ -1,24 +1,15 @@
 package com.laofuzi.book.dao;
 
-
 import com.laofuzi.book.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface UserMapper {
+    int deleteByPrimaryKey(Long id);
 
-    User selectById(int id);
+    int insert(User record);
 
-    User selectByName(String username);
+    User selectByPrimaryKey(Long id);
 
-    User selectByEmail(String email);
-
-    int insertUser(User user);
-
-    int updateStatus(int id, int status);
-
-    int updateHeader(int id, String headerUrl);
-
-    int updatePassword(int id, String password);
-
+    int updateByPrimaryKey(User record);
 }
