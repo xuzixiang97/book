@@ -30,36 +30,17 @@ public class UserController {
 
 
     /**
-     * 登录功能
-     * @param username
-     * @param password
-     * @param model
-     * @param response
+     * 登录
+     * @param user
      * @return
      */
     // todo 验证码没加，记住我没加
     @RequestMapping(path = "/login", method = RequestMethod.POST)
-    public String login (String username, String password,
-                         Model model, HttpServletResponse response) {
-
-
+    @ResponseBody
+    public String login (User user) {
         // 检查账号,密码
-        Map<String, Object> map = userService.login(username, password);
-        if (map.containsKey("ticket")) {
-            Cookie cookie = new Cookie("ticket", map.get("ticket").toString());
-            cookie.setPath(contextPath);
-            StringBuffer stringBuffer = new StringBuffer();
-
-            // todo 设一个常量保存记住我状态
-            cookie.setMaxAge(3600 * 12);
-            response.addCookie(cookie);
-            return "redirect:/index";
-        } else {
-            model.addAttribute("usernameMsg", map.get("usernameMsg"));
-            model.addAttribute("passwordMsg", map.get("passwordMsg"));
-            return "/site/login";
-
-        }
+        Map<String, Object> map = userService.login(user.getUsername(), user.getPassword());
+        return JSON.toJSONString(map);
     }
 
 
