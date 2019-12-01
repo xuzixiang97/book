@@ -35,7 +35,7 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
 
-  <insert id="insert" parameterType="com.laofuzi.book.entity.Address" >
+  <insert id="insert" parameterType="com.laofuzi.book.entity.Address" useGeneratedKeys="true" keyProperty="id">
     insert into address (id, user_id, `name`,
       phone, address_detail, create_time, 
       update_time, version, is_vailed
