@@ -55,6 +55,10 @@ public class UserServiceImpl implements UserService {
     public Map<String, Object> register(User user) {
         Map<String, Object> map = new HashMap<>();
         int insert = userMapper.insert(user);
+        if(userMapper.selectByName(user.getUsername()) != null){
+            map.put("Msg", "用户名重复!");
+            return map;
+        }
         if(insert > 0 ){
             map.put("Msg", "注册成功!");
             return map;
