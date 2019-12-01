@@ -1,8 +1,12 @@
 package com.laofuzi.book.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.laofuzi.book.dao.BookMapper;
+import com.laofuzi.book.dao.CartMapper;
+import com.laofuzi.book.dao.OrderItemsMapper;
 import com.laofuzi.book.dao.OrderMapper;
-import com.laofuzi.book.entity.Order;
+import com.laofuzi.book.entity.*;
+import com.laofuzi.book.entity.request.CreateOrderRequest;
 import com.laofuzi.book.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +19,18 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderMapper orderMapper;
+
+    @Autowired
+    private BookMapper bookMapper;
+
+
+    @Autowired
+    private OrderItemsMapper orderItemsMapper;
+
+
+    @Autowired
+    private CartMapper cartMapper;
+
 
     @Override
     public int deleteById(Long id) {
