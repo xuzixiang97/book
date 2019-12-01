@@ -23,11 +23,13 @@ public class CreateOrderTest {
 
     @Test
     public void testCase() {
+        //测试下单，生成订单表和订单明细表，清空购物车
         com.laofuzi.book.entity.request.CreateOrderRequest CreateOrderRequest = new CreateOrderRequest();
         CreateOrderRequest.setAddressId(2l);
         CreateOrderRequest.setUserId(10l);
         List<Cart> Carts = new ArrayList<>();
         Cart cart = new Cart();
+        cart.setId(4l);
         cart.setUserId(10l);
         cart.setNumber(1);
         cart.setBookId(2l);
