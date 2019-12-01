@@ -51,7 +51,7 @@ public class OrderController {
      */
     @RequestMapping(path = "/createOrderByCart", method = RequestMethod.POST)
     @ResponseBody
-    public String createOrderByCart(CreateOrderRequest createOrderRequest){
+    public String createOrderByCart(@RequestBody CreateOrderRequest createOrderRequest){
 
         Order order = new Order();
         order.setUserId(createOrderRequest.getUserId());
