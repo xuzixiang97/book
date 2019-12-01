@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class OrderItemsServiceImpl implements OrderItemsService {
@@ -32,5 +33,10 @@ public class OrderItemsServiceImpl implements OrderItemsService {
     @Override
     public int updateById(OrderItems record) {
         return orderItemsMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public List<OrderItems> selectAll() {
+        return orderItemsMapper.selectAll();
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -32,5 +33,15 @@ public class BookServiceImpl implements BookService {
     @Override
     public int updateById(Book record) {
         return bookMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public List<Book> selectAll() {
+        return bookMapper.selectAll();
+    }
+
+    @Override
+    public List<Book> findByCondition(Book record) {
+        return bookMapper.findByCondition(record);
     }
 }

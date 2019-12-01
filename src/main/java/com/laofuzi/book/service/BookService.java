@@ -2,6 +2,8 @@ package com.laofuzi.book.service;
 
 import com.laofuzi.book.entity.Book;
 
+import java.util.List;
+
 public interface BookService {
     int deleteById(Long id);
 
@@ -10,4 +12,14 @@ public interface BookService {
     Book selectById(Long id);
 
     int updateById(Book record);
+
+    List<Book> selectAll();
+
+    /**
+     * 条件查询搜索商品 支持名称 和 作者
+     * @param record
+     * @return
+     */
+    List<Book> findByCondition(Book record);
+
 }

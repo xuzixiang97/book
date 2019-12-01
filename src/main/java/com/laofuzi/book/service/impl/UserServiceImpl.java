@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -61,5 +62,31 @@ public class UserServiceImpl implements UserService {
             map.put("Msg", "注册失败!");
             return map;
         }
+    }
+
+    @Override
+    public List<User> selectAll() {
+        return userMapper.selectAll();
+    }
+
+    @Override
+    public int deleteById(Long id) {
+        return userMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public User insert(User record) {
+        userMapper.insert(record);
+        return record;
+    }
+
+    @Override
+    public User selectById(Long id) {
+        return userMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public int updateById(User record) {
+        return userMapper.updateByPrimaryKey(record);
     }
 }
