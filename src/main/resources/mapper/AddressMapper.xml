@@ -7,8 +7,8 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="address_detail" property="addressDetail" jdbcType="VARCHAR" />
-    <result column="create_time" property="createTime" jdbcType="INTEGER" />
-    <result column="update_time" property="updateTime" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="BIGINT" />
     <result column="version" property="version" jdbcType="INTEGER" />
     <result column="is_vailed" property="isVailed" jdbcType="INTEGER" />
   </resultMap>
@@ -61,10 +61,10 @@
         address_detail = #{addressDetail,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=BIGINT},
       </if>
       <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=INTEGER},
+        update_time = #{updateTime,jdbcType=BIGINT},
       </if>
       <if test="version != null" >
         version = #{version,jdbcType=INTEGER},

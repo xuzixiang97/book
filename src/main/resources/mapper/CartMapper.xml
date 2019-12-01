@@ -30,6 +30,15 @@
     FROM  cart
   </select>
 
+
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="com.laofuzi.book.entity.Cart">
+    select
+    <include refid="Base_Column_List"/>
+    FROM  cart
+    where user_id =  #{userId,jdbcType=BIGINT}
+  </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from cart
     where id = #{id,jdbcType=BIGINT}

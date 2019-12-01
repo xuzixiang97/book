@@ -69,5 +69,17 @@ public class CartController {
         return JSON.toJSONString(list);
     }
 
+    /**
+     * 用户购物车列表列表
+     * @param cart
+     * @return
+     */
+    @RequestMapping(path = "/findByUserId", method = RequestMethod.POST)
+    @ResponseBody
+    public String findByUserId(@RequestBody Cart cart){
+        List<Cart> list = cartService.selectByUserId(cart);
+        return JSON.toJSONString(list);
+    }
+
 }
 
