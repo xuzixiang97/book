@@ -29,6 +29,4 @@ public class Book extends BaseDO{
     private Integer status;
 
     private String extendField;
-
-
 }

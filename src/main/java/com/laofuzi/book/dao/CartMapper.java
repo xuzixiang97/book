@@ -1,6 +1,5 @@
 package com.laofuzi.book.dao;
 
-import com.laofuzi.book.entity.Book;
 import com.laofuzi.book.entity.Cart;
 import org.apache.ibatis.annotations.Mapper;
 

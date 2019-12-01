@@ -1,7 +1,6 @@
 package com.laofuzi.book.service.impl;
 
 import com.laofuzi.book.dao.CartMapper;
-import com.laofuzi.book.dao.CategoryMapper;
 import com.laofuzi.book.entity.Cart;
 import com.laofuzi.book.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
