@@ -49,5 +49,11 @@ public class BookServiceTest {
         //测试书籍查询全部信息
         List<Book> selectall = bookService.selectAll();
         System.out.println(selectall);
-    }
+        //测试书籍模糊查询
+        Book book1 = new Book();
+        book1.setName("");
+        book1.setAuthor("曹");
+        List<Book> find  = bookService.findByCondition(book1);
+        System.out.println(find);
+     }
 }

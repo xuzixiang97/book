@@ -40,5 +40,10 @@ public class CartServiceTest {
         //测试购物车查询全部信息
         List<Cart> selectall = cartService.selectAll();
         System.out.println(selectall);
+        //测试根据用户id查询购物车
+        Cart cart1 = new Cart();
+        cart1.setUserId(7L);
+        List<Cart> find = cartService.selectByUserId(cart1);
+        System.out.println(find);
     }
 }
