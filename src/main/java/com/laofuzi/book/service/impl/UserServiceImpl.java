@@ -31,15 +31,9 @@ public class UserServiceImpl implements UserService {
         }
 
         // 验证账号
-        User user = userMapper.selectByPrimaryKey(1L);
+        User user = userMapper.selectByName(username);
         if (user == null) {
             map.put("usernameMsg", "该账号不存在!");
-            return map;
-        }
-
-        // 验证状态
-        if (user.getStatus() == 0) {
-            map.put("usernameMsg", "该账号未激活!");
             return map;
         }
 
