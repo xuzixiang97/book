@@ -18,5 +18,5 @@ public interface CartMapper {
 
     List<Cart> selectAll();
 
-
+    List<Cart> selectByUserId(Cart record);
 }

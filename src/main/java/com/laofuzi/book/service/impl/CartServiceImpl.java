@@ -39,4 +39,11 @@ public class CartServiceImpl implements CartService {
     public List<Cart> selectAll() {
         return cartMapper.selectAll();
     }
+
+    @Override
+    public List<Cart> selectByUserId(Cart record) {
+        return cartMapper.selectByUserId(record);
+    }
+
+
 }
