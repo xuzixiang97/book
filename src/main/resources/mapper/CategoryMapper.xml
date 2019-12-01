@@ -3,7 +3,7 @@
 <mapper namespace="com.laofuzi.book.dao.CategoryMapper" >
   <resultMap id="BaseResultMap" type="com.laofuzi.book.entity.Category" >
     <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="name" property="name" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="level" property="level" jdbcType="INTEGER" />
     <result column="parent_id" property="parentId" jdbcType="BIGINT" />
     <result column="ancestor_id" property="ancestorId" jdbcType="BIGINT" />
@@ -40,7 +40,7 @@
       parent_id, ancestor_id, create_time, 
       update_time, version, is_vailed
       )
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=BIGINT}, #{level,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER},
       #{parentId,jdbcType=BIGINT}, #{ancestorId,jdbcType=BIGINT},UNIX_TIMESTAMP(NOW(3)) * 1000, UNIX_TIMESTAMP(NOW(3)) * 1000,
       0, 1)
   </insert>
@@ -49,7 +49,7 @@
     update category
     <set >
       <if test="name != null" >
-        `name` = #{name,jdbcType=BIGINT},
+        `name` = #{name,jdbcType=VARCHAR},
       </if>
       <if test="level != null" >
         `level` = #{level,jdbcType=INTEGER},

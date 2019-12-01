@@ -6,7 +6,7 @@ import lombok.Data;
 public class Category {
     private Long id;
 
-    private Long name;
+    private String name;
 
     private Integer level;
 
