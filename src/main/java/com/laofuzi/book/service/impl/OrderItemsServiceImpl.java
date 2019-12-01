@@ -39,4 +39,9 @@ public class OrderItemsServiceImpl implements OrderItemsService {
     public List<OrderItems> selectAll() {
         return orderItemsMapper.selectAll();
     }
+
+    @Override
+    public List<OrderItems> selectByOrderId(OrderItems record) {
+        return orderItemsMapper.selectByOrderId(record);
+    }
 }

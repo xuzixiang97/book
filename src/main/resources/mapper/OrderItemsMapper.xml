@@ -30,6 +30,14 @@
     FROM  order_items
   </select>
 
+  <select id="selectByOrderId" resultMap="BaseResultMap" parameterType="com.laofuzi.book.entity.OrderItems">
+    select
+    <include refid="Base_Column_List"/>
+    FROM  order_items
+    where order_id = #{orderId,jdbcType=BIGINT}
+  </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from order_items
     where id = #{id,jdbcType=BIGINT}

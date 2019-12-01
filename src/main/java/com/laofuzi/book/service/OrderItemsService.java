@@ -14,4 +14,10 @@ public interface OrderItemsService {
     int updateById(OrderItems record);
 
     List<OrderItems> selectAll();
+
+    /**
+     * 根据订单号查询订单详情 orderId
+     * @return
+     */
+    List<OrderItems> selectByOrderId(OrderItems record);
 }

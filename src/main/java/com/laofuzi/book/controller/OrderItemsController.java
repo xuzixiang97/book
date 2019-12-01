@@ -58,7 +58,7 @@ public class OrderItemsController {
     }
 
     /**
-     * 订单列表（全部）
+     * 订单详情列表（全部）
      * @param orderItems
      * @return
      */
@@ -66,6 +66,18 @@ public class OrderItemsController {
     @ResponseBody
     public String findAll(@RequestBody OrderItems orderItems){
         List<OrderItems> list = orderItemsService.selectAll();
+        return JSON.toJSONString(list);
+    }
+
+    /**
+     * 订单详情列表（一张订单）
+     * @param orderItems
+     * @return
+     */
+    @RequestMapping(path = "/findByOrderId", method = RequestMethod.POST)
+    @ResponseBody
+    public String findByOrderId(@RequestBody OrderItems orderItems){
+        List<OrderItems> list = orderItemsService.selectByOrderId(orderItems);
         return JSON.toJSONString(list);
     }
 
