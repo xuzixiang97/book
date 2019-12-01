@@ -3,6 +3,8 @@ package com.laofuzi.book.dao;
 import com.laofuzi.book.entity.OrderItems;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface OrderItemsMapper {
     int deleteByPrimaryKey(Long id);
@@ -11,6 +13,7 @@ public interface OrderItemsMapper {
 
     OrderItems selectByPrimaryKey(Long id);
 
-
     int updateByPrimaryKey(OrderItems record);
+
+    List<OrderItems> selectAll();
 }

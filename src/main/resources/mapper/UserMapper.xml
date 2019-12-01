@@ -16,30 +16,39 @@
     <result column="version" property="version" jdbcType="INTEGER" />
     <result column="is_vailed" property="isVailed" jdbcType="INTEGER" />
   </resultMap>
+
   <sql id="Base_Column_List" >
     id, username, password, salt, email, `type`, status, activation_code, header_url, create_time,
     update_time, version, is_vailed
   </sql>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from user
+    from `user`
     where id = #{id,jdbcType=BIGINT}
   </select>
+
   <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select
     <include refid="Base_Column_List" />
-    from user
+    from `user`
     where username = #{username,jdbcType=BIGINT}
   </select>
 
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    FROM  `user`
+  </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from user
+    delete from `user`
     where id = #{id,jdbcType=BIGINT}
   </delete>
+
   <insert id="insert" parameterType="com.laofuzi.book.entity.User" useGeneratedKeys="true" keyProperty="id">
-    insert into user (id, username, password, 
+    insert into `user` (id, username, password,
       salt, email, `type`,
       status, activation_code, header_url, 
       create_time, update_time, version, 
@@ -52,7 +61,7 @@
   </insert>
 
   <update id="updateByPrimaryKey" parameterType="com.laofuzi.book.entity.User" >
-    update user
+    update `user`
     <set >
       <if test="username != null" >
         username = #{username,jdbcType=VARCHAR},

@@ -23,10 +23,18 @@
     from order_items
     where id = #{id,jdbcType=BIGINT}
   </select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    FROM  order_items
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from order_items
     where id = #{id,jdbcType=BIGINT}
   </delete>
+
   <insert id="insert" parameterType="com.laofuzi.book.entity.OrderItems" useGeneratedKeys="true" keyProperty="id">
     insert into order_items (id, order_id, book_id, 
       book_name, quantity, unitprice, 
