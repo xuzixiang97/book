@@ -35,7 +35,7 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
 
-  <insert id="insert" parameterType="com.laofuzi.book.entity.Category" >
+  <insert id="insert" parameterType="com.laofuzi.book.entity.Category" useGeneratedKeys="true" keyProperty="id">
     insert into category (id, `name`, `level`,
       parent_id, ancestor_id, create_time, 
       update_time, version, is_vailed

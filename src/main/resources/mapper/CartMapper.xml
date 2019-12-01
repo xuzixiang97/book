@@ -35,7 +35,7 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
 
-  <insert id="insert" parameterType="com.laofuzi.book.entity.Cart" >
+  <insert id="insert" parameterType="com.laofuzi.book.entity.Cart"  useGeneratedKeys="true" keyProperty="id">
     insert into cart (id, user_id, book_id, 
       `number`, create_time, update_time,
       version, is_vailed)

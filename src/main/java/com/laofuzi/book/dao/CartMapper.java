@@ -17,4 +17,6 @@ public interface CartMapper {
     int updateByPrimaryKey(Cart record);
 
     List<Cart> selectAll();
+
+
 }
