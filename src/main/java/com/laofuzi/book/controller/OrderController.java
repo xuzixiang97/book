@@ -73,7 +73,7 @@ public class OrderController {
             orderItems.setBookId(cart.getBookId());
             orderItems.setBookName(book.getName());
             orderItems.setOrderId(newOrder.getId());
-            orderItems.setQuantity(book.getQuantity());
+            orderItems.setQuantity(cart.getNumber());
             orderItems.setUnitprice(book.getUnitprice());
             orderItemsService.insert(orderItems);
 
@@ -85,7 +85,6 @@ public class OrderController {
         }
 
         return JSON.toJSONString(new Result(true));
-
     }
 
     /**
