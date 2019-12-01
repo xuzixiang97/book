@@ -3,7 +3,7 @@ package com.laofuzi.book.entity;
 import lombok.Data;
 
 @Data
-public class Category {
+public class Category extends BaseDO{
     private Long id;
 
     private String name;
