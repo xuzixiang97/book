@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 @Controller
-@RequestMapping(path = "/order")
+@RequestMapping(path = "/address")
 public class AddressController {
 
     @Autowired
