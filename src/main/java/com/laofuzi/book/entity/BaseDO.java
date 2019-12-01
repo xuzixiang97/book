@@ -12,12 +12,12 @@ public class BaseDO implements Serializable{
     /**
      * 创建时间
      */
-    private Integer createTime;
+    private Long createTime;
 
     /**
      * 修改时间
      */
-    private Integer updateTime;
+    private Long updateTime;
 
     /**
      * 版本号

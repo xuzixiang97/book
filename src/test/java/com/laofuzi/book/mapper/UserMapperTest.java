@@ -24,7 +24,21 @@ public class UserMapperTest {
     public void testSelectUser() {
         User user = userMapper.selectByPrimaryKey(1L);
         System.out.println(user);
+
+        User user2 =new User();
+        user2.setActivationCode("1");
+        user2.setEmail("1");
+        user2.setHeaderUrl("1");
+        user2.setPassword("1");
+        user2.setStatus(1);
+        user2.setStatus(1);
+        user2.setType(1);
+        user2.setSalt("1");
+        user2.setUsername("1");
+        userMapper.insert(user2);
     }
+
+
 
 
 

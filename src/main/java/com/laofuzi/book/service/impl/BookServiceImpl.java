@@ -3,11 +3,14 @@ package com.laofuzi.book.service.impl;
 import com.laofuzi.book.dao.BookMapper;
 import com.laofuzi.book.entity.Book;
 import com.laofuzi.book.service.BookService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
+@Service
 public class BookServiceImpl implements BookService {
-    @Resource
+    @Autowired
     private BookMapper bookMapper;
     @Override
     public int deleteById(Long id) {

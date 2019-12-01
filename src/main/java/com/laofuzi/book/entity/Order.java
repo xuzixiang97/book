@@ -14,8 +14,8 @@ public class Order extends BaseDO{
 
     private Integer status;
 
-    private Integer deliverTime;
+    private Long deliverTime;
 
-    private Integer receiveTime;
+    private Long receiveTime;
 
 }

@@ -4,12 +4,17 @@ import com.laofuzi.book.dao.BookMapper;
 import com.laofuzi.book.dao.OrderMapper;
 import com.laofuzi.book.entity.Order;
 import com.laofuzi.book.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
+@Service
 public class OrderServiceImpl implements OrderService {
-    @Resource
+
+    @Autowired
     private OrderMapper orderMapper;
+
     @Override
     public int deleteById(Long id) {
         return orderMapper.deleteByPrimaryKey(id);
