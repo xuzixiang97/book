@@ -56,7 +56,7 @@ public class OrderController {
         Order order = new Order();
         order.setUserId(createOrderRequest.getUserId());
         order.setStatus(1);
-        order.setAddressId(createOrderRequest.getUserId());
+        order.setAddressId(createOrderRequest.getAddressId());
         int account = 0;
         //计算总金额
         for (Cart cart : createOrderRequest.getCartList()) {
