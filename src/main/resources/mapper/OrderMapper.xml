@@ -7,10 +7,10 @@
     <result column="address_id" property="addressId" jdbcType="BIGINT" />
     <result column="account" property="account" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="INTEGER" />
-    <result column="deliver_time" property="deliverTime" jdbcType="INTEGER" />
-    <result column="receive_time" property="receiveTime" jdbcType="INTEGER" />
-    <result column="create_time" property="createTime" jdbcType="INTEGER" />
-    <result column="update_time" property="updateTime" jdbcType="INTEGER" />
+    <result column="deliver_time" property="deliverTime" jdbcType="BIGINT" />
+    <result column="receive_time" property="receiveTime" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="BIGINT" />
     <result column="version" property="version" jdbcType="INTEGER" />
     <result column="is_vailed" property="isVailed" jdbcType="INTEGER" />
   </resultMap>
@@ -21,26 +21,28 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from order
+    from `order`
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from order
+    delete from `order`
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.laofuzi.book.entity.Order" useGeneratedKeys="true" keyProperty="id">
-    insert into order (id, user_id, address_id, 
+    insert
+    into
+    `order` (id, user_id, address_id,
       account, status, deliver_time, 
       receive_time, create_time, update_time, 
       version, is_vailed)
     values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{addressId,jdbcType=BIGINT}, 
-      #{account,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{deliverTime,jdbcType=INTEGER}, 
-      #{receiveTime,jdbcType=INTEGER},  UNIX_TIMESTAMP(NOW(3)) * 1000, UNIX_TIMESTAMP(NOW(3)) * 1000,
+      #{account,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{deliverTime,jdbcType=BIGINT},
+      #{receiveTime,jdbcType=BIGINT},  UNIX_TIMESTAMP(NOW(3)) * 1000, UNIX_TIMESTAMP(NOW(3)) * 1000,
       0, 1)
   </insert>
 
   <update id="updateByPrimaryKey" parameterType="com.laofuzi.book.entity.Order" >
-    update order
+    update `order`
     <set >
       <if test="userId != null" >
         user_id = #{userId,jdbcType=BIGINT},

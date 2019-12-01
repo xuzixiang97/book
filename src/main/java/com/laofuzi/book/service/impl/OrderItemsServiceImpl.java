@@ -3,11 +3,14 @@ package com.laofuzi.book.service.impl;
 import com.laofuzi.book.dao.OrderItemsMapper;
 import com.laofuzi.book.entity.OrderItems;
 import com.laofuzi.book.service.OrderItemsService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
+@Service
 public class OrderItemsServiceImpl implements OrderItemsService {
-    @Resource
+    @Autowired
     private OrderItemsMapper orderItemsMapper;
     @Override
     public int deleteById(Long id) {
