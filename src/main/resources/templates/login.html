@@ -7,7 +7,6 @@
 </head>
 <body>
     <div id="loginform">
-        <img src="/laofuzi/images/laofz.png" />
         <div id="form">
             <div class="text">
                 用&nbsp;&nbsp;户&nbsp;&nbsp;名：<input id="user" type="text" name="user" placeholder="请填写用户名">
@@ -31,5 +30,34 @@
     </div>
 
 </body>
-<script type="text/javascript" src="/laofuzi/js/login.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" >
+    var btn = document.getElementById("login");
+    var usertype = document.getElementsByName("usertype");
+
+
+    btn.addEventListener("click",function(){
+        var username = document.getElementById("user").value;
+        var password = document.getElementById("password").value;
+        var str =
+        $.ajax({
+            url: "/laofuzi/user/login",
+            type: "POST",
+            dataType:"json",
+            contentType : 'application/json',
+            data: JSON.stringify({"username":username,
+                "password":password}),
+            async: false,
+            success: function(result){
+                var userinfo = JSON.stringify(result);
+
+                console.log(result);
+                console.log(result);
+                // $("input[name='extendDataFormInfo.value(fd_shengyu_nianjia)']").val(annualDays);
+                // $("input[name='extendDataFormInfo.value(fd_ruzhi_date)']").val(entryDate);
+
+            }
+        });
+    })
+</script>
 </html>

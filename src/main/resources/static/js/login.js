@@ -11,7 +11,8 @@ btn.addEventListener("click",function(){
     $.ajax({
         url: "/laofuzi/user/login",
         type: "POST",
-        data: parameters,
+        data: {"username":username,
+            "password":password},
         dataType:"json",
         async: false,
         success: function(result){

@@ -37,7 +37,7 @@ public class UserController {
     // todo 验证码没加，记住我没加
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public String login (User user) {
+    public String login (@RequestBody User user) {
         // 检查账号,密码
         Map<String, Object> map = userService.login(user.getUsername(), user.getPassword());
         return JSON.toJSONString(map);
