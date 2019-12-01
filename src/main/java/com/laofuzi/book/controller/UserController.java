@@ -1,21 +1,25 @@
 package com.laofuzi.book.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.laofuzi.book.entity.OrderItems;
+import com.laofuzi.book.entity.Result;
+import com.laofuzi.book.entity.User;
 import com.laofuzi.book.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Map;
 
 @Controller
+@RequestMapping(path = "/user")
 public class UserController {
 
     @Autowired
@@ -34,7 +38,6 @@ public class UserController {
      * @return
      */
     // todo 验证码没加，记住我没加
-    //
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     public String login (String username, String password,
                          Model model, HttpServletResponse response) {
@@ -56,7 +59,44 @@ public class UserController {
             model.addAttribute("passwordMsg", map.get("passwordMsg"));
             return "/site/login";
 
-
         }
+    }
+
+
+    /**
+     * 修改用户信息
+     * @param user
+     * @return
+     */
+    @RequestMapping(path = "/update", method = RequestMethod.POST)
+    @ResponseBody
+    public String update(@RequestBody User user){
+        int i = userService.updateById(user);
+        return JSON.toJSONString(new Result(i>0));
+    }
+
+
+    /**
+     * 用户列表（全部）
+     * @param user
+     * @return
+     */
+    @RequestMapping(path = "/findAll", method = RequestMethod.POST)
+    @ResponseBody
+    public String findAll(@RequestBody User user){
+        List<User> list = userService.selectAll();
+        return JSON.toJSONString(list);
+    }
+
+    /**
+     * 注册用户
+     * @param user
+     * @return
+     */
+    @RequestMapping(path = "/register", method = RequestMethod.POST)
+    @ResponseBody
+    public String register(@RequestBody User user){
+        Map<String, Object> register = userService.register(user);
+        return JSON.toJSONString(register);
     }
 }
