@@ -21,8 +21,8 @@ public class UserServiceTest {
 
     @Test
     public void testCase() {
-//        //用户注册测试
-//        User user =new User();
+        //用户注册测试
+        User user =new User();
 //        user.setActivationCode("1");
 //        user.setEmail("1");
 //        user.setHeaderUrl("1");
@@ -35,15 +35,21 @@ public class UserServiceTest {
 //        Map<String, Object> map = userService.register(user);
 //        System.out.println(map);
         //用户登录测试
-         Map<String, Object> login = userService.login("2","2");
-        System.out.println(login);
+//         Map<String, Object> login = userService.login("2","2");
+//        System.out.println(login);
 //        //用户删除测试
 //        int delete = userService.deleteById(9L);
 //        System.out.println(delete);
-//        //用户更新测试
+        //用户根据名字更新测试
+//        user.setUsername("李翔");
 //        user.setEmail("2");
-//        int update = userService.updateById(user);
+//        int update = userService.updateByName(user);
 //        System.out.println(update);
+        //用户根据id更新测试
+        user.setId(1l);
+        user.setEmail("zhangq@163.com");
+        int update1 = userService.updateById(user);
+        System.out.println(update1);
 //        //用户选择全部测试
 //        List<User> selectall = userService.selectAll();
 //        System.out.println(selectall);
