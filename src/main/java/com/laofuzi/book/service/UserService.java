@@ -1,6 +1,8 @@
 package com.laofuzi.book.service;
 
+import com.laofuzi.book.entity.Order;
 import com.laofuzi.book.entity.User;
+import com.laofuzi.book.entity.response.UserOrderResponse;
 
 import java.util.List;
 import java.util.Map;
@@ -22,6 +24,8 @@ public interface UserService {
     User insert(User record);
 
     User selectById(Long id);
+
+    List<UserOrderResponse> selectByUserId(User record);
 
     int updateById(User record);
 

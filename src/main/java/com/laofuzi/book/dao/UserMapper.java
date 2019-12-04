@@ -1,6 +1,7 @@
 package com.laofuzi.book.dao;
 
 import com.laofuzi.book.entity.User;
+import com.laofuzi.book.entity.response.UserOrderResponse;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -20,4 +21,6 @@ public interface UserMapper {
     User selectByName(String username);
 
     List<User> selectAll();
+
+
 }

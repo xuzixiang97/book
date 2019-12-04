@@ -1,7 +1,9 @@
 package com.laofuzi.book.service.impl;
 
+import com.laofuzi.book.dao.OrderMapper;
 import com.laofuzi.book.dao.UserMapper;
 import com.laofuzi.book.entity.User;
+import com.laofuzi.book.entity.response.UserOrderResponse;
 import com.laofuzi.book.service.UserService;
 import com.laofuzi.book.util.BookUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -16,6 +18,8 @@ import java.util.Map;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private OrderMapper orderMapper;
 
     @Override
     public Map<String, Object> login(String username, String password) {
@@ -97,5 +101,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public int updateByName(User record) {
         return userMapper.updateByName(record);
+    }
+
+    @Override
+    public List<UserOrderResponse> selectByUserId(User record) {
+        return orderMapper.selectByUserId(record);
     }
 }

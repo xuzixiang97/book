@@ -2,6 +2,7 @@ package com.laofuzi.book.service;
 
 import com.laofuzi.book.BookApplication;
 import com.laofuzi.book.entity.User;
+import com.laofuzi.book.entity.response.UserOrderResponse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,14 +46,18 @@ public class UserServiceTest {
 //        user.setEmail("2");
 //        int update = userService.updateByName(user);
 //        System.out.println(update);
-        //用户根据id更新测试
-        user.setId(1l);
-        user.setEmail("zhangq@163.com");
-        int update1 = userService.updateById(user);
-        System.out.println(update1);
-//        //用户选择全部测试
+//        //用户根据id更新测试
+//        user.setId(1l);
+//        user.setEmail("zhangq@163.com");
+//        int update1 = userService.updateById(user);
+//        System.out.println(update1);
+////        //用户选择全部测试
 //        List<User> selectall = userService.selectAll();
 //        System.out.println(selectall);
+        //用户查询订单测试
+        user.setId(2l);
+        List<UserOrderResponse> order =userService.selectByUserId(user);
+        System.out.println(order);
     }
 }
 

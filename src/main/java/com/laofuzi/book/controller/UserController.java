@@ -1,9 +1,11 @@
 package com.laofuzi.book.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.laofuzi.book.entity.Order;
 import com.laofuzi.book.entity.OrderItems;
 import com.laofuzi.book.entity.Result;
 import com.laofuzi.book.entity.User;
+import com.laofuzi.book.entity.response.UserOrderResponse;
 import com.laofuzi.book.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,15 +83,16 @@ public class UserController {
         return JSON.toJSONString(list);
     }
 
+
     /**
-     * 注册用户
+     * 用户id查询订单
      * @param user
      * @return
      */
-    @RequestMapping(path = "/register", method = RequestMethod.POST)
+    @RequestMapping(path = "/selectByUserId", method = RequestMethod.POST)
     @ResponseBody
-    public String register(@RequestBody User user){
-        Map<String, Object> register = userService.register(user);
-        return JSON.toJSONString(register);
+    public String selectByUserId(@RequestBody User user){
+        List<UserOrderResponse> list = userService.selectByUserId(user);
+        return JSON.toJSONString(list);
     }
 }
