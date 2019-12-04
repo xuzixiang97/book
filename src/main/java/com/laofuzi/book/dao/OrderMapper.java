@@ -1,8 +1,6 @@
 package com.laofuzi.book.dao;
 
 import com.laofuzi.book.entity.Order;
-import com.laofuzi.book.entity.User;
-import com.laofuzi.book.entity.response.UserOrderResponse;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -19,5 +17,5 @@ public interface OrderMapper {
 
     List<Order> selectAll();
 
-    List<UserOrderResponse> selectByUserId(User record);
+    List<Order> selectByUserId(Long userId);
 }

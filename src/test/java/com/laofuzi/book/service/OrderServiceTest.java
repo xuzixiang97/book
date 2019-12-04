@@ -48,7 +48,7 @@ public class OrderServiceTest {
         //测试订单选择全部方法
         List<Order> selectall = orderService.selectAll();
         System.out.println(selectall);
-
-
+//        List<Order> order = orderService.selectByUserId(2L);
+//        System.out.println(order);
     }
 }

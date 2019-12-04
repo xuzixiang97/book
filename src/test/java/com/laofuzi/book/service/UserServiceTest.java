@@ -1,8 +1,8 @@
 package com.laofuzi.book.service;
 
 import com.laofuzi.book.BookApplication;
+import com.laofuzi.book.entity.Order;
 import com.laofuzi.book.entity.User;
-import com.laofuzi.book.entity.response.UserOrderResponse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
-import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -19,6 +18,9 @@ import java.util.Map;
 public class UserServiceTest {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private OrderService orderService;
 
     @Test
     public void testCase() {
@@ -55,8 +57,7 @@ public class UserServiceTest {
 //        List<User> selectall = userService.selectAll();
 //        System.out.println(selectall);
         //用户查询订单测试
-        user.setId(2l);
-        List<UserOrderResponse> order =userService.selectByUserId(user);
+        List<Order> order = orderService.selectByUserId(2L);
         System.out.println(order);
     }
 }

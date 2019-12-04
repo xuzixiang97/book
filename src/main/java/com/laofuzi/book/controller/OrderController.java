@@ -125,13 +125,13 @@ public class OrderController {
 
     /**
      * 订单列表（根据userId 查询）
-     * @param order
+     * @param userId
      * @return
      */
-    @RequestMapping(path = "/findByUserId", method = RequestMethod.POST)
+    @RequestMapping(path = "/selectByUserId", method = RequestMethod.POST)
     @ResponseBody
-    public String findByUserId(@RequestBody Order order){
-        List<Order> list = orderService.selectByUserId(order.getUserId());
+    public String selectByUserId(@RequestBody Long userId){
+        List<Order> list = orderService.selectByUserId(userId);
         return JSON.toJSONString(list);
     }
 
