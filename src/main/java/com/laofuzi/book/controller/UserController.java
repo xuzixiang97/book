@@ -22,7 +22,6 @@ public class UserController {
     @Value("${server.servlet.context-path}")
     private String contextPath;
 
-
     /**
      * 登录
      * @param user
@@ -36,7 +35,6 @@ public class UserController {
         Map<String, Object> map = userService.login(user.getUsername(), user.getPassword());
         return JSON.toJSONString(map);
     }
-
 
     /**
      * 修改用户信息(id)
@@ -62,7 +60,6 @@ public class UserController {
         return JSON.toJSONString(new Result(i>0));
     }
 
-
     /**
      * 用户列表（全部）
      * @param user
@@ -73,6 +70,18 @@ public class UserController {
     public String findAll(@RequestBody User user){
         List<User> list = userService.selectAll();
         return JSON.toJSONString(list);
+    }
+
+    /**
+     * 删除用户
+     * @param user
+     * @return
+     */
+    @RequestMapping(path = "/delete", method = RequestMethod.POST)
+    @ResponseBody
+    public String delete(@RequestBody User user){
+        int i = userService.deleteById(user.getId());
+        return JSON.toJSONString(new Result(i>0));
     }
 
 }
