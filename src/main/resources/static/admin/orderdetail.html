@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>订单详情页</title>
+    
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+    <!-- bootstrap -->
+    <link href="css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+
+    <!-- libraries -->
+    <link href="css/lib/jquery-ui-1.10.2.custom.css" rel="stylesheet" type="text/css" />
+    <link href="css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
+
+    <!-- global styles -->
+    <link rel="stylesheet" type="text/css" href="css/layout.css" />
+    <link rel="stylesheet" type="text/css" href="css/elements.css" />
+    <link rel="stylesheet" type="text/css" href="css/icons.css" />
+
+    <!-- this page specific styles -->
+    <link rel="stylesheet" href="css/compiled/index.css" type="text/css" media="screen" />    
+
+    
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+<body>
+
+    <!-- navbar -->
+    <div class="navbar navbar-inverse">
+        <div class="navbar-inner">
+            <a class="brand" href="index.html"><img src="img/logo.png" /></a>
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li><a href="index.html">书籍管理</a></li>
+                    <li><a href="user-list.html">用户管理</a></li>
+                    <li ><a href="order.html">订单管理</a></li>
+                    
+                </ul>
+            </div>
+            
+             
+        </div>
+    </div>
+    <!-- end navbar -->
+
+    
+
+	<!-- main container -->
+    <div class="content">
+
+        <!-- settings changer -->
+        
+
+        <div class="container-fluid">
+
+            <div id="pad-wrapper">
+                <!-- table sample -->
+                <!-- the script for the toggle all checkboxes from header is located in js/theme.js -->
+                <div class="table-products section">
+                    <div class="row-fluid head">
+						<div id="order" class="span12" >
+							<span id="orderid"  class="span3" style="font-size: 16px;">订单编号:&nbsp;&nbsp;</span>
+                            <span id="orderdate" style="font-size: 16px;">订单日期：2019-12-01</span>
+                        </div>
+                    </div>
+
+                    <div class="row-fluid">
+                        <table id="orderitemstable" class= "table table-hover" >
+                            <thead >
+                                <tr>
+                                    <th class="span3" style="width:15%;" >
+                                        <input type="checkbox" />
+                                        封面
+                                    </th>
+                                    <th class="span5" style="width:5%" >
+                                        <span class="line"></span>书名
+                                    </th>
+                                    <th class="span3" style="width:10%" >
+                                        <span class="line"></span>作者
+                                    </th>
+                                    <th class="span1"  style="width:20%" >
+                                        <span class="line"></span>价格
+                                    </th>
+                                    <th  class="span1" style="width:5%">
+                                        <span class="line"></span>数量
+                                    </th>
+                                    <th class="span1" style="width:5%" >
+                                        <span class="line"></span>小计
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!--&lt;!&ndash; row &ndash;&gt;-->
+                                <!--<tr class="row1">-->
+                                    <!--<td>-->
+                                        <!--<input type="checkbox" />-->
+                                        <!--<img src="img/books/房思琪的初恋乐园.jpg" width=100px; />  -->
+                                    <!--</td>-->
+                                    <!--<td >-->
+                                       <!--房思琪的初恋乐园-->
+									<!--</td>-->
+                                    <!--<td >林奕含</td>			-->
+                                    <!--<td>45.00</td>-->
+                                    <!--<td>1</td>-->
+									<!--<td>45.00</td>-->
+                                <!--</tr>-->
+                               <!--&lt;!&ndash; row &ndash;&gt;-->
+                                <!--<tr class="row2">-->
+                                    <!--<td>-->
+                                        <!--<input type="checkbox" />-->
+                                        <!--<img src="img/books/冬泳.jpg" width=100px; /> -->
+                                    <!--</td>-->
+                                    <!--<td>冬泳</td>-->
+                                    <!--<td>班宇</td >-->
+                                    <!--<td>49.00</td>-->
+                                    <!--<td>1</td>-->
+									<!--<td>49.00</td>-->
+                                <!--</tr>-->
+                                <!--&lt;!&ndash; row &ndash;&gt;-->
+                                <!--<tr class="row3">-->
+                                    <!--<td>-->
+                                        <!--<input type="checkbox" />-->
+										<!--<img src="img/books/python编程.jpg" width=100px;/>-->
+           <!---->
+                                    <!--</td>-->
+                                    <!--<td>Python编程</td>-->
+                                    <!--<td>[美] 埃里克·马瑟斯</td>-->
+                                    <!--<td>89.00</td>-->
+                                    <!--<td>1</td>-->
+									<!--<td>89.00</td>-->
+                                <!--</tr>-->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination">
+                      <ul>
+                        <li><a href="#">&#8249;</a></li>
+                        <li><a class="active" href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">&#8250;</a></li>
+                      </ul>
+                    </div>
+                </div>
+                <!-- end table sample -->
+            </div>
+        </div>
+    </div>
+
+
+	<!-- scripts -->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-ui-1.10.2.custom.min.js"></script>
+    <!-- knob -->
+    <script src="js/jquery.knob.js"></script>
+    <!-- flot charts -->
+    <script src="js/jquery.flot.js"></script>
+    <script src="js/jquery.flot.stack.js"></script>
+    <script src="js/jquery.flot.resize.js"></script>
+    <script src="js/theme.js"></script>
+
+    <script type="text/javascript">
+        //获取url参数
+        function getQueryVariable(variable)
+        {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i=0;i<vars.length;i++) {
+                var pair = vars[i].split("=");
+                if(pair[0] == variable){return pair[1];}
+            }
+            return(false);
+        }
+        $(function () {
+		//
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                contentType: 'application/json',
+                url: "http://localhost:8080/laofuzi/order_items//findByOrderId",
+                data:JSON.stringify({
+                    "orderId":getQueryVariable("orderid"),
+                }),
+                success: function (result) {
+                    console.log(result);
+                    s= '';
+                    s+='<span id="order_id"   style="font-size: 16px;"></span>'
+                    $('#orderid').append($(s));
+                    str='';
+                    for (i = 0; i < result.length; i++) {
+                        str += '<tr class="row' + i + '"><td><img  id="bookimg' + i + '" alt="书籍封面" src=""/> </td>';
+                        str += '<td><input type="text"  id="bookname' + i + '"value="' + result[i].bookName+ '" style="width:140px" readonly="true"/> </td>';
+                        str += '<td><input type="text"  id="author' + i + '" value="作者" style="width:140px" readonly="true"/> </td>';
+                        str += '<td><input type="text"  id="unitprice' + i + '"value="' + result[i].unitprice + '" style="width:140px" readonly="true"/> </td>';
+                        str += '<td><input type="text"  id="quantity' + i + '"value="' + result[i].quantity + '" style="width:140px" readonly="true"/> </td>';
+                        str += '<td><input type="text"  id="quantity' + i + '"value="' + result[i].quantity*result[i].unitprice + '" style="width:140px" readonly="true"/> </td>';
+                        str += '</tr>';
+
+                    }//循环结束
+                    $('#orderitemstable').append($(str));
+                    $('#order_id').text(getQueryVariable("orderid"));
+
+                }
+            });
+		$('#bookname1').attr('readonly',true);
+		//编辑事件
+		$('#edit1').on('click',function(c){
+			$('#bookname1').attr('readonly',false);
+			$('#author1').attr('readonly',false);
+			$('#description1').attr('readonly',false);
+			$('#price1').attr('readonly',false);
+			$('#amount1').attr('readonly',false);
+		});
+		$('#edit2').on('click',function(c){
+			$('#bookname2').attr('readonly',false);
+			$('#author2').attr('readonly',false);
+			$('#description2').attr('readonly',false);
+			$('#price2').attr('readonly',false);
+			$('#amount2').attr('readonly',false);
+		});
+		$('#edit3').on('click',function(c){
+			$('#bookname3').attr('readonly',false);
+			$('#author3').attr('readonly',false);
+			$('#description3').attr('readonly',false);
+			$('#price3').attr('readonly',false);
+			$('#amount3').attr('readonly',false);
+		});
+		$('#edit4').on('click',function(c){
+			$('#bookname4').attr('readonly',false);
+			$('#author4').attr('readonly',false);
+			$('#description4').attr('readonly',false);
+			$('#price4').attr('readonly',false);
+			$('#amount4').attr('readonly',false);
+		});
+		$('#edit5').on('click',function(c){
+			$('#bookname5').attr('readonly',false);
+			$('#author5').attr('readonly',false);
+			$('#description5').attr('readonly',false);
+			$('#price5').attr('readonly',false);
+			$('#amount5').attr('readonly',false);
+		});
+		//删除事件
+		$('#delete1').on('click', function(c){
+			$('.row1').fadeOut('slow', function(c){
+				$('.row1').remove();
+			});
+		});	 
+		$('#delete2').on('click', function(c){
+		$('.row2').fadeOut('slow', function(c){
+	  		$('.row2').remove();
+		});
+		});	 
+		$('#delete3').on('click', function(c){
+			$('.row3').fadeOut('slow', function(c){
+				$('.row3').remove();
+			});
+		});	 
+		$('#delete4').on('click', function(c){
+			$('.row4').fadeOut('slow', function(c){
+				$('.row4').remove();
+			});
+		});	 
+		$('#delete5').on('click', function(c){
+			$('.row5').fadeOut('slow', function(c){
+				$('.row5').remove();
+			});
+		});	 
+            // jQuery Knobs
+            $(".knob").knob();
+
+			
+
+            // jQuery UI Sliders
+            $(".slider-sample1").slider({
+                value: 100,
+                min: 1,
+                max: 500
+            });
+            $(".slider-sample2").slider({
+                range: "min",
+                value: 130,
+                min: 1,
+                max: 500
+            });
+            $(".slider-sample3").slider({
+                range: true,
+                min: 0,
+                max: 500,
+                values: [ 40, 170 ],
+            });
+
+            
+
+            // jQuery Flot Chart
+            var visits = [[1, 50], [2, 40], [3, 45], [4, 23],[5, 55],[6, 65],[7, 61],[8, 70],[9, 65],[10, 75],[11, 57],[12, 59]];
+            var visitors = [[1, 25], [2, 50], [3, 23], [4, 48],[5, 38],[6, 40],[7, 47],[8, 55],[9, 43],[10,50],[11,47],[12, 39]];
+
+            var plot = $.plot($("#statsChart"),
+                [ { data: visits, label: "Signups"},
+                 { data: visitors, label: "Visits" }], {
+                    series: {
+                        lines: { show: true,
+                                lineWidth: 1,
+                                fill: true, 
+                                fillColor: { colors: [ { opacity: 0.1 }, { opacity: 0.13 } ] }
+                             },
+                        points: { show: true, 
+                                 lineWidth: 2,
+                                 radius: 3
+                             },
+                        shadowSize: 0,
+                        stack: true
+                    },
+                    grid: { hoverable: true, 
+                           clickable: true, 
+                           tickColor: "#f9f9f9",
+                           borderWidth: 0
+                        },
+                    legend: {
+                            // show: false
+                            labelBoxBorderColor: "#fff"
+                        },  
+                    colors: ["#a7b5c5", "#30a0eb"],
+                    xaxis: {
+                        ticks: [[1, "JAN"], [2, "FEB"], [3, "MAR"], [4,"APR"], [5,"MAY"], [6,"JUN"], 
+                               [7,"JUL"], [8,"AUG"], [9,"SEP"], [10,"OCT"], [11,"NOV"], [12,"DEC"]],
+                        font: {
+                            size: 12,
+                            family: "Open Sans, Arial",
+                            variant: "small-caps",
+                            color: "#697695"
+                        }
+                    },
+                    yaxis: {
+                        ticks:3, 
+                        tickDecimals: 0,
+                        font: {size:12, color: "#9da3a9"}
+                    }
+                 });
+
+            function showTooltip(x, y, contents) {
+                $('<div id="tooltip">' + contents + '</div>').css( {
+                    position: 'absolute',
+                    display: 'none',
+                    top: y - 30,
+                    left: x - 50,
+                    color: "#fff",
+                    padding: '2px 5px',
+                    'border-radius': '6px',
+                    'background-color': '#000',
+                    opacity: 0.80
+                }).appendTo("body").fadeIn(200);
+            }
+
+            var previousPoint = null;
+            $("#statsChart").bind("plothover", function (event, pos, item) {
+                if (item) {
+                    if (previousPoint != item.dataIndex) {
+                        previousPoint = item.dataIndex;
+
+                        $("#tooltip").remove();
+                        var x = item.datapoint[0].toFixed(0),
+                            y = item.datapoint[1].toFixed(0);
+
+                        var month = item.series.xaxis.ticks[item.dataIndex].label;
+
+                        showTooltip(item.pageX, item.pageY,
+                                    item.series.label + " of " + month + ": " + y);
+                    }
+                }
+                else {
+                    $("#tooltip").remove();
+                    previousPoint = null;
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

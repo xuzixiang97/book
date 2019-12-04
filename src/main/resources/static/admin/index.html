@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>首页</title>
+    
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+    <!-- bootstrap -->
+    <link href="css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+
+    <!-- libraries -->
+    <link href="css/lib/jquery-ui-1.10.2.custom.css" rel="stylesheet" type="text/css" />
+    <link href="css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
+
+    <!-- global styles -->
+    <link rel="stylesheet" type="text/css" href="css/layout.css" />
+    <link rel="stylesheet" type="text/css" href="css/elements.css" />
+    <link rel="stylesheet" type="text/css" href="css/icons.css" />
+
+    <!-- this page specific styles -->
+    <link rel="stylesheet" href="css/compiled/index.css" type="text/css" media="screen" />    
+
+    
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+<body>
+
+    <!-- navbar -->
+    <div class="navbar navbar-inverse">
+        <div class="navbar-inner">
+            <button type="button" class="btn btn-navbar visible-phone" id="menu-toggler">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+            <a class="brand" href="index.html"><img src="img/logo.png" /></a>
+
+            <ul class="nav pull-right">                
+                <li class="settings hidden-phone">
+                    <a href="signin.html" role="button">
+                        <i class="icon-share-alt"></i>
+                    </a>
+                </li>
+            </ul>            
+        </div>
+    </div>
+    <!-- end navbar -->
+
+    <!-- sidebar -->
+    <div id="sidebar-nav">
+        <ul id="dashboard-menu">
+            <li class="active">
+                <div class="pointer">
+                    <div class="arrow"></div>
+                    <div class="arrow_border"></div>
+                </div>
+                <a href="index.html">
+                    <i class="icon-home"></i>
+                    <span>书籍管理</span>
+                </a>
+            </li>            
+            
+            <li>
+                <a href="user-list.html">
+                    <i class="icon-group"></i>
+                    <span>用户管理</span>
+                </a>
+            </li>
+          
+            <li>
+                <a href="order.html">
+                    <i class="icon-cog"></i>
+                    <span>订单管理</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <!-- end sidebar -->
+
+
+	<!-- main container -->
+    <div class="content">
+
+        <!-- settings changer -->
+        
+
+        <div class="container-fluid">
+
+            <div id="pad-wrapper">
+                <!-- table sample -->
+                <!-- the script for the toggle all checkboxes from header is located in js/theme.js -->
+                <div class="table-products section">
+                    <div class="row-fluid head">
+                        <div class="span12">
+                            <h3>书籍列表</h3>
+                        </div>
+                    </div>
+
+                    <div class="row-fluid filter-block">
+                        <div class="pull-right">
+							<!--
+                            <div class="ui-select">
+                                <select>
+                                  <option />最新
+                                  <option />过去30天
+                                  <option />最热
+                                </select>
+                            </div>
+							-->
+                            <input type="text" class="search" />
+                            <a class="btn-flat new-product" href="upbook.html">+ 添加书籍</a>
+                        </div>
+                    </div>
+
+                    <div class="row-fluid">
+                        <table class= "table table-hover" >
+                            <thead >
+                                <tr>
+                                    <th class="span3" style="width:15%;" >
+                                        <input type="checkbox" />
+                                        封面
+                                    </th>
+                                    <th class="span3" style="width:5%" >
+                                        <span class="line"></span>书名
+                                    </th>
+                                    <th class="span3" style="width:10%" >
+                                        <span class="line"></span>作者
+                                    </th>
+                                    <th class="span3"  style="width:20%" >
+                                        <span class="line"></span>简介
+                                    </th>
+                                    <th  class="span3" style="width:5%">
+                                        <span class="line"></span>价格
+                                    </th>
+                                    <th class="span3" style="width:5%" >
+                                        <span class="line"></span>数量
+                                    </th>
+                                    <th class="span3" style="width:5%" >
+                                        <span class="line"></span>操作
+                                    </th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- row -->
+                                <tr class="row1">
+                                    <td>
+                                        <input type="checkbox" />
+                                        <img src="img/books/房思琪的初恋乐园.jpg" width=100px; />  
+                                    </td>
+                                    <td>
+                                       <input type="text" id="bookname1" value="房思琪的初恋乐园" style="width:140px;" /> 
+									</td>
+                                    <td><input type="text" id="author1" value="林奕含" style="width:140px;" readonly="true"/></td>
+                                    <td >
+										<textarea id="description1"  style="width:300px;height:150px;"  readonly="true">令人心碎却无能为力的真实故事。
+向死而生的文学绝唱 打动万千读者的年度华语小说。
+李银河 戴锦华 骆以军 张悦然 冯唐 詹宏志 蒋方舟 史航 等多位学者作家社会名人郑重推荐。
+										</textarea>								
+									</td>
+									
+                                    <td><input type="text" id="price1" value="45.00" style="width:70px" readonly="true"/></td>
+                                    <td><input type="text" id="amount1" value="999" style="width:70px" readonly="true"/></td>
+									<td>
+										<ul class="actions">
+                                            <li><i id="edit1" class="table-edit"></i></li>
+                                            <!-- <li><i class="table-settings"></i></li>-->
+											<li class="last"><i id="delete1" class="table-delete"></i></li>
+                                        </ul>
+									</td>
+									
+                                </tr>
+                               <!-- row -->
+                                <tr class="row2">
+                                    <td>
+                                        <input type="checkbox" />
+                                        <img src="img/books/冬泳.jpg" width=100px; /> 
+                                    </td>
+                                    <td>
+                                       <input type="text" id="bookname2" value="冬泳" style="width:140px;" readonly="true" /> 
+									</td>
+                                    <td><input type="text" id="author2" value="班宇" style="width:140px;" readonly="true"/></td>
+                                    <td >
+										<textarea id="description2"  style="width:300px;height:150px;"  readonly="true">《冬泳》收录了班宇的七篇小说。在铁轨、工事与大雪的边缘，游走着一些昔日的身影：印厂工人、吊车司机、生疏的赌徒与失业者……他们生活被动，面临威胁、窘迫，惯于沉默，像一道峰或风，遥远而孤绝地存在。
+										</textarea>								 
+									</td>
+									
+                                    <td><input type="text" id="price2" value="49.00" style="width:70px" readonly="true"/></td>
+                                    <td><input type="text" id="amount2" value="999" style="width:70px" readonly="true"/></td>
+									<td>
+										<ul class="actions">
+                                            <li><i id="edit2" class="table-edit"></i></li>
+                                            <!-- <li><i class="table-settings"></i></li>-->
+											<li class="last"><i id="delete2" class="table-delete"></i></li>
+                                        </ul>
+									</td>
+                                </tr>
+                                <!-- row -->
+                                <tr class="row3">
+                                    <td>
+                                        <input type="checkbox" />
+										<img src="img/books/python编程.jpg" width=100px;/>
+           
+                                    </td>
+                                    <td>
+                                       <input type="text" id="bookname3" value="Python编程" style="width:140px;" readonly="true"/> 
+									</td>
+                                    <td><input type="text" id="author3" value="[美] 埃里克·马瑟斯" style="width:140px;" readonly="true"/></td>
+                                    <td >
+										 <textarea id="description3"  style="width:300px;height:150px;"  readonly="true">本书是一本针对所有层次的Python 读者而作的Python 入门书。全书分两部分：第一部分介绍用Python 编程所必须了解的基本概念，包括matplotlib、NumPy 和Pygal 等强大的Python 库和工具介绍，以及列表、字典、if 语句、类、文件与异常、代码测试等内容；第二部分将理论付诸实践，讲解如何开发三个项目，包括简单的Python 2D 游戏开发如何利用数据生成交互式的信息图，以及创建和定制简单的Web 应用，并帮读者解决常见编程问题和困惑。
+										 </textarea>
+									</td>
+									
+                                    <td><input type="text" id="price3" value="89.00" style="width:70px" readonly="true"/></td>
+                                    <td><input type="text" id="amount3" value="999" style="width:70px" readonly="true"/></td>
+									<td>
+										<ul class="actions">
+                                            <li><i id="edit3" class="table-edit"></i></li>
+                                            <!-- <li><i class="table-settings"></i></li>-->
+											<li class="last"><i id="delete3" class="table-delete"></i></li>
+                                        </ul>
+									</td>
+                                </tr>
+                                <!-- row -->
+                                <tr class="row4">
+                                    <td>
+                                        <input type="checkbox" />
+										<img src="img/books/Java编程.jpg" width=100px;/>
+                                    </td>
+                                    <td>
+                                       <input type="text" id="bookname4" value="Java编程思想 （第4版）" style="width:140px;" readonly="true"/> 
+									</td>
+                                    <td><input type="text" id="author4" value=" [美] Bruce Eckel " style="width:140px;" readonly="true"/></td>
+                                    <td >
+										<textarea id="description4"  style="width:300px;height:150px;"  readonly="true">本书赢得了全球程序员的广泛赞誉，即使是最晦涩的概念，在Bruce Eckel的文字亲和力和小而直接的编程示例面前也会化解于无形。从Java的基础语法到最高级特性（深入的面向对象概念、多线程、自动项目构建、单元测试和调试等），本书都能逐步指导你轻松掌握。
+										</textarea>
+									</td>
+									
+                                    <td><input type="text" id="price4" value="108.00" style="width:70px" readonly="true"/></td>
+                                    <td><input type="text" id="amount4" value="999" style="width:70px" readonly="true"/></td>
+									<td>
+										<ul class="actions">
+                                            <li><i id="edit4" class="table-edit"></i></li>
+                                            <!-- <li><i class="table-settings"></i></li>-->
+											<li class="last"><i id="delete4" class="table-delete"></i></li>
+                                        </ul>
+									</td>
+                                </tr>
+                                <!-- row -->
+                                <tr class="row5">
+                                    <td>
+                                        <input type="checkbox" />
+                                            <img src="img/books/明朝那些事儿.jpg" width=100px;/>
+                                    </td>
+                                   <td>
+                                       <input type="text" id="bookname5" value="明朝那些事儿" style="width:140px;" readonly="true"/> 
+									</td>
+                                    <td><input type="text" id="author5" value="当年明月" style="width:140px;" readonly="true"/></td>
+                                    <td >
+										<textarea id="description5"  style="width:300px;height:150px;"  readonly="true">从朱元璋的出身开始写起，到永乐大帝夺位的靖难之役结束为止。叙述了明朝最艰苦卓绝的开国过程。朱元璋pk陈友谅，谁堪问鼎天下？战太平、太湖大决战。卧榻之侧埋恶虎，铲除张士诚。徐达、常遇春等不世名将乘胜逐北破北元。更有明朝最大的谜团——永乐夺位、建文失踪的靖难之役。
+										</textarea>
+
+									</td>
+									
+                                    <td><input type="text" id="price5" value="24.8" style="width:70px" readonly="true"/></td>
+                                    <td><input type="text" id="amount5" value="999" style="width:70px" readonly="true"/></td>
+									<td>
+										<ul class="actions">
+                                            <li><i id="edit5" class="table-edit"></i></li>
+                                            <!-- <li><i class="table-settings"></i></li>-->
+											<li class="last"><i id="delete5" class="table-delete"></i></li>
+                                        </ul>
+									</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination">
+                      <ul>
+                        <li><a href="#">&#8249;</a></li>
+                        <li><a class="active" href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">&#8250;</a></li>
+                      </ul>
+                    </div>
+                </div>
+                <!-- end table sample -->
+            </div>
+        </div>
+    </div>
+
+
+	<!-- scripts -->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-ui-1.10.2.custom.min.js"></script>
+    <!-- knob -->
+    <script src="js/jquery.knob.js"></script>
+    <!-- flot charts -->
+    <script src="js/jquery.flot.js"></script>
+    <script src="js/jquery.flot.stack.js"></script>
+    <script src="js/jquery.flot.resize.js"></script>
+    <script src="js/theme.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+		
+		$('#bookname1').attr('readonly',true);
+		//编辑事件
+		$('#edit1').on('click',function(c){
+			$('#bookname1').attr('readonly',false);
+			$('#author1').attr('readonly',false);
+			$('#description1').attr('readonly',false);
+			$('#price1').attr('readonly',false);
+			$('#amount1').attr('readonly',false);
+		});
+		$('#edit2').on('click',function(c){
+			$('#bookname2').attr('readonly',false);
+			$('#author2').attr('readonly',false);
+			$('#description2').attr('readonly',false);
+			$('#price2').attr('readonly',false);
+			$('#amount2').attr('readonly',false);
+		});
+		$('#edit3').on('click',function(c){
+			$('#bookname3').attr('readonly',false);
+			$('#author3').attr('readonly',false);
+			$('#description3').attr('readonly',false);
+			$('#price3').attr('readonly',false);
+			$('#amount3').attr('readonly',false);
+		});
+		$('#edit4').on('click',function(c){
+			$('#bookname4').attr('readonly',false);
+			$('#author4').attr('readonly',false);
+			$('#description4').attr('readonly',false);
+			$('#price4').attr('readonly',false);
+			$('#amount4').attr('readonly',false);
+		});
+		$('#edit5').on('click',function(c){
+			$('#bookname5').attr('readonly',false);
+			$('#author5').attr('readonly',false);
+			$('#description5').attr('readonly',false);
+			$('#price5').attr('readonly',false);
+			$('#amount5').attr('readonly',false);
+		});
+		//删除事件
+		$('#delete1').on('click', function(c){
+			$('.row1').fadeOut('slow', function(c){
+				$('.row1').remove();
+			});
+		});	 
+		$('#delete2').on('click', function(c){
+		$('.row2').fadeOut('slow', function(c){
+	  		$('.row2').remove();
+		});
+		});	 
+		$('#delete3').on('click', function(c){
+			$('.row3').fadeOut('slow', function(c){
+				$('.row3').remove();
+			});
+		});	 
+		$('#delete4').on('click', function(c){
+			$('.row4').fadeOut('slow', function(c){
+				$('.row4').remove();
+			});
+		});	 
+		$('#delete5').on('click', function(c){
+			$('.row5').fadeOut('slow', function(c){
+				$('.row5').remove();
+			});
+		});	 
+            // jQuery Knobs
+            $(".knob").knob();
+
+			
+
+            // jQuery UI Sliders
+            $(".slider-sample1").slider({
+                value: 100,
+                min: 1,
+                max: 500
+            });
+            $(".slider-sample2").slider({
+                range: "min",
+                value: 130,
+                min: 1,
+                max: 500
+            });
+            $(".slider-sample3").slider({
+                range: true,
+                min: 0,
+                max: 500,
+                values: [ 40, 170 ],
+            });
+
+            
+
+            // jQuery Flot Chart
+            var visits = [[1, 50], [2, 40], [3, 45], [4, 23],[5, 55],[6, 65],[7, 61],[8, 70],[9, 65],[10, 75],[11, 57],[12, 59]];
+            var visitors = [[1, 25], [2, 50], [3, 23], [4, 48],[5, 38],[6, 40],[7, 47],[8, 55],[9, 43],[10,50],[11,47],[12, 39]];
+
+            var plot = $.plot($("#statsChart"),
+                [ { data: visits, label: "Signups"},
+                 { data: visitors, label: "Visits" }], {
+                    series: {
+                        lines: { show: true,
+                                lineWidth: 1,
+                                fill: true, 
+                                fillColor: { colors: [ { opacity: 0.1 }, { opacity: 0.13 } ] }
+                             },
+                        points: { show: true, 
+                                 lineWidth: 2,
+                                 radius: 3
+                             },
+                        shadowSize: 0,
+                        stack: true
+                    },
+                    grid: { hoverable: true, 
+                           clickable: true, 
+                           tickColor: "#f9f9f9",
+                           borderWidth: 0
+                        },
+                    legend: {
+                            // show: false
+                            labelBoxBorderColor: "#fff"
+                        },  
+                    colors: ["#a7b5c5", "#30a0eb"],
+                    xaxis: {
+                        ticks: [[1, "JAN"], [2, "FEB"], [3, "MAR"], [4,"APR"], [5,"MAY"], [6,"JUN"], 
+                               [7,"JUL"], [8,"AUG"], [9,"SEP"], [10,"OCT"], [11,"NOV"], [12,"DEC"]],
+                        font: {
+                            size: 12,
+                            family: "Open Sans, Arial",
+                            variant: "small-caps",
+                            color: "#697695"
+                        }
+                    },
+                    yaxis: {
+                        ticks:3, 
+                        tickDecimals: 0,
+                        font: {size:12, color: "#9da3a9"}
+                    }
+                 });
+
+            function showTooltip(x, y, contents) {
+                $('<div id="tooltip">' + contents + '</div>').css( {
+                    position: 'absolute',
+                    display: 'none',
+                    top: y - 30,
+                    left: x - 50,
+                    color: "#fff",
+                    padding: '2px 5px',
+                    'border-radius': '6px',
+                    'background-color': '#000',
+                    opacity: 0.80
+                }).appendTo("body").fadeIn(200);
+            }
+
+            var previousPoint = null;
+            $("#statsChart").bind("plothover", function (event, pos, item) {
+                if (item) {
+                    if (previousPoint != item.dataIndex) {
+                        previousPoint = item.dataIndex;
+
+                        $("#tooltip").remove();
+                        var x = item.datapoint[0].toFixed(0),
+                            y = item.datapoint[1].toFixed(0);
+
+                        var month = item.series.xaxis.ticks[item.dataIndex].label;
+
+                        showTooltip(item.pageX, item.pageY,
+                                    item.series.label + " of " + month + ": " + y);
+                    }
+                }
+                else {
+                    $("#tooltip").remove();
+                    previousPoint = null;
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
