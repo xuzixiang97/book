@@ -67,6 +67,7 @@ public class CartServiceImpl implements CartService {
             userCartResponse.setCategoryId(book.getCategoryId());
             userCartResponse.setImg(book.getImg());
             userCartResponse.setScore(book.getScore());
+            userCartResponses.add(userCartResponse);
         }
         return userCartResponses;
     }
