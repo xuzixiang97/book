@@ -1,6 +1,7 @@
 package com.laofuzi.book.service;
 
 import com.laofuzi.book.entity.Cart;
+import com.laofuzi.book.entity.response.UserCartResponse;
 
 import java.util.List;
 
@@ -15,5 +16,5 @@ public interface CartService {
 
     List<Cart> selectAll();
 
-    List<Cart> selectByUserId(Cart record);
+    List<UserCartResponse> selectByUserId(Cart record);
 }

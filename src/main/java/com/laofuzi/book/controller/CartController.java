@@ -3,6 +3,7 @@ package com.laofuzi.book.controller;
 import com.alibaba.fastjson.JSON;
 import com.laofuzi.book.entity.Cart;
 import com.laofuzi.book.entity.Result;
+import com.laofuzi.book.entity.response.UserCartResponse;
 import com.laofuzi.book.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -76,7 +77,7 @@ public class CartController {
     @RequestMapping(path = "/findByUserId", method = RequestMethod.POST)
     @ResponseBody
     public String findByUserId(@RequestBody Cart cart){
-        List<Cart> list = cartService.selectByUserId(cart);
+        List<UserCartResponse> list = cartService.selectByUserId(cart);
         return JSON.toJSONString(list);
     }
 
