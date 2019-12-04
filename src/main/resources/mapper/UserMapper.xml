@@ -102,4 +102,46 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
+    <update id="updateByName" parameterType="com.laofuzi.book.entity.User">
+      update `user`
+      <set >
+        <if test="username != null" >
+          username = #{username,jdbcType=VARCHAR},
+        </if>
+        <if test="password != null" >
+          password = #{password,jdbcType=VARCHAR},
+        </if>
+        <if test="salt != null" >
+          salt = #{salt,jdbcType=VARCHAR},
+        </if>
+        <if test="email != null" >
+          email = #{email,jdbcType=VARCHAR},
+        </if>
+        <if test="type != null" >
+          `type` = #{type,jdbcType=INTEGER},
+        </if>
+        <if test="status != null" >
+          status = #{status,jdbcType=INTEGER},
+        </if>
+        <if test="activationCode != null" >
+          activation_code = #{activationCode,jdbcType=VARCHAR},
+        </if>
+        <if test="headerUrl != null" >
+          header_url = #{headerUrl,jdbcType=VARCHAR},
+        </if>
+        <if test="createTime != null" >
+          create_time = #{createTime,jdbcType=INTEGER},
+        </if>
+        <if test="updateTime != null" >
+          update_time = #{updateTime,jdbcType=INTEGER},
+        </if>
+        <if test="version != null" >
+          version = #{version,jdbcType=INTEGER},
+        </if>
+        <if test="isVailed != null" >
+          is_vailed = #{isVailed,jdbcType=INTEGER},
+        </if>
+      </set>
+      where username = #{username,jdbcType=VARCHAR}
+    </update>
 </mapper>

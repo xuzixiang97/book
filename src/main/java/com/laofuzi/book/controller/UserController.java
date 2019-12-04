@@ -45,14 +45,26 @@ public class UserController {
 
 
     /**
-     * 修改用户信息
+     * 修改用户信息(id)
      * @param user
      * @return
      */
-    @RequestMapping(path = "/update", method = RequestMethod.POST)
+    @RequestMapping(path = "/updateById", method = RequestMethod.POST)
     @ResponseBody
-    public String update(@RequestBody User user){
+    public String updateById(@RequestBody User user){
         int i = userService.updateById(user);
+        return JSON.toJSONString(new Result(i>0));
+    }
+
+    /**
+     * 修改用户信息(username)
+     * @param user
+     * @return
+     */
+    @RequestMapping(path = "/updateByName", method = RequestMethod.POST)
+    @ResponseBody
+    public String updateByName(@RequestBody User user){
+        int i = userService.updateByName(user);
         return JSON.toJSONString(new Result(i>0));
     }
 

@@ -25,4 +25,6 @@ public interface UserService {
 
     int updateById(User record);
 
+    int updateByName(User record);
+
 }
