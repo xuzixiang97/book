@@ -57,7 +57,7 @@ public class UserServiceTest {
 //        List<User> selectall = userService.selectAll();
 //        System.out.println(selectall);
         //用户查询订单测试
-        List<Order> order = orderService.selectByUserId(2L);
+        List<Order> order = orderService.selectByUserId(1L);
         System.out.println(order);
     }
 }
