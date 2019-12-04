@@ -37,6 +37,18 @@ public class UserController {
     }
 
     /**
+     * 注册
+     * @param user
+     * @return
+     */
+    @RequestMapping(path = "/register", method = RequestMethod.POST)
+    @ResponseBody
+    public String register (@RequestBody User user) {
+        Map<String, Object> map = userService.register(user);
+        return JSON.toJSONString(map);
+    }
+
+    /**
      * 修改用户信息(id)
      * @param user
      * @return
