@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.laofuzi.book.entity.Order;
 import com.laofuzi.book.entity.OrderItems;
 import com.laofuzi.book.entity.Result;
+import com.laofuzi.book.entity.response.OrderItemDetailResponse;
 import com.laofuzi.book.service.OrderItemsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -79,6 +80,18 @@ public class OrderItemsController {
     public String findByOrderId(@RequestBody OrderItems orderItems){
         List<OrderItems> list = orderItemsService.selectByOrderId(orderItems);
         return JSON.toJSONString(list);
+    }
+
+    /**
+     * 订单详情列表（一张订单）传orderId
+     * @param orderItems
+     * @return
+     */
+    @RequestMapping(path = "/findDetailByOrderId", method = RequestMethod.POST)
+    @ResponseBody
+    public String findDetailByOrderId(@RequestBody OrderItems orderItems){
+        List<OrderItemDetailResponse> orderItemDetailResponses = orderItemsService.selectDetailByOrderId(orderItems);
+        return JSON.toJSONString(orderItemDetailResponses);
     }
 
 }

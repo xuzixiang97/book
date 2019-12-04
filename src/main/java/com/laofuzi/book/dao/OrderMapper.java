@@ -16,4 +16,6 @@ public interface OrderMapper {
     int updateByPrimaryKey(Order record);
 
     List<Order> selectAll();
+
+    List<Order> selectByUserId(Long userId);
 }

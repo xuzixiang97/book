@@ -1,6 +1,7 @@
 package com.laofuzi.book.service;
 
 import com.laofuzi.book.BookApplication;
+import com.laofuzi.book.entity.Order;
 import com.laofuzi.book.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,7 +11,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
-import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -19,34 +19,46 @@ public class UserServiceTest {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private OrderService orderService;
+
     @Test
     public void testCase() {
         //用户注册测试
         User user =new User();
-        user.setActivationCode("1");
-        user.setEmail("1");
-        user.setHeaderUrl("1");
-        user.setPassword("1");
-        user.setStatus(1);
-        user.setStatus(1);
-        user.setType(1);
-        user.setSalt("1");
-        user.setUsername("2");
-        Map<String, Object> map = userService.register(user);
-        System.out.println(map);
+//        user.setActivationCode("1");
+//        user.setEmail("1");
+//        user.setHeaderUrl("1");
+//        user.setPassword("1");
+//        user.setStatus(1);
+//        user.setStatus(1);
+//        user.setType(1);
+//        user.setSalt("1");
+//        user.setUsername("2");
+//        Map<String, Object> map = userService.register(user);
+//        System.out.println(map);
         //用户登录测试
-         Map<String, Object> login = userService.login("2","2");
-        System.out.println(login);
-        //用户删除测试
-        int delete = userService.deleteById(9L);
-        System.out.println(delete);
-        //用户更新测试
-        user.setEmail("2");
-        int update = userService.updateById(user);
-        System.out.println(update);
-        //用户选择全部测试
-        List<User> selectall = userService.selectAll();
-        System.out.println(selectall);
+//         Map<String, Object> login = userService.login("2","2");
+//        System.out.println(login);
+//        //用户删除测试
+//        int delete = userService.deleteById(9L);
+//        System.out.println(delete);
+        //用户根据名字更新测试
+//        user.setUsername("李翔");
+//        user.setEmail("2");
+//        int update = userService.updateByName(user);
+//        System.out.println(update);
+//        //用户根据id更新测试
+//        user.setId(1l);
+//        user.setEmail("zhangq@163.com");
+//        int update1 = userService.updateById(user);
+//        System.out.println(update1);
+////        //用户选择全部测试
+//        List<User> selectall = userService.selectAll();
+//        System.out.println(selectall);
+        //用户查询订单测试
+        List<Order> order = orderService.selectByUserId(1L);
+        System.out.println(order);
     }
 }
 

@@ -93,4 +93,10 @@ public class UserServiceImpl implements UserService {
     public int updateById(User record) {
         return userMapper.updateByPrimaryKey(record);
     }
+
+    @Override
+    public int updateByName(User record) {
+        return userMapper.updateByName(record);
+    }
+
 }

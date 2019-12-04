@@ -123,5 +123,17 @@ public class OrderController {
         return JSON.toJSONString(list);
     }
 
+    /**
+     * 订单列表（根据userId 查询）
+     * @param userId
+     * @return
+     */
+    @RequestMapping(path = "/selectByUserId", method = RequestMethod.POST)
+    @ResponseBody
+    public String selectByUserId(@RequestBody Long userId){
+        List<Order> list = orderService.selectByUserId(userId);
+        return JSON.toJSONString(list);
+    }
+
 }
 
