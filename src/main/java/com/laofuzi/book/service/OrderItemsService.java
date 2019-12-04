@@ -1,6 +1,7 @@
 package com.laofuzi.book.service;
 
 import com.laofuzi.book.entity.OrderItems;
+import com.laofuzi.book.entity.response.OrderItemDetailResponse;
 
 import java.util.List;
 
@@ -20,4 +21,10 @@ public interface OrderItemsService {
      * @return
      */
     List<OrderItems> selectByOrderId(OrderItems record);
+
+    /**
+     * 根据订单号查询订单详情 orderId(超详细信息)
+     * @return
+     */
+    List<OrderItemDetailResponse> selectDetailByOrderId(OrderItems record);
 }

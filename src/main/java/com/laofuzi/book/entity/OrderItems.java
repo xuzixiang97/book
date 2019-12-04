@@ -16,5 +16,4 @@ public class OrderItems extends BaseDO{
 
     private Integer unitprice;
 
-
 }
