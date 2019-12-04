@@ -25,14 +25,6 @@
     where id = #{id,jdbcType=BIGINT}
   </select>
 
-  <select id="selectByUserId" resultMap="BaseResultMap" >
-    select
-    <include refid="Base_Column_List" />
-    from `order`
-    where user_id = #{id,jdbcType=BIGINT}
-  </select>
-
-
   <select id="selectAll" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
