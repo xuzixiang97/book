@@ -15,6 +15,11 @@ public class AdminController {
     }
 
 
+    @RequestMapping("/upbook")
+    public String test2(){
+        return "admin/upbook";
+    }
+
     @RequestMapping(value = "/show")
     public String show(Model model){
         model.addAttribute("uid","123456789");
