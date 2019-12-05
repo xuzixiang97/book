@@ -27,7 +27,6 @@ public class UserController {
      * @param user
      * @return
      */
-    // todo 验证码没加，记住我没加
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     @ResponseBody
     public String login (@RequestBody User user) {
