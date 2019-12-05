@@ -49,7 +49,7 @@ public class OrderItemsServiceTest {
 //            //测试订单明细表查询全部信息
 //            List<OrderItems> selectall = orderItemsService.selectAll();
 //            System.out.println(selectall);
-//            //测试根据订单id查询订单明细
+            //测试根据订单id查询订单明细
 //            OrderItems order = new OrderItems();
 //            order.setOrderId(1l);
 //            List<OrderItems> find = orderItemsService.selectByOrderId(order);
