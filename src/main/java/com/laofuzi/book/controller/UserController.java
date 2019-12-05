@@ -95,4 +95,16 @@ public class UserController {
         return JSON.toJSONString(new Result(i>0));
     }
 
+    /**
+     * 查询单个图书
+     * @param user
+     * @return
+     */
+    @RequestMapping(path = "/findById", method = RequestMethod.POST)
+    @ResponseBody
+    public String findById(@RequestBody User user){
+        User record = userService.selectById(user.getId());
+        return JSON.toJSONString(record);
+    }
+
 }

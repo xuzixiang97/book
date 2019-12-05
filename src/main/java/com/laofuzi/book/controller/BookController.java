@@ -9,6 +9,7 @@ import com.laofuzi.book.service.BookService;
 import com.laofuzi.book.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,6 +34,18 @@ public class BookController {
     public String add(@RequestBody Book book){
         Book insert = bookService.insert(book);
         return JSON.toJSONString(insert);
+    }
+
+    /**
+     * 查询单个图书
+     * @param book
+     * @return
+     */
+    @RequestMapping(path = "/findById", method = RequestMethod.POST)
+    @ResponseBody
+    public String findById(@RequestBody Book book){
+        Book record = bookService.selectById(book.getId());
+        return JSON.toJSONString(record);
     }
 
     /**
@@ -70,6 +83,20 @@ public class BookController {
         List<Book> list = bookService.selectAll();
         return JSON.toJSONString(list);
     }
+
+
+    /**
+     * 后台index
+     * @param model
+     * @return
+     */
+    @RequestMapping(path = "/admin", method = RequestMethod.POST)
+    public String findAll(Model model){
+        List<Book> list = bookService.selectAll();
+        model.addAttribute("books",list);
+        return "admin/login";
+    }
+
 
 
 }
