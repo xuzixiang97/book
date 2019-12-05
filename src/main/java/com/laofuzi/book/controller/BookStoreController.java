@@ -5,14 +5,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/test")
-public class TestController {
+@RequestMapping("/bookstore")
+public class BookStoreController {
 
-    @RequestMapping("/index")
+    @RequestMapping("/index1")
 
     //@ResponseBody
     public String test(){
-        return "/index";
+        return "/index1";
     }
 
     @RequestMapping("/login")

@@ -28,12 +28,23 @@ public class UserController {
      * @param user
      * @return
      */
-    // todo 验证码没加，记住我没加
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     @ResponseBody
     public String login (@RequestBody User user) {
         // 检查账号,密码
         Map<String, Object> map = userService.login(user.getUsername(), user.getPassword());
+        return JSON.toJSONString(map);
+    }
+
+    /**
+     * 注册
+     * @param user
+     * @return
+     */
+    @RequestMapping(path = "/register", method = RequestMethod.POST)
+    @ResponseBody
+    public String register (@RequestBody User user) {
+        Map<String, Object> map = userService.register(user);
         return JSON.toJSONString(map);
     }
 
@@ -84,6 +95,18 @@ public class UserController {
     public String delete(@RequestBody User user){
         int i = userService.deleteById(user.getId());
         return JSON.toJSONString(new Result(i>0));
+    }
+
+    /**
+     * 查询单个图书
+     * @param user
+     * @return
+     */
+    @RequestMapping(path = "/findById", method = RequestMethod.POST)
+    @ResponseBody
+    public String findById(@RequestBody User user){
+        User record = userService.selectById(user.getId());
+        return JSON.toJSONString(record);
     }
 
 }

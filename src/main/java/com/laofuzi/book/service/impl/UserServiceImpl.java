@@ -44,6 +44,9 @@ public class UserServiceImpl implements UserService {
             return map;
         }
 
+        //填充用户
+        map.put("user", user);
+
         // 生成登录凭证
         String loginTicket = BookUtil.generateUUID();
         map.put("ticket", loginTicket);

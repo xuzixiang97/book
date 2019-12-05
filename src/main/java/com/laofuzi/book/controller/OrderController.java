@@ -122,15 +122,16 @@ public class OrderController {
     }
 
     /**
-     * 订单列表（根据userId 查询）
-     * @param userId
+     * 订单列表（根据userId 查询） 传userId即可
+     * @param order
      * @return
      */
     @RequestMapping(path = "/selectByUserId", method = RequestMethod.POST)
     @ResponseBody
-    public String selectByUserId(@RequestBody Long userId){
-        List<Order> list = orderService.selectByUserId(userId);
+    public String selectByUserId(@RequestBody Order order){
+        List<Order> list = orderService.selectByUserId(order.getUserId());
         return JSON.toJSONString(list);
+
     }
 
 }

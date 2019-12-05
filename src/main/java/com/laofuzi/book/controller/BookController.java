@@ -9,13 +9,16 @@ import com.laofuzi.book.service.BookService;
 import com.laofuzi.book.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
 @Controller
 @RequestMapping(path = "/book")
-@CrossOrigin //允许跨域请求
 public class BookController {
 
     @Autowired
@@ -34,6 +37,18 @@ public class BookController {
     }
 
     /**
+     * 查询单个图书
+     * @param book
+     * @return
+     */
+    @RequestMapping(path = "/findById", method = RequestMethod.POST)
+    @ResponseBody
+    public String findById(@RequestBody Book book){
+        Book record = bookService.selectById(book.getId());
+        return JSON.toJSONString(record);
+    }
+
+    /**
      * 修改图书
      * @param book
      * @return
@@ -44,12 +59,7 @@ public class BookController {
         int i = bookService.updateById(book);
         return JSON.toJSONString(new Result(i>0));
     }
-    @RequestMapping(path = "/updateByUsername", method = RequestMethod.POST)
-    @ResponseBody
-    public String updateByUsername(@RequestBody Book book){
-        int i = bookService.updateById(book);
-        return JSON.toJSONString(new Result(i>0));
-    }
+
     /**
      * 删除图书
      * @param book
@@ -73,6 +83,20 @@ public class BookController {
         List<Book> list = bookService.selectAll();
         return JSON.toJSONString(list);
     }
+
+
+    /**
+     * 后台index
+     * @param model
+     * @return
+     */
+    @RequestMapping("/admin")
+    public String findAll(Model model){
+        List<Book> list = bookService.selectAll();
+        model.addAttribute("books",list);
+        return "admin/index";
+    }
+
 
 
 }
