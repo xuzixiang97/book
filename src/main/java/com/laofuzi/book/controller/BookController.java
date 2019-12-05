@@ -112,17 +112,7 @@ public class BookController {
     }
 
 
-    /**
-     * 后台index
-     * @param model
-     * @return
-     */
-    @RequestMapping("/admin")
-    public String findAll(Model model){
-        List<Book> list = bookService.selectAll();
-        model.addAttribute("books",list);
-        return "admin/index";
-    }
+
 
 
 

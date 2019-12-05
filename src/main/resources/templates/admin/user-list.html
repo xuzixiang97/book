@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <html>
 <head>
     <title>用户列表</title>
@@ -39,7 +40,7 @@
             <span class="icon-bar"></span>
         </button>
 
-        <a class="brand" href="index.html"><img src="img/logo.png" /></a>
+        <a class="brand" href="index"><img th:src="@{/images/logo.png}" /></a>
 
         <ul class="nav pull-right">
             <li class="settings hidden-phone">
@@ -56,21 +57,21 @@
 <div id="sidebar-nav">
     <ul id="dashboard-menu">
         <li>
-            <a href="index.html">
+            <a href="index">
                 <i class="icon-home"></i>
                 <span>书籍管理</span>
             </a>
         </li>
 
         <li class="active">
-            <a  href="user-list.html">
+            <a  href="user-list">
                 <i class="icon-group"></i>
                 <span>用户管理</span>
             </a>
         </li>
 
         <li>
-            <a href="order.html">
+            <a href="order">
                 <i class="icon-cog"></i>
                 <span>订单管理</span>
             </a>

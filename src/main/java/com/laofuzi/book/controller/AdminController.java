@@ -8,9 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+
     @Autowired
     private BookService bookService;
 
@@ -25,29 +28,37 @@ public class AdminController {
         return "admin/upbook";
     }
 
+    @RequestMapping("/order")
+    public String order(){
+        return "admin/order";
+    }
+
+    @RequestMapping("/user-list")
+    public String user(){
+        return "admin/user-list";
+    }
+
+    @RequestMapping("/orderdetail")
+    public String orderdetail(){
+        return "admin/orderdetail";
+    }
+
     /**
-     * 测试页面
+     * 后台index
      * @param model
      * @return
      */
+    @RequestMapping("/index")
+    public String findAll(Model model){
+        List<Book> list = bookService.selectAll();
+        model.addAttribute("books",list);
+        return "admin/index";
+    }
+
     @RequestMapping(value = "/show")
     public String show(Model model){
         model.addAttribute("uid","123456789");
         model.addAttribute("name","Jerry");
         return "xuzi";
     }
-
-
-    /**
-     * 跳转编辑图书页面
-     * @param id
-     * @return
-     */
-    @RequestMapping(path = "/findByIdXu", method = RequestMethod.POST)
-    public String findByIdXu(Long id, Model model){
-        Book book = bookService.selectById(id);
-        model.addAttribute("book",book);
-        return "/admin/updatebook";
-    }
-
 }

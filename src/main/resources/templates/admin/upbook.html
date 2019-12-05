@@ -6,20 +6,20 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
     <!-- bootstrap -->
-    <link href="../../static/admin/css/bootstrap/bootstrap.css" rel="stylesheet" />
-    <link href="../../static/admin/css/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
-    <link href="../../static/admin/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+    <link href="/laofuzi/admin/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="/laofuzi/admin/css/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="/laofuzi/admin/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
 
     <!-- global styles -->
-    <link rel="stylesheet" type="text/css" href="../../static/admin/css/layout.css" />
-    <link rel="stylesheet" type="text/css" href="../../static/admin/css/elements.css" />
-    <link rel="stylesheet" type="text/css" href="../../static/admin/css/icons.css" />
+    <link rel="stylesheet" type="text/css" href="/laofuzi/admin/css/layout.css" />
+    <link rel="stylesheet" type="text/css" href="/laofuzi/admin/css/elements.css" />
+    <link rel="stylesheet" type="text/css" href="/laofuzi/admin/css/icons.css" />
 
     <!-- libraries -->
-    <link rel="stylesheet" type="text/css" href="../../static/admin/css/lib/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="/laofuzi/admin/css/lib/font-awesome.css" />
     
     <!-- this page specific styles -->
-    <link rel="stylesheet" href="../../static/admin/css/compiled/upbook.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/laofuzi/admin/css/compiled/upbook.css" type="text/css" media="screen" />
 
     <!-- open sans font -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
@@ -33,7 +33,7 @@
     <!-- navbar -->
     <div class="navbar navbar-inverse">
         <div class="navbar-inner">
-            <a class="brand" href="index.html"><img src="../../static/images/logo.png" /></a>
+            <a class="brand" href="index"><img src="/laofuzi/images/logo.png" /></a>
             <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -41,9 +41,9 @@
             </button>
             <div class="nav-collapse collapse">
                 <ul class="nav">
-                    <li><a href="index.html">书籍管理</a></li>
-                    <li><a href="user-list.html">用户管理</a></li>
-                    <li class="active"><a href="upbook.html">书籍上传</a></li>
+                    <li><a href="index">书籍管理</a></li>
+                    <li><a href="user-list">用户管理</a></li>
+                    <li class="active"><a href="upbook">书籍上传</a></li>
                     
                 </ul>
             </div>
@@ -108,9 +108,9 @@
 
 	<!-- scripts -->
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="../../static/admin/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../../static/admin/js/jquery-1.5.2.min.js"></script>
-    <script src="../../static/admin/js/theme.js"></script>
+    <script src="/laofuzi/admin/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/laofuzi/admin/js/jquery-1.5.2.min.js"></script>
+    <script src="/laofuzi/admin/js/theme.js"></script>
     <script type="text/javascript">
        var currentShowCity=0;
 
@@ -142,7 +142,7 @@
                  "publishDate":"2019-12-04",
                  "publisher":"人民出版社",
                  "categoryId":"101",
-                 "img":"xxx",
+                 "img":"/laofuzi/images/001.jpg",
                  "score":5,
                  "status":1,
                  "extendField":"",
@@ -150,6 +150,8 @@
              success: function (result) {
                  console.log(result);
                  alert("添加成功！");
+                 location.reload(true);
+                 window.top.location.href="/laofuzi/book/admin";
              }
          })
      });
