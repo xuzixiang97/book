@@ -90,11 +90,11 @@ public class BookController {
      * @param model
      * @return
      */
-    @RequestMapping(path = "/admin", method = RequestMethod.POST)
+    @RequestMapping("/admin")
     public String findAll(Model model){
         List<Book> list = bookService.selectAll();
         model.addAttribute("books",list);
-        return "admin/login";
+        return "admin/index";
     }
 
 
