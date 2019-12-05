@@ -1,45 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/laofuzi/css/login.css">
     <title>登录</title>
+    <link rel="stylesheet" href="/laofuzi/css/base.css">
+    <link rel="stylesheet" href="/laofuzi/css/login.css">
+    <script type="text/javascript" src="/laofuzi/js/jquery-1.11.1.min.js"></script>
 </head>
+
 <body>
-    <div id="loginform">
-        <div id="form">
-            <div class="text">
-                用&nbsp;&nbsp;户&nbsp;&nbsp;名：<input id="user" type="text" name="user" placeholder="请填写用户名">
-            </div>
-            <div class="text">
-                密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：<input id="password" type="password" name="password" placeholder="请填写密码">
-            </div>
-            <div id="radio">
-                <input type="radio" name="usertype" value="0" checked>普通用户
-                <input type="radio" name="usertype" value="1">客服
-                <input type="radio" name="usertype" value="2">管理员
-            </div>
-            <div class="btn">
-                <button id="login" type="submit">登录</button>
-            </div>
-            <div class="linkaa">
-                <a class="link" href="register.html">注册</a>
-                <a class="" href="">忘记密码？</a>
+<header id="headNav">
+    <div class="innerNav cf">
+        <a class="fl" href="#"><img src="/laofuzi/images/laofz.png" alt="" /></a>
+        <div class="headFont fr">
+            <span>您好，欢迎光临老夫子！<a href="register">请注册</a></span>
+        </div>
+    </div>
+</header>
+<section id="secBody">
+    <div id="loadForm">
+        <div class="innerBody cf">
+            <img class="fl" src="/laofuzi/images/laofz.png" alt="" />
+            <div class="tableWrap fr">
+                <div class="tableTap cf">
+                    <h3 class="fl">老夫子用户登录</h3>
+                    <a class="fr" href="register">注册账号</a>
+                </div>
+                <div class="tableItem">
+                    <i class="userHead"></i>
+                    <input id="username" type="text" name="userName" placeholder="用户名"  />
+                </div>
+                <div class="tableItem">
+                    <i class="userLock"></i>
+                    <input id="password" type="password" name="password" placeholder="密码"  />
+                </div>
+                <div class="tableAuto cf">
+                    <a class="autoMatic fl" href="#"><input class="loadGiet" type="checkbox" />自动登录</a>
+                    <a class="fr" href="#">忘记密码？</a>
+                </div>
+                <!--<button class="tableBtn">登录</button>-->
+                <input id="login" type="button" class="tableBtn" value="登录" />
             </div>
         </div>
     </div>
-
+</section>
+<footer id="footNav">
+    <p>Copyright © 老夫子网上书城 2019-2029，All Rights Reserved</p>
+</footer>
 </body>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+
 <script type="text/javascript" >
     var btn = document.getElementById("login");
-    var usertype = document.getElementsByName("usertype");
-
 
     btn.addEventListener("click",function(){
-        var username = document.getElementById("user").value;
+        var username = document.getElementById("username").value;
         var password = document.getElementById("password").value;
-        var str =
+
         $.ajax({
             url: "/laofuzi/user/login",
             type: "POST",
@@ -50,7 +68,33 @@
             async: false,
             success: function(result){
                 console.log(result);
-
+                var userinfo = JSON.stringify(result);
+                newData = eval("("+userinfo+")");
+                if(newData.usernameMsg != undefined || newData.usernameMsg != null){
+                    alert(newData.usernameMsg);
+                }else if(newData.passwordMsg != undefined || newData.passwordMsg != null){
+                    alert(newData.passwordMsg);
+                }else{
+                    $.ajax({
+                        url: "/laofuzi/user/findAll",
+                        type: "POST",
+                        dataType:"json",
+                        contentType : 'application/json',
+                        data: "",
+                        async: false,
+                        success: function(result){
+                            console.log(result);
+                            for(var i=0; i < result.length; i++){
+                                if(result[i].username == username){
+                                    console.log("userid:",result[i].id);
+                                    window.localStorage.setItem('userid',result[i].id);
+                                    window.localStorage.setItem('user',result[i].username);
+                                }
+                            }
+                        }
+                    });
+                    window.location.href="index";
+                }
             }
         });
     })

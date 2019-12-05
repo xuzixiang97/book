@@ -1,28 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+
+<head lang="en">
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../../../../css/login.css">
     <title>注册</title>
+    <link rel="stylesheet" href="/laofuzi/css/base.css">
+    <link rel="stylesheet" href="/laofuzi/css/register.css">
+    <script src="/laofuzi/js/jquery-1.11.1.min.js"></script>
 </head>
+
 <body>
-<div id="loginform">
-    <img src="../../../../images/laofz.png" />
-    <div id="form">
-        <div class="text">
-            用&nbsp;&nbsp;户&nbsp;&nbsp;名：<input id="user" type="text" name="user" placeholder="请填写用户名">
+    <header id="headNav">
+        <div class="innerNav cf">
+            <a class="fl" href="#"><img src="/laofuzi/images/laofz.png" alt=""></a>
+            <div class="headFont fr">
+                <span>您好，欢迎光临老夫子！<a href="login">请登录</a></span>
+            </div>
         </div>
-        <div class="text">
-            密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：<input id="password" type="password" name="password" placeholder="请设置密码">
+    </header>
+    <section id="secTab">
+        <div id="registerForm">
+            <div class="innerTab">
+                <h2>老夫子注册</h2>
+                <div class="tableItem">
+                    <input id="username" type="text" name="phone" required placeholder="用户名"/>
+                </div>
+                <div class="tableItem">
+                    <input id="email" type="email" name="email" required placeholder="邮箱"/>
+                </div>
+                <div class="tableItem">
+                    <input id="password" type="password" name="password" required placeholder="设置密码"/>
+                </div>
+                <div class="tableItem">
+                    <input id="password1" type="password" name="rePassword" required placeholder="确认密码"/>
+                </div>
+                <p class="clickRegist">点击注册，表示您同意老夫子 <a href="#">《服务协议》</a></p>
+                <input id="register" type="submit" class="tableBtn" value="同意协议并注册">
+            </div>
         </div>
-        <div class="text" id = "pass1">
-            确认密码：<input id="password1" type="password" name="password" placeholder="请确认密码">
-        </div>
-        <div class="btn">
-            <button id="register" type="submit">注册</button>
-        </div>
-    </div>
-</div>
-<script type="text/javascript" src="../../../../js/register.js"></script>
+    </section>
+    <footer id="footNav">
+        <p>Copyright © 老夫子网上书城 2019-2029，All Rights Reserved</p>
+    </footer>
 </body>
+
+<script type="text/javascript" >
+    var btn = document.getElementById("register");
+
+    btn.addEventListener("click",function(){
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        var password1 = document.getElementById("password1").value;
+        var email = document.getElementById("email").value;
+        var str =
+            $.ajax({
+                url: "/laofuzi/user/register",
+                type: "POST",
+                dataType:"json",
+                contentType : 'application/json',
+                data: JSON.stringify({"username":username,
+                    "password":password,
+                    "salt":"1",
+                    "email":email,
+                    "type":"0",
+                    "status":"1",
+                    "activationCode":"1",
+                    "headerUrl":"1",
+                }),
+                async: false,
+                success: function(result){
+                    console.log(result);
+                    var userinfo = JSON.stringify(result);
+                    newData = eval("("+userinfo+")");
+                    if(username != ""){
+                        if(newData.Msg == "注册成功!" ){
+                            window.localStorage.setItem('user1',result[i].username);
+                            window.location.href="index";
+                            alert(newData.Msg);
+                        }else{
+                            alert(newData.Msg);
+                        }
+                        if(email != ""){
+                            if(password != "" ){
+                                if(password1 != ""){
+                                    if(password != password1){
+                                        alert("再次填写密码错误!")
+                                    }
+                                }else{
+                                    alert("请确认密码！");
+                                }
+                            }else{
+                                alert("请填写密码！");
+                            }
+                        }else{
+                            alert("请填写邮箱！");
+                        }
+                    }else{
+                        alert("请填写用户名！");
+                    }
+                }
+            });
+    })
+</script>
+
 </html>
