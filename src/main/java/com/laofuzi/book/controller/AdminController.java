@@ -9,12 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/admin")
 public class AdminController {
 
-    @RequestMapping("/index")
-    public String test(){
-        return "admin/index";
-    }
-
-
     @RequestMapping("/login")
     public String test1(){
         return "admin/login";
