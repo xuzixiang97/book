@@ -21,4 +21,10 @@ public class TestController {
     public String test1(){
         return "/login";
     }
+    @RequestMapping("/register")
+
+    //@ResponseBody
+    public String test2(){
+        return "/register";
+    }
 }

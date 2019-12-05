@@ -2,7 +2,6 @@ package com.laofuzi.book.service;
 
 import com.laofuzi.book.BookApplication;
 import com.laofuzi.book.entity.OrderItems;
-import com.laofuzi.book.entity.response.OrderItemDetailResponse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +21,8 @@ public class OrderItemsServiceTest {
         @Test
         public void testCase() {
 //            //测试订单明细表新增
-            OrderItems orderitems = new OrderItems();
-            orderitems.setOrderId(1L);
+//            OrderItems orderitems = new OrderItems();
+//            orderitems.setBookId(1L);
 //            orderitems.setBookName("红楼梦");
 //            orderitems.setOrderId(2L);
 //            orderitems.setQuantity(1);
@@ -49,14 +48,11 @@ public class OrderItemsServiceTest {
 //            //测试订单明细表查询全部信息
 //            List<OrderItems> selectall = orderItemsService.selectAll();
 //            System.out.println(selectall);
-//            //测试根据订单id查询订单明细
-//            OrderItems order = new OrderItems();
-//            order.setOrderId(1l);
-//            List<OrderItems> find = orderItemsService.selectByOrderId(order);
-//            System.out.println(find);
-            //测试订单更详细的信息
-            List<OrderItemDetailResponse> orderitem= orderItemsService.selectDetailByOrderId(orderitems);
-            System.out.println(orderitem);
+            //测试根据订单id查询订单明细
+            OrderItems order = new OrderItems();
+            order.setOrderId(1l);
+            List<OrderItems> find = orderItemsService.selectByOrderId(order);
+            System.out.println(find);
         }
 }
 

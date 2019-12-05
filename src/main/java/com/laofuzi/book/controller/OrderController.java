@@ -9,15 +9,13 @@ import com.laofuzi.book.service.OrderItemsService;
 import com.laofuzi.book.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
 @RequestMapping(path = "/order")
+@CrossOrigin
 public class OrderController {
 
     @Autowired
@@ -118,7 +116,7 @@ public class OrderController {
      */
     @RequestMapping(path = "/findAll", method = RequestMethod.POST)
     @ResponseBody
-    public String findAll(@RequestBody Order order){
+    public String findAll(){
         List<Order> list = orderService.selectAll();
         return JSON.toJSONString(list);
     }

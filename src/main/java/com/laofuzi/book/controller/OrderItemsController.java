@@ -8,15 +8,13 @@ import com.laofuzi.book.entity.response.OrderItemDetailResponse;
 import com.laofuzi.book.service.OrderItemsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
 @RequestMapping(path = "/order_items")
+@CrossOrigin
 public class OrderItemsController {
 
     @Autowired

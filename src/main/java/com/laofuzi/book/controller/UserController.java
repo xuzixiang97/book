@@ -14,6 +14,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping(path = "/user")
+@CrossOrigin //允许跨域请求
 public class UserController {
 
     @Autowired
@@ -60,6 +61,7 @@ public class UserController {
         return JSON.toJSONString(new Result(i>0));
     }
 
+
     /**
      * 用户列表（全部）
      * @param user
@@ -67,7 +69,7 @@ public class UserController {
      */
     @RequestMapping(path = "/findAll", method = RequestMethod.POST)
     @ResponseBody
-    public String findAll(@RequestBody User user){
+    public String findAll(){
         List<User> list = userService.selectAll();
         return JSON.toJSONString(list);
     }
