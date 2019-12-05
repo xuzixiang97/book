@@ -160,9 +160,7 @@
 									</td>
                                     <td><input type="text" id="author1" th:value="${book.author}" style="width:140px;" readonly="true"/></td>
                                     <td >
-										<textarea id="description1"  style="width:300px;height:150px;"  readonly="true">令人心碎却无能为力的真实故事。
-向死而生的文学绝唱 打动万千读者的年度华语小说。
-李银河 戴锦华 骆以军 张悦然 冯唐 詹宏志 蒋方舟 史航 等多位学者作家社会名人郑重推荐。
+										<textarea id="description1"  style="width:300px;height:150px;"  readonly="true" th:text="${book.describe}">
 										</textarea>
 									</td>
 
