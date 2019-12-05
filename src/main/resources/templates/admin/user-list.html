@@ -1,329 +1,303 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>用户列表</title>
-    
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	
+    <title>用户列表</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <!-- bootstrap -->
-    <link href="../../static/admin/css/bootstrap/bootstrap.css" rel="stylesheet" />
-    <link href="../../static/admin/css/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
-    <link href="../../static/admin/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+    <link href="css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
 
     <!-- global styles -->
-    <link rel="stylesheet" type="text/css" href="../../static/admin/css/layout.css" />
-    <link rel="stylesheet" type="text/css" href="../../static/admin/css/elements.css" />
-    <link rel="stylesheet" type="text/css" href="../../static/admin/css/icons.css" />
+    <link rel="stylesheet" type="text/css" href="css/layout.css" />
+    <link rel="stylesheet" type="text/css" href="css/elements.css" />
+    <link rel="stylesheet" type="text/css" href="css/icons.css" />
 
     <!-- libraries -->
-    <link href="../../static/admin/css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
-    
+    <link href="css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
+
     <!-- this page specific styles -->
-    <link rel="stylesheet" href="../../static/admin/css/compiled/user-list.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/compiled/user-list.css" type="text/css" media="screen" />
 
     <!-- open sans font -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
 
     <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
 <body>
 
-    <!-- navbar -->
-    <div class="navbar navbar-inverse">
-        <div class="navbar-inner">
-            <button type="button" class="btn btn-navbar visible-phone" id="menu-toggler">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            
-            <a class="brand" href="index.html"><img src="../../static/images/logo.png" /></a>
+<!-- navbar -->
+<div class="navbar navbar-inverse">
+    <div class="navbar-inner">
+        <button type="button" class="btn btn-navbar visible-phone" id="menu-toggler">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
 
-            <ul class="nav pull-right">                
-                <li class="settings hidden-phone">
-                    <a href="signin.html" role="button">
-                        <i class="icon-share-alt"></i>
-                    </a>
-                </li>
-            </ul>            
-        </div>
-    </div>
-    <!-- end navbar -->
+        <a class="brand" href="index.html"><img src="img/logo.png" /></a>
 
-    <!-- sidebar -->
-    <div id="sidebar-nav">
-        <ul id="dashboard-menu">
-            <li>                
-                <a href="index.html">
-                    <i class="icon-home"></i>
-                    <span>书籍管理</span>
-                </a>
-            </li>            
-            
-            <li class="active">
-                <a  href="user-list.html">
-                    <i class="icon-group"></i>
-                    <span>用户管理</span>
+        <ul class="nav pull-right">
+            <li class="settings hidden-phone">
+                <a href="signin.html" role="button">
+                    <i class="icon-share-alt"></i>
                 </a>
             </li>
- 
-            <li>
-                <a href="order.html">
-                    <i class="icon-cog"></i>
-                    <span>订单管理</span>
-                </a>
-            </li>
-           
         </ul>
     </div>
-    <!-- end sidebar -->
-    
+</div>
+<!-- end navbar -->
 
-	<!-- main container -->
-    <div class="content">
-         <div class="container-fluid">
-            <div id="pad-wrapper" class="users-list">
-                <div class="row-fluid header">
-                    <h3>用户列表</h3>
-                    <div class="span10 pull-right">
-                        <input type="text" class="span5 search" placeholder="输入一个用户名..." />
-                        <a id="adduser" class="btn-flat new-product" href="javascript:void(0)">+ 添加用户</a>
-                        <!-- custom popup filter -->
-                        <!-- styles are located in css/elements.css -->
-                        <!-- script that enables this dropdown is located in js/theme.js -->
-						<!--
-                        <div class="ui-dropdown">
-                            <div class="head" data-toggle="tooltip" title="Click me!">
-                                过滤用户
-                                <i class="arrow-down"></i>
-                            </div>  
-                            <div class="dialog">
-                                <div class="pointer">
-                                    <div class="arrow"></div>
-                                    <div class="arrow_border"></div>
+<!-- sidebar -->
+<div id="sidebar-nav">
+    <ul id="dashboard-menu">
+        <li>
+            <a href="index.html">
+                <i class="icon-home"></i>
+                <span>书籍管理</span>
+            </a>
+        </li>
+
+        <li class="active">
+            <a  href="user-list.html">
+                <i class="icon-group"></i>
+                <span>用户管理</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="order.html">
+                <i class="icon-cog"></i>
+                <span>订单管理</span>
+            </a>
+        </li>
+
+    </ul>
+</div>
+<!-- end sidebar -->
+
+
+<!-- main container -->
+<div class="content">
+    <div class="container-fluid">
+        <div id="pad-wrapper" class="users-list">
+            <div class="row-fluid header">
+                <h3>用户列表</h3>
+                <div class="span10 pull-right">
+                    <input type="text" class="span5 search" placeholder="输入一个用户名..." />
+                    <!--<a id="adduser" class="btn-flat new-product" href="javascript:void(0)">+ 添加用户</a>-->
+
+                </div>
+            </div>
+
+            <!-- Users table -->
+            <div class="row-fluid table">
+                <table id="usertable" class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th class="span2 sortable">
+                            用户编号
+                        </th>
+                        <th  class="span3 sortable">
+                            <span class="line"></span>用户名
+                        </th>
+                        <th class="span3 sortable">
+                            <span class="line"></span>密码
+                        </th>
+                        <th class="span4 sortable">
+                            <span class="line"></span>手机号
+                        </th>
+                        <th class="span4 sortable ">
+                            <span class="line"></span>邮箱
+                        </th>
+                        <th class="span3 "  >
+                            <span class="line"></span>操作
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pagination pull-right">
+                <ul>
+                    <li><a href="#">&#8249;</a></li>
+                    <li><a class="active" href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">&#8250;</a></li>
+                </ul>
+            </div>
+            <!-- end users table -->
+            <!-- 修改用户信息窗口-->
+            <div class="modal hide" id="loginModalId" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                ×
+                            </button>
+                            <h3 class="modal-title" id="myModalLabel">修改用户信息：</h3>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon3" >用户：&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                <input type="text" class="input-sm" id="loginUser" aria-describedby="basic-addon3" >
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon3">密码：&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                                <input type="text" class="input-sm" id="loginPassword" aria-describedby="basic-addon3" >
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon3">手机号：</span>
+                                    <input type="text" class="input-sm" id="loginMobile" aria-describedby="basic-addon3" placeholder="">
+
                                 </div>
-                                <div class="body">
-                                    <p class="title">
-                                        显示用户:
-                                    </p>
-                                    <div class="form">
-                                        <select>
-                                            <option />姓名
-                                            <option />邮箱
-                                            <option />订单号
-                                            
-                                        </select>
-                                        <select>
-                                            <option />相等
-                                            <option />不等
-                                            <option />更多
-                                            <option />开始
-                                            
-                                        </select>
-                                        <input type="text" />
-                                        <a class="btn-flat small">添加过滤</a>
-                                    </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon3">邮箱：&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    <input type="text" class="input-sm" id="loginEmail" aria-describedby="basic-addon3" placeholder="">
+                                </div>
+                                <div id="div1" class="modal-footer">
+
                                 </div>
                             </div>
                         </div>
-						-->
                     </div>
                 </div>
-				
-                <!-- Users table -->
-                <div class="row-fluid table">
-                    <table id="usertable" class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th class="span2 sortable">
-                                   用户编号
-                                </th>
-								<th  class="span3 sortable">
-                                    <span class="line"></span>用户名
-                                </th>
-                                <th class="span3 sortable">
-                                    <span class="line"></span>密码
-                                </th>
-                                <th class="span4 sortable">
-                                    <span class="line"></span>手机号
-                                </th>
-                                <th class="span4 sortable ">
-                                    <span class="line"></span>邮箱
-                                </th>
-								<th class="span3 "  >
-                                    <span class="line"></span>操作
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="pagination pull-right">
-                    <ul>
-                        <li><a href="#">&#8249;</a></li>
-                        <li><a class="active" href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&#8250;</a></li>
-                    </ul>
-                </div>
-                <!-- end users table -->
-                <!-- 修改用户信息窗口-->
-                <div class="modal hide" id="loginModalId" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                    ×
-                                </button>
-                                <h3 class="modal-title" id="myModalLabel">添加/修改用户信息：</h3>
-                            </div>
-                            <div class="modal-body">
-                                <div class="input-group">
-                                    <span class="input-group-addon" id="basic-addon3" >用户：&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    <input type="text" class="input-sm" id="loginUser" aria-describedby="basic-addon3" placeholder="admin">
-                                </div>
-                                <div class="input-group">
-                                    <span class="input-group-addon" id="basic-addon3">密码：&nbsp;&nbsp;&nbsp;&nbsp; </span>
-                                    <input type="password" class="input-sm" id="loginPassword" aria-describedby="basic-addon3" placeholder="******">
-                                    <div class="input-group">
-                                        <span class="input-group-addon" id="basic-addon3">手机号：</span>
-                                        <input type="text" class="input-sm" id="loginMobile" aria-describedby="basic-addon3" placeholder="">
-
-                                    </div>
-                                    <div class="input-group">
-                                        <span class="input-group-addon" id="basic-addon3">邮箱：&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                        <input type="text" class="input-sm" id="loginEmail" aria-describedby="basic-addon3" placeholder="">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" id="addYesId">确定</button>
-                                        <button type="button" class="btn btn-default" id="addNoId" data-dismiss="modal">取消</button>
-                                    </div>
-                                </div>
-                            </div>
+            </div>
+            <!-- 修改用户窗口结束-->
+            <!-- 删除用户窗口-->
+            <div class="modal hide" id="deleteUser" tabindex="-1" role="dialog" aria-hidden="true" style="top:200px;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                ×
+                            </button>
+                            <h5 class="modal-title" id="myModalLabel">确定删除用户信息？</h5>
                         </div>
+
+                        <div  class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="deleteYesId">确定</button>
+                            <button type="button" class="btn btn-default" id="deleteNoId" data-dismiss="modal">取消</button>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- 修改用户窗口结束-->
-        <!-- 删除用户窗口-->
-                <div class="modal hide" id="deleteUser" tabindex="-1" role="dialog" aria-hidden="true" style="top:200px;">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                    ×
-                                </button>
-                                <h5 class="modal-title" id="myModalLabel">确定删除用户信息？</h5>
-                            </div>
-
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" id="deleteYesId">确定</button>
-                                        <button type="button" class="btn btn-default" id="deleteNoId" data-dismiss="modal">取消</button>
-                                    </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
         <!-- 删除用户窗口结束-->
     </div>
     <!-- end main container -->
 
-
-	<!-- scripts -->
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="../../static/admin/js/bootstrap.min.js"></script>
-    <script src="../../static/admin/js/theme.js"></script>
-	<script type="text/javascript">
-        $(function () {
-            //表格加载数据
+</div>
+<!-- scripts -->
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/theme.js"></script>
+<script type="text/javascript">
+    //点击确认删除
+    function rec(userid)
+    {
+        var mymessage=confirm("确定删除用户信息？");
+        if(mymessage==true)
+        {
             $.ajax({
                 type: "post",
                 dataType: "json",
                 contentType: 'application/json',
-                url: "http://localhost:8080/laofuzi/user/findAll",
+                url: "http://localhost:8080/laofuzi/user/delete",
+                data:JSON.stringify({
+                    "id":userid
+                }),
                 success: function (result) {
                     console.log(result);
-                    str = '';
-                    for (i = 0; i < result.length; i++) {
-                        str +='<tr class="row\' + i + \'"><td><input type="text"  id="userid' + i + '" value="' + result[i].id + '" style="width:140px" readonly="true"/></td>';
-                        str += '<td><input type="text"  id="username' + i + '" value="' + result[i].username + '" style="width:140px" readonly="true"/> </td>';
-                        str += '<td><input type="text"  id="password' + i + '"value="' + result[i].password + '" style="width:140px" readonly="true"/> </td>';
-                        str += '<td><input type="text"  id="mobile' + i + '" value="13758673666" style="width:140px" readonly="true"/> </td>';
-                        str += '<td><input type="text"  id="email' + i + '"value="' + result[i].email + '" style="width:140px" readonly="true"/> </td>';
-                        str += '<td><ul class="actions"><li><i id="edit' + i + '"  class="table-edit"></i><li class="last"><i id="delete' + i + '" class="table-delete"></i></li></ul></td>';
-                        str += '</tr>';
-                    }//循环结束
-                    $('#usertable').append($(str));
-                    //添加用户按钮
-                    $('#adduser').on('click', function (c) {
-                        $('#loginModalId').modal('show');
-                    });
-                    //确认修改用户信息按钮
-                    $('#addYesId').on('click', function (c) {
-                        $.ajax({
-                            type: "post",
-                            dataType: "json",
-                            contentType: 'application/json',
-                            url: "http://localhost:8080/laofuzi/user/update",
-                            data:JSON.stringify({
-                                "id":1,
-                                "username":$("#loginUser").val(),
-                                "password":$("#loginPassword").val(),
-                            }),
-                            success: function (result) {
-                                console.log(result);
-                                alert("修改成功！");
-                                $('#loginModalId').modal('hide');
-                                location.reload(true);
-                            }
-                        })
-
-                    });
-                    //确定删除用户
-                    $('#deleteYesId').on('click', function (c) {
-                       /* $.ajax({
-                            type: "post",
-                            dataType: "json",
-                            contentType: 'application/json',
-                            url: "http://localhost:8080/laofuzi/user/delete",
-                            data:JSON.stringify({
-                                "id":,
-                                "username":$("#loginUser").val(),
-                                "password":$("#loginPassword").val(),
-                            }),
-                            success: function (result) {
-                                console.log(result);
-                                alert("删除成功！");
-
-                                location.reload(true);
-                            }
-
-                        });*/
-                        $('#deleteUser').modal('hide');
-
-                    });
-                    for (i = 0; i < 6; i++) {
-                        //编辑事件
-                        $('#edit' + i + '').on('click', function (c) {
-                            $('#loginModalId').modal('show');
-                        });
-                        //删除事件
-                        $('#delete' + i + '').on('click', function (c) {
-                            $('#deleteUser').modal('show');
-                        });
-                    }
-
-                },
-
+                    $('#deleteUser').modal('hide');
+                    location.reload(true);
+                }
             });
+        }
+    }
+    //点击确认修改按钮
+    function  editok(userid) {
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            contentType: 'application/json',
+            url: "http://localhost:8080/laofuzi/user/updateById",
+            data:JSON.stringify({
+                "id":userid,
+                "username":$('#loginUser').val(),
+                "password":$('#loginPassword').val(),
+                "email":$('#loginEmail').val(),
+            }),
+            success: function (data) {
+                console.log(data);
+                alert("修改成功！");
+                $('#loginModalId').modal('hide');
+                location.reload(true);
+            }
         })
-	</script>
+    }
+    //点击编辑按钮
+    function edit(userid){
+        $('#addYesId').remove();
+        $('#addNoId').remove();
+        str='<button type="button" class="btn btn-primary" id="addYesId" onclick="editok('+userid+')">确定</button>';
+        str+='<button type="button" class="btn btn-default" id="addNoId" data-dismiss="modal">取消</button>';
+        $('#div1').append($(str));
+        str='';
+        $('#loginModalId').modal('show');
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            contentType: 'application/json',
+            url: "http://localhost:8080/laofuzi/user/findById",
+            data:JSON.stringify({
+                "id":userid
+            }),
+            success: function (result) {
+                console.log(result);
+                $('#loginUser').val(result.username);
+                $('#loginPassword').val(result.password);
+                $('#loginEmail').val(result.email);
+            }
+        });
+    }
+    $(function () {
+        //表格加载数据
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            contentType: 'application/json',
+            url: "http://localhost:8080/laofuzi/user/findAll",
+            success: function (result) {
+                console.log(result);
+                str = '';
+                for (i = 0; i < result.length; i++) {
+                    str +='<tr class="row\' + i + \'"><td><input type="text"  id="userid' + i + '" value="' + result[i].id + '" style="width:140px" readonly="true"/></td>';
+                    str += '<td><input type="text"  id="username' + i + '" value="' + result[i].username + '" style="width:140px" readonly="true"/> </td>';
+                    str += '<td><input type="text"  id="password' + i + '"value="' + result[i].password + '" style="width:140px" readonly="true"/> </td>';
+                    str += '<td><input type="text"  id="mobile' + i + '" value="13758673666" style="width:140px" readonly="true"/> </td>';
+                    str += '<td><input type="text"  id="email' + i + '"value="' + result[i].email + '" style="width:140px" readonly="true"/> </td>';
+                    str += '<td><ul class="actions"><li><i id="edit' + i + '"  class="table-edit" onclick="edit('+result[i].id+')"></i><li class="last"><i id="delete' + i + '" class="table-delete" onclick="rec('+result[i].id+')"></i></li></ul></td>';
+                    str += '</tr>';
+
+
+                }//循环结束
+                $('#usertable').append($(str));
+
+            },
+
+        });
+    })
+</script>
+
 </body>
 </html>
