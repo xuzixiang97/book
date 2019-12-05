@@ -150,15 +150,15 @@
                             </thead>
                             <tbody id="books">
                                 <!-- row -->
-                                <tr class="row1">
+                                <tr class="row1" th:each="book,iterStat : ${books}">
                                     <td>
                                         <input type="checkbox" />
-                                        <img src="/laofuzi/img/books/房思琪的初恋乐园.jpg" width=100px; />
+                                        <img th:src="${book.img}" width=100px; />
                                     </td>
                                     <td>
-                                       <input type="text" id="bookname1" value="房思琪的初恋乐园" style="width:140px;" />
+                                       <input type="text" id="bookname1" th:value="${book.name}" style="width:140px;" />
 									</td>
-                                    <td><input type="text" id="author1" value="林奕含" style="width:140px;" readonly="true"/></td>
+                                    <td><input type="text" id="author1" th:value="${book.author}" style="width:140px;" readonly="true"/></td>
                                     <td >
 										<textarea id="description1"  style="width:300px;height:150px;"  readonly="true">令人心碎却无能为力的真实故事。
 向死而生的文学绝唱 打动万千读者的年度华语小说。
@@ -177,108 +177,7 @@
 									</td>
 
                                 </tr>
-                               <!-- row -->
-                                <tr class="row2">
-                                    <td>
-                                        <input type="checkbox" />
-                                        <img src="/laofuzi/img/books/冬泳.jpg" width=100px; />
-                                    </td>
-                                    <td>
-                                       <input type="text" id="bookname2" value="冬泳" style="width:140px;" readonly="true" />
-									</td>
-                                    <td><input type="text" id="author2" value="班宇" style="width:140px;" readonly="true"/></td>
-                                    <td >
-										<textarea id="description2"  style="width:300px;height:150px;"  readonly="true">《冬泳》收录了班宇的七篇小说。在铁轨、工事与大雪的边缘，游走着一些昔日的身影：印厂工人、吊车司机、生疏的赌徒与失业者……他们生活被动，面临威胁、窘迫，惯于沉默，像一道峰或风，遥远而孤绝地存在。
-										</textarea>
-									</td>
 
-                                    <td><input type="text" id="price2" value="49.00" style="width:70px" readonly="true"/></td>
-                                    <td><input type="text" id="amount2" value="999" style="width:70px" readonly="true"/></td>
-									<td>
-										<ul class="actions">
-                                            <li><i id="edit2" class="table-edit"></i></li>
-                                            <!-- <li><i class="table-settings"></i></li>-->
-											<li class="last"><i id="delete2" class="table-delete"></i></li>
-                                        </ul>
-									</td>
-                                </tr>
-                                <!-- row -->
-                                <tr class="row3">
-                                    <td>
-                                        <input type="checkbox" />
-										<img src="/laofuzi/img/books/python编程.jpg" width=100px;/>
-
-                                    </td>
-                                    <td>
-                                       <input type="text" id="bookname3" value="Python编程" style="width:140px;" readonly="true"/>
-									</td>
-                                    <td><input type="text" id="author3" value="[美] 埃里克·马瑟斯" style="width:140px;" readonly="true"/></td>
-                                    <td >
-										 <textarea id="description3"  style="width:300px;height:150px;"  readonly="true">本书是一本针对所有层次的Python 读者而作的Python 入门书。全书分两部分：第一部分介绍用Python 编程所必须了解的基本概念，包括matplotlib、NumPy 和Pygal 等强大的Python 库和工具介绍，以及列表、字典、if 语句、类、文件与异常、代码测试等内容；第二部分将理论付诸实践，讲解如何开发三个项目，包括简单的Python 2D 游戏开发如何利用数据生成交互式的信息图，以及创建和定制简单的Web 应用，并帮读者解决常见编程问题和困惑。
-										 </textarea>
-									</td>
-
-                                    <td><input type="text" id="price3" value="89.00" style="width:70px" readonly="true"/></td>
-                                    <td><input type="text" id="amount3" value="999" style="width:70px" readonly="true"/></td>
-									<td>
-										<ul class="actions">
-                                            <li><i id="edit3" class="table-edit"></i></li>
-                                            <!-- <li><i class="table-settings"></i></li>-->
-											<li class="last"><i id="delete3" class="table-delete"></i></li>
-                                        </ul>
-									</td>
-                                </tr>
-                                <!-- row -->
-                                <tr class="row4">
-                                    <td>
-                                        <input type="checkbox" />
-										<img src="/laofuzi/img/books/Java编程.jpg" width=100px;/>
-                                    </td>
-                                    <td>
-                                       <input type="text" id="bookname4" value="Java编程思想 （第4版）" style="width:140px;" readonly="true"/>
-									</td>
-                                    <td><input type="text" id="author4" value=" [美] Bruce Eckel " style="width:140px;" readonly="true"/></td>
-                                    <td >
-										<textarea id="description4"  style="width:300px;height:150px;"  readonly="true">本书赢得了全球程序员的广泛赞誉，即使是最晦涩的概念，在Bruce Eckel的文字亲和力和小而直接的编程示例面前也会化解于无形。从Java的基础语法到最高级特性（深入的面向对象概念、多线程、自动项目构建、单元测试和调试等），本书都能逐步指导你轻松掌握。
-										</textarea>
-									</td>
-
-                                    <td><input type="text" id="price4" value="108.00" style="width:70px" readonly="true"/></td>
-                                    <td><input type="text" id="amount4" value="999" style="width:70px" readonly="true"/></td>
-									<td>
-										<ul class="actions">
-                                            <li><i id="edit4" class="table-edit"></i></li>
-                                            <!-- <li><i class="table-settings"></i></li>-->
-											<li class="last"><i id="delete4" class="table-delete"></i></li>
-                                        </ul>
-									</td>
-                                </tr>
-                                <!-- row -->
-                                <tr class="row5">
-                                    <td>
-                                        <input type="checkbox" />
-                                            <img src="/laofuzi/img/books/明朝那些事儿.jpg" width=100px;/>
-                                    </td>
-                                   <td>
-                                       <input type="text" id="bookname5" value="明朝那些事儿" style="width:140px;" readonly="true"/>
-									</td>
-                                    <td><input type="text" id="author5" value="当年明月" style="width:140px;" readonly="true"/></td>
-                                    <td >
-										<textarea id="description5"  style="width:300px;height:150px;"  readonly="true">从朱元璋的出身开始写起，到永乐大帝夺位的靖难之役结束为止。叙述了明朝最艰苦卓绝的开国过程。朱元璋pk陈友谅，谁堪问鼎天下？战太平、太湖大决战。卧榻之侧埋恶虎，铲除张士诚。徐达、常遇春等不世名将乘胜逐北破北元。更有明朝最大的谜团——永乐夺位、建文失踪的靖难之役。
-										</textarea>
-
-									</td>
-
-                                    <td><input type="text" id="price5" value="24.8" style="width:70px" readonly="true"/></td>
-                                    <td><input type="text" id="amount5" value="999" style="width:70px" readonly="true"/></td>
-									<td>
-										<ul class="actions">
-                                            <li><i id="edit5" class="table-edit"></i></li>
-                                            <!-- <li><i class="table-settings"></i></li>-->
-											<li class="last"><i id="delete5" class="table-delete"></i></li>
-                                        </ul>
-									</td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
