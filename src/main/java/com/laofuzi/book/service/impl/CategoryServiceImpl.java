@@ -37,4 +37,9 @@ public class CategoryServiceImpl implements CategoryService {
     public List<Category> selectAll() {
         return categoryMapper.selectAll();
     }
+
+    @Override
+    public List<Category> findByParentId(Long parentId) {
+        return categoryMapper.findByParentId(parentId);
+    }
 }

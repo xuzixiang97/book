@@ -69,5 +69,19 @@ public class CategoryController {
     }
 
 
+    /**
+     * 类目列表（根据parentId查询 一级类目根id为0）
+     * @param
+     * @return
+     */
+    @RequestMapping(path = "/findByParentId", method = RequestMethod.POST)
+    @ResponseBody
+    public String findByParentId(Category category){
+        List<Category> list = categoryService.findByParentId(category.getParentId());
+        return JSON.toJSONString(list);
+    }
+
+
+
 }
 

@@ -7,6 +7,7 @@ import com.laofuzi.book.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -60,6 +61,8 @@ public class UserController {
         return JSON.toJSONString(new Result(i>0));
     }
 
+
+
     /**
      * 修改用户信息(username)
      * @param user
@@ -98,7 +101,7 @@ public class UserController {
     }
 
     /**
-     * 查询单个图书
+     * 查询单个
      * @param user
      * @return
      */

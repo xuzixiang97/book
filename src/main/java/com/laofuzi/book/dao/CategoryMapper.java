@@ -17,4 +17,6 @@ public interface CategoryMapper {
     int updateByPrimaryKey(Category record);
 
     List<Category> selectAll();
+
+    List<Category> findByParentId(Long parentId);
 }

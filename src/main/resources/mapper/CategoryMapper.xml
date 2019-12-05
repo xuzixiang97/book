@@ -29,8 +29,14 @@
     <include refid="Base_Column_List"/>
     FROM  category
   </select>
+    <select id="findByParentId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+      select
+      <include refid="Base_Column_List" />
+      from category
+      where parent_id = #{parentId,jdbcType=BIGINT}
+    </select>
 
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from category
     where id = #{id,jdbcType=BIGINT}
   </delete>

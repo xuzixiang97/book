@@ -22,4 +22,10 @@ public interface BookService {
      */
     List<Book> findByCondition(Book record);
 
+    /**
+     * 根据类目id查询
+     * @param categoryId
+     * @return
+     */
+    List<Book> selectByCategoryId(Long categoryId);
 }

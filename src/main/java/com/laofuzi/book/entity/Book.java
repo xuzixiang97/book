@@ -20,7 +20,7 @@ public class Book extends BaseDO{
 
     private Integer quantity;
 
-    private String categoryId;
+    private Long categoryId;
 
     private String img;
 

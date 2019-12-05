@@ -10,7 +10,7 @@
     <result column="publish_date" property="publishDate" jdbcType="VARCHAR" />
     <result column="unitprice" property="unitprice" jdbcType="INTEGER" />
     <result column="quantity" property="quantity" jdbcType="INTEGER" />
-    <result column="category_id" property="categoryId" jdbcType="VARCHAR" />
+    <result column="category_id" property="categoryId" jdbcType="BIGINT" />
     <result column="img" property="img" jdbcType="VARCHAR" />
     <result column="score" property="score" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="INTEGER" />
@@ -29,6 +29,13 @@
     <include refid="Base_Column_List" />
     from book
     where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="selectByCategoryId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from book
+    where category_id = #{categoryId,jdbcType=BIGINT}
   </select>
 
   <select id="findByCondition" parameterType="com.laofuzi.book.entity.Book" resultMap="BaseResultMap">

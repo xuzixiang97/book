@@ -18,4 +18,6 @@ public interface BookMapper {
     List<Book> selectAll();
 
     List<Book> findByCondition(Book record);
+
+    List<Book> selectByCategoryId(Long categoryId);
 }

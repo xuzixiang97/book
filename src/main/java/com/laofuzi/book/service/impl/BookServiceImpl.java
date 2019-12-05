@@ -44,4 +44,9 @@ public class BookServiceImpl implements BookService {
     public List<Book> findByCondition(Book record) {
         return bookMapper.findByCondition(record);
     }
+
+    @Override
+    public List<Book> selectByCategoryId(Long categoryId) {
+        return bookMapper.selectByCategoryId(categoryId);
+    }
 }

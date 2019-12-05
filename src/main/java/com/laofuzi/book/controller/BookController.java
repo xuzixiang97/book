@@ -99,6 +99,18 @@ public class BookController {
         return JSON.toJSONString(list);
     }
 
+    /**
+     * 图书列表（根据类目id查询）
+     * @param
+     * @return
+     */
+    @RequestMapping(path = "/findByCategoryId", method = RequestMethod.POST)
+    @ResponseBody
+    public String findByCategoryId(Book book){
+        List<Book> list = bookService.selectByCategoryId(book.getCategoryId());
+        return JSON.toJSONString(list);
+    }
+
 
     /**
      * 后台index

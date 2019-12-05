@@ -16,4 +16,6 @@ public interface CategoryService {
     int updateById(Category record);
 
     List<Category> selectAll();
+
+    List<Category> findByParentId(Long parentId);
 }
