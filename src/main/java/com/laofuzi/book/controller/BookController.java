@@ -48,6 +48,21 @@ public class BookController {
         return JSON.toJSONString(record);
     }
 
+
+    /**
+     * 模糊查询
+     * @param book  只支持作者和书名模糊查询
+     * @return
+     */
+    @RequestMapping(path = "/findByCondition", method = RequestMethod.POST)
+    @ResponseBody
+    public String findByCondition(@RequestBody Book book){
+        List<Book> byCondition = bookService.findByCondition(book);
+        return JSON.toJSONString(byCondition);
+    }
+
+
+
     /**
      * 修改图书
      * @param book
