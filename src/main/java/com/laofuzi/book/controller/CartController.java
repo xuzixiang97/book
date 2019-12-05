@@ -59,12 +59,12 @@ public class CartController {
 
     /**
      * 购物车列表列表（全部）
-     * @param cart
+     * @param
      * @return
      */
     @RequestMapping(path = "/findAll", method = RequestMethod.POST)
     @ResponseBody
-    public String findAll(@RequestBody Cart cart){
+    public String findAll(){
         List<Cart> list = cartService.selectAll();
         return JSON.toJSONString(list);
     }

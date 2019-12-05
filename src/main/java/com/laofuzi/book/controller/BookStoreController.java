@@ -8,23 +8,36 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/bookstore")
 public class BookStoreController {
 
-    @RequestMapping("/index1")
-
-    //@ResponseBody
+    @RequestMapping("/index")
     public String test(){
         return "/index1";
     }
 
     @RequestMapping("/login")
-
-    //@ResponseBody
     public String test1(){
         return "/login";
     }
-    @RequestMapping("/register")
 
-    //@ResponseBody
+    @RequestMapping("/register")
     public String test2(){
         return "/register";
+    }
+
+
+    @RequestMapping("/checkout")
+    public String test3(){
+        return "/checkout";
+    }
+
+
+    @RequestMapping("/order")
+    public String test4(){
+        return "/order";
+    }
+
+
+    @RequestMapping("/single")
+    public String test5(){
+        return "/single";
     }
 }

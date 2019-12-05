@@ -75,7 +75,7 @@ public class UserController {
 
     /**
      * 用户列表（全部）
-     * @param user
+     * @param
      * @return
      */
     @RequestMapping(path = "/findAll", method = RequestMethod.POST)

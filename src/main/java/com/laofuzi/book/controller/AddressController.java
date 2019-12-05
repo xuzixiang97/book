@@ -59,12 +59,12 @@ public class AddressController {
 
     /**
      * 地址列表（全部）
-     * @param address
+     * @param
      * @return
      */
     @RequestMapping(path = "/findAll", method = RequestMethod.POST)
     @ResponseBody
-    public String findAll(@RequestBody Address address){
+    public String findAll(){
         List<Address> list = addressService.selectAll();
         return JSON.toJSONString(list);
     }

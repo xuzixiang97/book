@@ -89,12 +89,12 @@ public class BookController {
 
     /**
      * 图书列表（全部）
-     * @param book
+     * @param
      * @return
      */
     @RequestMapping(path = "/findAll", method = RequestMethod.POST)
     @ResponseBody
-    public String findAll(@RequestBody Book book){
+    public String findAll(){
         List<Book> list = bookService.selectAll();
         return JSON.toJSONString(list);
     }

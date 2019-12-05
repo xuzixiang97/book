@@ -58,12 +58,12 @@ public class CategoryController {
 
     /**
      * 类目列表（全部）
-     * @param category
+     * @param
      * @return
      */
     @RequestMapping(path = "/findAll", method = RequestMethod.POST)
     @ResponseBody
-    public String findAll(@RequestBody Category category){
+    public String findAll(){
         List<Category> list = categoryService.selectAll();
         return JSON.toJSONString(list);
     }

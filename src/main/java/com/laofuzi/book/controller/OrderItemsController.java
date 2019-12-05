@@ -58,12 +58,12 @@ public class OrderItemsController {
 
     /**
      * 订单详情列表（全部）
-     * @param orderItems
+     * @param
      * @return
      */
     @RequestMapping(path = "/findAll", method = RequestMethod.POST)
     @ResponseBody
-    public String findAll(@RequestBody OrderItems orderItems){
+    public String findAll(){
         List<OrderItems> list = orderItemsService.selectAll();
         return JSON.toJSONString(list);
     }
