@@ -100,20 +100,6 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <!--&lt;!&ndash; row &ndash;&gt;-->
-                        <!--<tr class="row1">-->
-                        <!--<td>-->
-                        <!--<input type="checkbox" />-->
-                        <!--<img src="img/books/房思琪的初恋乐园.jpg" width=100px; />  -->
-                        <!--</td>-->
-                        <!--<td >-->
-                        <!--房思琪的初恋乐园-->
-                        <!--</td>-->
-                        <!--<td >林奕含</td>			-->
-                        <!--<td>45.00</td>-->
-                        <!--<td>1</td>-->
-                        <!--<td>45.00</td>-->
-                        <!--</tr>-->
 
                         </tbody>
                     </table>
@@ -158,6 +144,7 @@
             if(pair[0] == variable){return pair[1];}
         }
         return(false);
+        console.log(vars);
     }
     $(function () {
         //
@@ -165,7 +152,7 @@
             type: "post",
             dataType: "json",
             contentType: 'application/json',
-            url: "http://localhost:8080/laofuzi/order_items/findByOrderId",
+            url: "http://localhost:8080/laofuzi/order_items/findDetailByOrderId",
             data:JSON.stringify({
                 "orderId":1,
             }),
@@ -176,7 +163,7 @@
                 $('#orderid').append($(s));
                 str='';
                 for (i = 0; i < result.length; i++) {
-                    str += '<tr class="row' + i + '"><td><img  id="bookimg' + i + '" alt="书籍封面" src=""/> </td>';
+                    str += '<tr class="row' + i + '"><td><img  id="bookimg' + i + '" alt="书籍封面" src=" '+ result[i].img +'"/> </td>';
                     str += '<td><input type="text"  id="bookname' + i + '"value="' + result[i].bookName+ '" style="width:140px" readonly="true"/> </td>';
                     str += '<td><input type="text"  id="author' + i + '" value="作者" style="width:140px" readonly="true"/> </td>';
                     str += '<td><input type="text"  id="unitprice' + i + '"value="' + result[i].unitprice + '" style="width:140px" readonly="true"/> </td>';
@@ -185,6 +172,7 @@
                     str += '</tr>';
 
                 }//循环结束
+                //console.log('str'+str);
                 $('#orderitemstable').append($(str));
                 $('#order_id').text(getQueryVariable("orderid"));
 
