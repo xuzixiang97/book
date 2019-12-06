@@ -42,14 +42,7 @@
     select
     <include refid="Base_Column_List"/>
     FROM  book
-    <where>
-      <if test="name != null" >
-        and `name` like CONCAT('%',#{name},'%')
-      </if>
-      <if test="author != null" >
-        and `author` like  CONCAT('%',#{author},'%')
-      </if>
-    </where>
+    where `name` like CONCAT('%',#{name},'%') or `author` like  CONCAT('%',#{name},'%')
   </select>
 
   <select id="selectAll" resultMap="BaseResultMap">

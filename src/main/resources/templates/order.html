@@ -5,190 +5,57 @@
     <title>Order</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Suity Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
     <script type="application/x-javascript">
         addEventListener("load", function() {
             setTimeout(hideURLbar, 0);
         }, false);
-
         function hideURLbar() {
             window.scrollTo(0, 1);
         }
     </script>
     <link href="/laofuzi/css/bootstrap.css" rel='stylesheet' type='text/css' />
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <!-- Custom Theme files -->
     <link href="/laofuzi/css/style.css" rel='stylesheet' type='text/css' />
     <link href="/laofuzi/css/style1.css" rel='stylesheet' type='text/css' />
-    <!-- Custom Theme files -->
-    <!--webfont-->
-    <link href='http://fonts.useso.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="/laofuzi/js/jquery-1.11.1.min.js"></script>
-    <script>
-        $(document).ready(function(c) {
-            $('.alert-close').on('click', function(c) {
-                $('.message').fadeOut('slow', function(c) {
-                    $('.message').remove();
-                });
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function(c) {
-            $('.alert-close1').on('click', function(c) {
-                $('.message1').fadeOut('slow', function(c) {
-                    $('.message1').remove();
-                });
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function(c) {
-            $('.alert-close2').on('click', function(c) {
-                $('.message2').fadeOut('slow', function(c) {
-                    $('.message2').remove();
-                });
-            });
-        });
-    </script>
 </head>
 <body>
-<header>
-    <div class="soubg">
-        <div class="sou fl">
-            <div id="userinfo" class="fl"></div>
-        </div>
-        <div class="fr top_right">
-            <a href="index">首页</a>&nbsp;&nbsp;&nbsp;|&nbsp;
-            <a href="order">我的订单</a>&nbsp;&nbsp;|&nbsp;
-            <a class="car_t" href="checkout">&nbsp;&nbsp;购物车 </a>
-            <div class="last">
-                <div class="shop">
-                    <ul id="lfzcart"></ul>
-                    <div class="buy">
-                        <p>合计 <span class="J_totalPrice">￥300.8</span></p>
-                        <a href="#">立即结算 <span class="J_totalCount">(3)</span></a>
+    <header>
+        <div class="soubg">
+            <div class="sou fl">
+                <div id="userinfo" class="fl"></div>
+            </div>
+            <div class="fr top_right">
+                <a href="index">首页</a>&nbsp;&nbsp;&nbsp;|&nbsp;
+                <a href="order">我的订单</a>&nbsp;&nbsp;|&nbsp;
+                <a class="car_t" href="checkout">&nbsp;&nbsp;购物车 </a>
+                <div class="last">
+                    <div class="shop">
+                        <ul id="lfzcart"></ul>
+                        <div class="buy">
+                            <p>合计 <span class="J_totalPrice">￥300.8</span></p>
+                            <a href="#">立即结算 <span class="J_totalCount">(3)</span></a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="top">
-        <div class="logo">
-            <a href="#"><img src="/laofuzi/images/lfz.png" /></a>
+        <div class="top">
+            <div class="logo">
+                <a href="#"><img src="/laofuzi/images/lfz.png" /></a>
+            </div>
+            <div class="search">
+                <input id="search" type="search" value="" placeholder="请输入关键字" class="s_ipt" />
+                <input id="submit" type="submit" value="搜索" class="s_btn" onclick="search()"/>
+                <div id="popular" class="fl"></div>
+            </div>
         </div>
-        <div class="search">
-            <form>
-                <input type="search" value="" placeholder="请输入关键字" class="s_ipt" />
-                <input type="submit" value="搜索" class="s_btn" />
-            </form>
-            <div id="popular" class="fl"></div>
-        </div>
-    </div>
-</header>
+    </header>
 
     <div class="about_top">
         <div class="container">
             <div class="col-md-3">
-                <ul class="menu1">
-                    <li class="item1"><a href="#" class="">教科书<img class="arrow-img" src="images/arrow.png" alt=""/> </a>
-                        <ul class="cute" style="display: none; overflow: hidden;">
-                            <li class="subitem1"><a href="single.html">编程语言 </a></li>
-                            <li class="subitem2"><a href="single.html">计算机网络</a></li>
-                            <li class="subitem3"><a href="single.html">经济学 </a></li>
-                            <li class="subitem3"><a href="single.html">管理学 </a></li>
-                            <li class="subitem3"><a href="single.html">信息管理与信息系统 </a></li>
-                            <li class="subitem3"><a href="single.html">市场营销</a></li>
-                            <li class="subitem3"><a href="single.html">英语</a></li>
-                        </ul>
-                    </li>
-                    <li class="item1"><a href="#" class="">文艺<img class="arrow-img" src="images/arrow.png" alt=""/> </a>
-                        <ul class="cute" style="display: none; overflow: hidden;">
-                            <li class="subitem1"><a href="single.html">小说 </a></li>
-                            <li class="subitem2"><a href="single.html">传记</a></li>
-                            <li class="subitem3"><a href="single.html">青春文学 </a></li>
-                            <li class="subitem3"><a href="single.html">艺术 </a></li>
-                            <li class="subitem3"><a href="single.html">摄影 </a></li>
-                        </ul>
-                    </li>
-                    <li class="item1"><a href="#" class="">人文社科<img class="arrow-img" src="images/arrow.png" alt=""/> </a>
-                        <ul class="cute" style="display: none; overflow: hidden;">
-                            <li class="subitem1"><a href="single.html"> 文学宗教</a></li>
-                            <li class="subitem2"><a href="single.html">历史</a></li>
-                            <li class="subitem3"><a href="single.html">政治军事 </a></li>
-                            <li class="subitem3"><a href="single.html">社会科学 </a></li>
-                            <li class="subitem3"><a href="single.html">心理学 </a></li>
-                            <li class="subitem3"><a href="single.html">法律</a></li>
-                        </ul>
-                    </li>
-                    <li class="item1"><a href="#" class="">励志<img class="arrow-img" src="images/arrow.png" alt=""/> </a>
-                        <ul class="cute" style="display: none; overflow: hidden;">
-                            <li class="subitem1"><a href="single.html">励志/成功 </a></li>
-                            <li class="subitem2"><a href="single.html">心灵修养</a></li>
-                            <li class="subitem3"><a href="single.html">人生哲学 </a></li>
-                            <li class="subitem3"><a href="single.html">职场 </a></li>
-                            <li class="subitem3"><a href="single.html">人际交往 </a></li>
-                            <li class="subitem3"><a href="single.html">口才/演讲/辩论</a></li>
-                        </ul>
-                    </li>
-                    </li>
-                    <li class="item1"><a href="#" class="">生活<img class="arrow-img" src="images/arrow.png" alt=""/> </a>
-                        <ul class="cute" style="display: none; overflow: hidden;">
-                            <li class="subitem1"><a href="single.html">运动 </a></li>
-                            <li class="subitem2"><a href="single.html">休闲</a></li>
-                            <li class="subitem3"><a href="single.html">旅游 </a></li>
-                            <li class="subitem3"><a href="single.html">美食 </a></li>
-                            <li class="subitem3"><a href="single.html">美妆 </a></li>
-                            <li class="subitem3"><a href="single.html">手工DIY</a></li>
-                        </ul>
-                    </li>
-                    </li>
-                    <li class="item1"><a href="#" class="">科技<img class="arrow-img" src="images/arrow.png" alt=""/> </a>
-                        <ul class="cute" style="display: none; overflow: hidden;">
-                            <li class="subitem1"><a href="single.html">科普读物 </a></li>
-                            <li class="subitem2"><a href="single.html">计算机/网络</a></li>
-                            <li class="subitem3"><a href="single.html">医学 </a></li>
-                            <li class="subitem3"><a href="single.html">建筑 </a></li>
-                            <li class="subitem3"><a href="single.html">工业技术 </a></li>
-                            <li class="subitem3"><a href="single.html">自然科学</a></li>
-                        </ul>
-                    </li>
-                    </li>
-                    <li class="item1"><a href="#" class="">经管<img class="arrow-img" src="images/arrow.png" alt=""/> </a>
-                        <ul class="cute" style="display: none; overflow: hidden;">
-                            <li class="subitem1"><a href="single.html">经济 </a></li>
-                            <li class="subitem2"><a href="single.html">管理</a></li>
-                            <li class="subitem3"><a href="single.html">投资理财 </a></li>
-                            <li class="subitem3"><a href="single.html">股票 </a></li>
-                            <li class="subitem3"><a href="single.html">金融 </a></li>
-                            <li class="subitem3"><a href="single.html">市场/销售</a></li>
-                            <li class="subitem3"><a href="single.html">会计</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <!--initiate accordion-->
-                <script type="text/javascript">
-                    $(function() {
-                        var menu1_ul = $('.menu1> li > ul'),
-                            menu1_a = $('.menu1 > li > a');
-                        menu1_ul.hide();
-                        menu1_a.click(function(e) {
-                            e.preventDefault();
-                            if (!$(this).hasClass('active')) {
-                                menu1_a.removeClass('active');
-                                menu1_ul.filter(':visible').slideUp('normal');
-                                $(this).addClass('active').next().stop(true, true).slideDown('normal');
-                            } else {
-                                $(this).removeClass('active');
-                                $(this).next().stop(true, true).slideUp('normal');
-                            }
-                        });
-
-                    });
-                </script>
+                <ul id="categories" class="menu1"></ul>
             </div>
             <div class="col-md-9 content_right">
                 <div class="dreamcrub">
@@ -208,7 +75,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <nav class="nav">
                         <ul class="menu_r">
                             <li class="active"><a href="">全部</a></li>
-                            <li><a href="">待发货</a></li>
+                            <li><a href="javascript:clickstatus()">待发货</a></li>
                             <li><a href="">待收货</a></li>
                             <li><a href="">已完成</a></li>
                         </ul>
@@ -236,6 +103,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     var user = window.localStorage.getItem('user');
     var user1 = window.localStorage.getItem('user1');
     console.log("userid:",userid);
+    //判断顶部导航显示信息
     if(userid != undefined | userid != "" | userid != "null"){
         var infouser = "欢迎! &nbsp;<a href=\"#\" style=\"color:#ff4e00;\">"+ user +"</a>&nbsp;|&nbsp;\n" +
             "<a href=\"login\" style=\"color:#ff4e00;\">退出</a>";
@@ -244,12 +112,80 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             "<a href=\"login\" style=\"color:#ff4e00;\">退出</a>";
     }
     $("#userinfo").append(infouser);
+    //显示书籍列表以及搜索框下方的热销书籍
+    function search() {
+        var keywords = document.getElementById("search").value;
+        $.ajax({
+            url: "/laofuzi/book/findByCondition",
+            type: "POST",
+            dataType:"json",
+            contentType : 'application/json',
+            data: JSON.stringify({"name":keywords}),
+            async: false,
+            success: function(result){
+                console.log(result);
+                window.localStorage.setItem('bookid',result[0].id);
+                window.location.href= "single";
+            }
+        });
+    }
+    //左侧书籍类别
+    $(function() {
+        var menu1_ul = $('.menu1> li > ul'),
+            menu1_a = $('.menu1 > li > a');
+        menu1_ul.hide();
+        menu1_a.click(function(e) {
+            e.preventDefault();
+            if (!$(this).hasClass('active')) {
+                menu1_a.removeClass('active');
+                menu1_ul.filter(':visible').slideUp('normal');
+                $(this).addClass('active').next().stop(true, true).slideDown('normal');
+            } else {
+                $(this).removeClass('active');
+                $(this).next().stop(true, true).slideUp('normal');
+            }
+        });
+    });
+    $.ajax({
+        url: "/laofuzi/category/findByParentId",
+        type: "POST",
+        dataType:"json",
+        contentType : 'application/json',
+        data: JSON.stringify({"parentId":"0"}),
+        async: false,
+        success: function(result){
+            console.log("categories:",result);
+            for(var i=0 ; i < result.length; i++ ){
+                var categories = "<li class=\"item1\"><a href=\"#\" class=\"\">"+result[i].name+
+                    "<img class=\"arrow-img\" src=\"/laofuzi/images/arrow.png\" alt=\"\"/> </a>\n" +
+                    "<ul id='childcat' class=\"cute\" style=\"display: none; overflow: hidden;\">\n"
+                $.ajax({
+                    url: "/laofuzi/category/findByParentId",
+                    type: "POST",
+                    dataType:"json",
+                    contentType : 'application/json',
+                    data:JSON.stringify({"parentId":result[i].id}),
+                    async: false,
+                    success: function(result){
+                        console.log(result);
+                        for(var j=0 ; j < result.length; j++ ){
+                            categories += "<li class=\"subitem1\">"+
+                                "<a href=\"single.html\">"+result[j].name+"</a></li>\n"
+                        }
+                    }
+                });
+                categories+= "</ul>\n</li>\n";
+                $("#categories").append(categories);
+            }
+        }
+    });
+    //显示登录用户的购物车信息
     $.ajax({
         url: "/laofuzi/cart/findByUserId",
         type: "POST",
         dataType:"json",
         contentType : 'application/json',
-        data: JSON.stringify({"userId":"1"}),
+        data: JSON.stringify({"userId":userid}),
         async: false,
         success: function(result){
             console.log(result);
@@ -277,6 +213,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             }
         }
     });
+    //显示书籍列表以及搜索框下方的热销书籍
     $.ajax({
         url: "/laofuzi/book/findAll",
         type: "POST",
@@ -286,7 +223,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         async: false,
         success: function(result){
             console.log(result);
-            console.log(result[0].img);
             for(var i=0 ; i < result.length; i++ ){
                 var bookpro = "<a href=\"single.html\">\n" +
                     "<div class=\"grid2 bookdetail\">\n" +
@@ -303,12 +239,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             }
         }
     });
+    //显示用户的订单信息
     $.ajax({
         url: "/laofuzi/order/selectByUserId",
         type: "POST",
         dataType:"json",
         contentType : 'application/json',
-        data: JSON.stringify({"userId":"1"}),
+        data: JSON.stringify({"userId":userid}),
         async: false,
         success: function(result){
             console.log("orders:",result);
@@ -322,13 +259,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     orders += "<span>订单状态：待发货&nbsp;&nbsp;&nbsp;&nbsp; </span>\n";
                 }else if(result[i].status == "1"){
                     orders += "<span>订单状态：待收货&nbsp;&nbsp;&nbsp;&nbsp; </span>\n" +
-                        "<span>操作：<a>确认收货</a></span>\n";
+                        "<span>操作：<a href='javascript:dealwith();'>确认收货</a></span>\n";
                 }else{
                     orders += "<span>订单状态：已完成&nbsp;&nbsp;&nbsp;&nbsp; </span>\n" +
-                        "<span>操作：<a>评价</a></span>\n";
+                        "<span>操作：<a href='javascript:dealwith();'>评价</a></span>\n";
                 }
                 orders += "</div>\n</h4>";
-
                 $.ajax({
                     url: "/laofuzi/order_items/findDetailByOrderId",
                     type: "POST",
@@ -338,30 +274,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     async: false,
                     success: function(data){
                         console.log("orderitems",data);
-                            for(var j=0; j < data.length; j++){
-                                orders += "<li id='userorderitems"+i+j+"'></li>"
-                                var liid = ("userorderitems"+i+j).toString();
-                                console.log("liid:",liid);
-                                var orderitems = "<div class=\"cart_box\">\n" +
-                                    "<div class=\"message\">\n" +
-                                    "<div class=\"list_img\"><img src=\""+data[j].img+"\" class=\"img-responsive\" alt=\"\" /></div>\n" +
-                                    "<div class=\"order_desc\">\n<div class=\"clear\">\n" +
-                                    "<h5>"+ data[j].bookName +"</h5>\n" +
-                                    "<h5>作者："+ data[j].author +"</h5>\n" +
-                                    "<h5>数量："+ data[j].quantity +"</h5>\n" +
-                                    "<h5>单价："+ data[j].unitprice +"</h5>\n" +
-                                    "<h5>小计："+ parseInt(data[j].quantity)*parseFloat(data[j].unitprice) +"</h5>\n" +
-                                    "</div>\n</div>\n</div>\n" +
-                                    "<div class=\"clearfix\"></div>\n</div>";
-                                $("#"+liid).append(orderitems);
-                            }
+                        for(var j=0; j < data.length; j++){
+                            orders += "<li>\n<div class=\"cart_box\">\n" +
+                                "<div class=\"message\">\n<div class=\"list_img\">"+
+                                "<img src=\""+data[j].img+"\" class=\"img-responsive\" alt=\"\" /></div>\n" +
+                                "<div class=\"order_desc\">\n<div class=\"clear\">\n" +
+                                "<h5>"+ data[j].bookName +"</h5>\n" +
+                                "<h5>作者："+ data[j].author +"</h5>\n" +
+                                "<h5>数量："+ data[j].quantity +"</h5>\n" +
+                                "<h5>单价："+ data[j].unitprice +"</h5>\n" +
+                                "<h5>小计："+ parseInt(data[j].quantity)*parseFloat(data[j].unitprice) +"</h5>\n" +
+                                "</div>\n</div>\n</div>\n" +
+                                "<div class=\"clearfix\"></div>\n</div>\n</li>";
+                        }
                     }
                  });
                 $("#userorders").append(orders);
             }
-
         }
     });
+    //点击书籍时跳转到书籍详情页
     function click(aid){
         console.log("aid:",aid);
         window.localStorage.setItem('bookid',aid);

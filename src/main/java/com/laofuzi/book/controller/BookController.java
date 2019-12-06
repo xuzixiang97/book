@@ -106,7 +106,7 @@ public class BookController {
      */
     @RequestMapping(path = "/findByCategoryId", method = RequestMethod.POST)
     @ResponseBody
-    public String findByCategoryId(Book book){
+    public String findByCategoryId(@RequestBody Book book){
         List<Book> list = bookService.selectByCategoryId(book.getCategoryId());
         return JSON.toJSONString(list);
     }
