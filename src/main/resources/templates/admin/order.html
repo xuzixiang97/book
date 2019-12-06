@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <html>
 <head>
     <title>订单列表</title>
@@ -40,7 +39,7 @@
             <span class="icon-bar"></span>
         </button>
 
-        <a class="brand" href="index"><img th:src="@{/images/logo.png}" /></a>
+        <a class="brand" href="index.html"><img th:src="@{/images/logo.png}" /></a>
 
         <ul class="nav pull-right">
             <li class="settings hidden-phone">
@@ -164,7 +163,7 @@
                     str += '<td><input type="text"  id="orderdate' + i + '"value="' + result[i].receiveTime+ '" style="width:140px" readonly="true"/> </td>';
                     str += '<td><input type="text"  id="userid' + i + '" value="'+result[i].userId+'" style="width:140px" readonly="true"/> </td>';
                     str += '<td><input type="text"  id="account' + i + '"value="' + result[i].account + '" style="width:140px" readonly="true"/> </td>';
-                    str += '<td><ul class="actions"><a id="detail'+i+'" class="btn-glow primary" href="orderdetail?orderid='+result[i].id+'" >查看详情</a>&nbsp;&nbsp;&nbsp;<button id="deliver' + i + '"  class="btn-glow primary"  onclick="deliver(this)">发货</button> </ul> </td>';
+                    str += '<td><ul class="actions"><a id="detail'+i+'" class="btn-glow primary" href="/laofuzi/admin/orderdetail?orderid='+result[i].id+'" >查看详情</a>&nbsp;&nbsp;&nbsp;<button id="deliver' + i + '"  class="btn-glow primary"  onclick="deliver(this)">发货</button> </ul> </td>';
                     str += '</tr>';
 
                 }//循环结束
