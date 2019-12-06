@@ -60,7 +60,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> selectByUserId(Long userId) {
-        return orderMapper.selectByUserId(userId);
+    public List<Order> selectByUserId(Order record) {
+        return orderMapper.selectByUserId(record);
     }
 }

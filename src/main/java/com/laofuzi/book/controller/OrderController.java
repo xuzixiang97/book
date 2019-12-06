@@ -129,7 +129,7 @@ public class OrderController {
     @RequestMapping(path = "/selectByUserId", method = RequestMethod.POST)
     @ResponseBody
     public String selectByUserId(@RequestBody Order order){
-        List<Order> list = orderService.selectByUserId(order.getUserId());
+        List<Order> list = orderService.selectByUserId(order);
         return JSON.toJSONString(list);
 
     }

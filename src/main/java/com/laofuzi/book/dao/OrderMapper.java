@@ -17,5 +17,5 @@ public interface OrderMapper {
 
     List<Order> selectAll();
 
-    List<Order> selectByUserId(Long userId);
+    List<Order> selectByUserId(Order record);
 }

@@ -30,11 +30,18 @@
     <include refid="Base_Column_List"/>
     FROM  `order`
   </select>
-    <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    <select id="selectByUserId" resultMap="BaseResultMap" parameterType="com.laofuzi.book.entity.Order">
       select
       <include refid="Base_Column_List"/>
       FROM  `order`
-      where user_id = #{userId,jdbcType=BIGINT}
+      <where>
+        <if test="userId != null" >
+          and  user_id = #{userId,jdbcType=BIGINT}
+        </if>
+        <if test="status != null" >
+          and  status = #{status,jdbcType=INTEGER}
+        </if>
+      </where>
     </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
