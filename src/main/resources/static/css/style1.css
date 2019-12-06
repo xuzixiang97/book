@@ -2224,7 +2224,7 @@ ul.cate_list {
 
 ul.cate_list li {
     width: 232px;
-    height: 316px;
+    height: 446px;
     overflow: hidden;
     float: left;
     display: inline;
@@ -2245,7 +2245,7 @@ ul.cate_list li .img {
     background-origin: border-box;
     background-clip: border-box;
     width: 210px;
-    height: 185px;
+    /*height: 185px;*/
     overflow: hidden;
     margin-top: 5px;
 }

@@ -5,8 +5,6 @@
     <title>Checkout</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Suity Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
     <script type="application/x-javascript">
         addEventListener("load", function() {
             setTimeout(hideURLbar, 0);
@@ -16,70 +14,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         }
     </script>
     <link href="/laofuzi/css/bootstrap.css" rel='stylesheet' type='text/css' />
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <!-- Custom Theme files -->
     <link href="/laofuzi/css/style.css" rel='stylesheet' type='text/css' />
     <link href="/laofuzi/css/style1.css" rel='stylesheet' type='text/css' />
-    <!-- Custom Theme files -->
-    <!--webfont-->
     <link href='http://fonts.useso.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="/laofuzi/js/jquery-1.11.1.min.js"></script>
-    <script>
-        $(document).ready(function(c) {
-            $('.alert-close').on('click', function(c) {
-                $('.message').fadeOut('slow', function(c) {
-                    $('.message').remove();
-                });
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function(c) {
-            $('.alert-close1').on('click', function(c) {
-                $('.message1').fadeOut('slow', function(c) {
-                    $('.message1').remove();
-                });
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function(c) {
-            $('.alert-close2').on('click', function(c) {
-                $('.message2').fadeOut('slow', function(c) {
-                    $('.message2').remove();
-                });
-            });
-        });
-    </script>
 </head>
 
 <body>
-<header>
-    <div class="soubg">
-        <div class="sou fl">
-            <div id="userinfo" class="fl"></div>
+    <header>
+        <div class="soubg">
+            <div class="sou fl">
+                <div id="userinfo" class="fl"></div>
+            </div>
+            <div class="fr top_right">
+                <a href="index">首页</a>&nbsp;&nbsp;&nbsp;|&nbsp;
+                <a href="order">我的订单</a>&nbsp;&nbsp;|&nbsp;
+                <a class="car_t" href="checkout">&nbsp;&nbsp;购物车 </a>
+            </div>
         </div>
-        <div class="fr top_right">
-            <a href="index">首页</a>&nbsp;&nbsp;&nbsp;|&nbsp;
-            <a href="order">我的订单</a>&nbsp;&nbsp;|&nbsp;
-            <a class="car_t" href="checkout">&nbsp;&nbsp;购物车 </a>
-        </div>
-    </div>
 
-    <div class="top">
-        <div class="logo">
-            <a href="#"><img src="/laofuzi/images/lfz.png" /></a>
+        <div class="top">
+            <div class="logo">
+                <a href="#"><img src="/laofuzi/images/lfz.png" /></a>
+            </div>
+            <div class="search">
+                <input id="search" type="search" value="" placeholder="请输入关键字" class="s_ipt" />
+                <input id="submit" type="submit" value="搜索" class="s_btn" onclick="search()" />
+                <div id="popular" class="fl"></div>
+            </div>
         </div>
-        <div class="search">
-            <form>
-                <input type="search" value="" placeholder="请输入关键字" class="s_ipt" />
-                <input type="submit" value="搜索" class="s_btn" />
-            </form>
-            <div id="popular" class="fl"></div>
-        </div>
-    </div>
-</header>
+    </header>
 
     <div class="about_top">
         <div class="container">
@@ -160,26 +124,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </ul>
                     </li>
                 </ul>
-                <!--initiate accordion-->
-                <script type="text/javascript">
-                    $(function() {
-                        var menu1_ul = $('.menu1> li > ul'),
-                            menu1_a = $('.menu1 > li > a');
-                        menu1_ul.hide();
-                        menu1_a.click(function(e) {
-                            e.preventDefault();
-                            if (!$(this).hasClass('active')) {
-                                menu1_a.removeClass('active');
-                                menu1_ul.filter(':visible').slideUp('normal');
-                                $(this).addClass('active').next().stop(true, true).slideDown('normal');
-                            } else {
-                                $(this).removeClass('active');
-                                $(this).next().stop(true, true).slideUp('normal');
-                            }
-                        });
-
-                    });
-                </script>
             </div>
             <div class="col-md-9 content_right">
                 <div class="dreamcrub">
@@ -203,13 +147,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="clearfix"> </div>
                 </div>
                 <div class="login_buttons">
-
                     <div class="login_button"><a href="order.html">确认</a></div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="clearfix"></div>
-
             </div>
             <div class="clearfix"> </div>
         </div>
@@ -236,6 +178,42 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             "<a href=\"login\" style=\"color:#ff4e00;\">退出</a>";
     }
     $("#userinfo").append(infouser);
+    function search() {
+        var keywords = document.getElementById("search").value;
+        // alert(keywords);
+        $.ajax({
+            url: "/laofuzi/book/findByCondition",
+            type: "POST",
+            dataType:"json",
+            contentType : 'application/json',
+            data: JSON.stringify({"name":keywords}),
+            async: false,
+            success: function(result){
+                console.log(result);
+                window.localStorage.setItem('bookid',result[0].id);
+                window.location.href= "single";
+            }
+        });
+    }
+
+    $(function() {
+        var menu1_ul = $('.menu1> li > ul'),
+            menu1_a = $('.menu1 > li > a');
+        menu1_ul.hide();
+        menu1_a.click(function(e) {
+            e.preventDefault();
+            if (!$(this).hasClass('active')) {
+                menu1_a.removeClass('active');
+                menu1_ul.filter(':visible').slideUp('normal');
+                $(this).addClass('active').next().stop(true, true).slideDown('normal');
+            } else {
+                $(this).removeClass('active');
+                $(this).next().stop(true, true).slideUp('normal');
+            }
+        });
+
+    });
+
     $.ajax({
         url: "/laofuzi/cart/findByUserId",
         type: "POST",

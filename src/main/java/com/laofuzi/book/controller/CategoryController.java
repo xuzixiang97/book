@@ -76,7 +76,7 @@ public class CategoryController {
      */
     @RequestMapping(path = "/findByParentId", method = RequestMethod.POST)
     @ResponseBody
-    public String findByParentId(Category category){
+    public String findByParentId(@RequestBody Category category){
         List<Category> list = categoryService.findByParentId(category.getParentId());
         return JSON.toJSONString(list);
     }
