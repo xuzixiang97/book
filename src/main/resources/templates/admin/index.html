@@ -164,13 +164,13 @@
 										</textarea>
 									</td>
 
-                                    <td><input type="text" id="price1" value="45.00" style="width:70px" readonly="true"/></td>
-                                    <td><input type="text" id="amount1" value="999" style="width:70px" readonly="true"/></td>
+                                    <td><input type="text" id="price1" style="width:70px" th:value="${book.unitprice}" readonly="true"/></td>
+                                    <td><input type="text" id="amount1" style="width:70px" th:value="${book.quantity}" readonly="true"/></td>
 									<td>
 										<ul class="actions">
-                                            <li><i id="edit1" class="table-edit"></i></li>
+                                            <li><i id="edit1" class="table-edit" th:onclick="'updatebook('+${book.id}+')'"></i></li>
                                             <!-- <li><i class="table-settings"></i></li>-->
-											<li class="last"><i id="delete1" class="table-delete"></i></li>
+											<li class="last"><i id="delete1" class="table-delete" th:onclick="'deletebook('+${book.id}+')'"></i></li>
                                         </ul>
 									</td>
 
@@ -191,6 +191,68 @@
                     </div>
                 </div>
                 <!-- end table sample -->
+                <!-- 修改书籍信息窗口-->
+                <div class="modal hide" id="bookwindow" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                    ×
+                                </button>
+                                <h3 class="modal-title" id="bookLabel">修改书籍信息：</h3>
+                            </div>
+                            <div class="modal-body">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="book-addon1" >书名：&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    <input type="text" class="input-sm" id="bookname" aria-describedby="book-addon3" >
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="book-addon2">作者：&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                                    <input type="text" class="input-sm" id="author" aria-describedby="book-addon3" >
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="book-addon3">简介：</span>
+                                        <!--<input type="text" class="input-sm" id="description" aria-describedby="book-addon3" placeholder="">-->
+                                        <textarea id="description"  style="width:300px;height:150px;" >
+										</textarea>
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="book-addon4">价格：&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                        <input type="text" class="input-sm" id="price" aria-describedby="book-addon3" placeholder="">
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="basic-addon5">数量：&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                        <input type="text" class="input-sm" id="amount" aria-describedby="book-addon3" placeholder="">
+                                    </div>
+                                    <div id="div2" class="modal-footer">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 修改用户窗口结束-->
+                <!-- 删除用户窗口-->
+                <div class="modal hide" id="deleteBook" tabindex="-1" role="dialog" aria-hidden="true" style="top:200px;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                    ×
+                                </button>
+                                <h5 class="modal-title" id="myModalLabel">确定删除书籍信息？</h5>
+                            </div>
+
+                            <div  class="modal-footer">
+                                <button type="button" class="btn btn-primary" id="deleteYesId1">确定</button>
+                                <button type="button" class="btn btn-default" id="deleteNoId1" data-dismiss="modal">取消</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 删除用户窗口结束-->
             </div>
         </div>
     </div>
@@ -209,178 +271,78 @@
     <script src="/laofuzi/admin/js/theme.js"></script>
 
     <script type="text/javascript">
-        $(function () {
-            $('#bookname1').attr('readonly', true);
-            //编辑事件
-            $('#edit1').on('click', function (c) {
-                $('#bookname1').attr('readonly', false);
-                $('#author1').attr('readonly', false);
-                $('#description1').attr('readonly', false);
-                $('#price1').attr('readonly', false);
-                $('#amount1').attr('readonly', false);
-            });
-            $('#edit2').on('click', function (c) {
-                $('#bookname2').attr('readonly', false);
-                $('#author2').attr('readonly', false);
-                $('#description2').attr('readonly', false);
-                $('#price2').attr('readonly', false);
-                $('#amount2').attr('readonly', false);
-            });
-            $('#edit3').on('click', function (c) {
-                $('#bookname3').attr('readonly', false);
-                $('#author3').attr('readonly', false);
-                $('#description3').attr('readonly', false);
-                $('#price3').attr('readonly', false);
-                $('#amount3').attr('readonly', false);
-            });
-            $('#edit4').on('click', function (c) {
-                $('#bookname4').attr('readonly', false);
-                $('#author4').attr('readonly', false);
-                $('#description4').attr('readonly', false);
-                $('#price4').attr('readonly', false);
-                $('#amount4').attr('readonly', false);
-            });
-            $('#edit5').on('click', function (c) {
-                $('#bookname5').attr('readonly', false);
-                $('#author5').attr('readonly', false);
-                $('#description5').attr('readonly', false);
-                $('#price5').attr('readonly', false);
-                $('#amount5').attr('readonly', false);
-            });
-            //删除事件
-            $('#delete1').on('click', function (c) {
-                $('.row1').fadeOut('slow', function (c) {
-                    $('.row1').remove();
+            //点击编辑按钮
+            function updatebook(bookid){
+                $('#addYesId1').remove();
+                $('#addNoId1').remove();
+                str='<button type="button" class="btn btn-primary" id="addYesId1" onclick="editok1('+bookid+')">确定</button>';
+                str+='<button type="button" class="btn btn-default" id="addNoId1" data-dismiss="modal">取消</button>';
+                $('#div2').append($(str));
+                str='';
+                $('#bookwindow').modal('show');
+                $.ajax({
+                    type: "post",
+                    dataType: "json",
+                    contentType: 'application/json',
+                    url: "http://localhost:8080/laofuzi/book/findById",
+                    data:JSON.stringify({
+                        "id":bookid
+                    }),
+                    success: function (result) {
+                        console.log(result);
+                        $('#bookname').val(result.name);
+                        $('#author').val(result.author);
+                        $('#description').val(result.describe);
+                        $('#price').val(result.unitprice);
+                        $('#amount').val(result.quantity);
+                    }
                 });
-            });
-            $('#delete2').on('click', function (c) {
-                $('.row2').fadeOut('slow', function (c) {
-                    $('.row2').remove();
-                });
-            });
-            $('#delete3').on('click', function (c) {
-                $('.row3').fadeOut('slow', function (c) {
-                    $('.row3').remove();
-                });
-            });
-            $('#delete4').on('click', function (c) {
-                $('.row4').fadeOut('slow', function (c) {
-                    $('.row4').remove();
-                });
-            });
-            $('#delete5').on('click', function (c) {
-                $('.row5').fadeOut('slow', function (c) {
-                    $('.row5').remove();
-                });
-            });
-            // jQuery Knobs
-            $(".knob").knob();
-
-
-            // jQuery UI Sliders
-            $(".slider-sample1").slider({
-                value: 100,
-                min: 1,
-                max: 500
-            });
-            $(".slider-sample2").slider({
-                range: "min",
-                value: 130,
-                min: 1,
-                max: 500
-            });
-            $(".slider-sample3").slider({
-                range: true,
-                min: 0,
-                max: 500,
-                values: [40, 170],
-            });
-
-
-            // jQuery Flot Chart
-            // var visits = [[1, 50], [2, 40], [3, 45], [4, 23],[5, 55],[6, 65],[7, 61],[8, 70],[9, 65],[10, 75],[11, 57],[12, 59]];
-            // var visitors = [[1, 25], [2, 50], [3, 23], [4, 48],[5, 38],[6, 40],[7, 47],[8, 55],[9, 43],[10,50],[11,47],[12, 39]];
-            //
-            // var plot = $.plot($("#statsChart"),
-            //     [ { data: visits, label: "Signups"},
-            //      { data: visitors, label: "Visits" }], {
-            //         series: {
-            //             lines: { show: true,
-            //                     lineWidth: 1,
-            //                     fill: true,
-            //                     fillColor: { colors: [ { opacity: 0.1 }, { opacity: 0.13 } ] }
-            //                  },
-            //             points: { show: true,
-            //                      lineWidth: 2,
-            //                      radius: 3
-            //                  },
-            //             shadowSize: 0,
-            //             stack: true
-            //         },
-            //         grid: { hoverable: true,
-            //                clickable: true,
-            //                tickColor: "#f9f9f9",
-            //                borderWidth: 0
-            //             },
-            //         legend: {
-            //                 // show: false
-            //                 labelBoxBorderColor: "#fff"
-            //             },
-            //         colors: ["#a7b5c5", "#30a0eb"],
-            //         xaxis: {
-            //             ticks: [[1, "JAN"], [2, "FEB"], [3, "MAR"], [4,"APR"], [5,"MAY"], [6,"JUN"],
-            //                    [7,"JUL"], [8,"AUG"], [9,"SEP"], [10,"OCT"], [11,"NOV"], [12,"DEC"]],
-            //             font: {
-            //                 size: 12,
-            //                 family: "Open Sans, Arial",
-            //                 variant: "small-caps",
-            //                 color: "#697695"
-            //             }
-            //         },
-            //         yaxis: {
-            //             ticks:3,
-            //             tickDecimals: 0,
-            //             font: {size:12, color: "#9da3a9"}
-            //         }
-            //      });
-
-            function showTooltip(x, y, contents) {
-                $('<div id="tooltip">' + contents + '</div>').css({
-                    position: 'absolute',
-                    display: 'none',
-                    top: y - 30,
-                    left: x - 50,
-                    color: "#fff",
-                    padding: '2px 5px',
-                    'border-radius': '6px',
-                    'background-color': '#000',
-                    opacity: 0.80
-                }).appendTo("body").fadeIn(200);
             }
-        });
-
-        //     var previousPoint = null;
-        //     $("#statsChart").bind("plothover", function (event, pos, item) {
-        //         if (item) {
-        //             if (previousPoint != item.dataIndex) {
-        //                 previousPoint = item.dataIndex;
-        //
-        //                 $("#tooltip").remove();
-        //                 var x = item.datapoint[0].toFixed(0),
-        //                     y = item.datapoint[1].toFixed(0);
-        //
-        //                 var month = item.series.xaxis.ticks[item.dataIndex].label;
-        //
-        //                 showTooltip(item.pageX, item.pageY,
-        //                             item.series.label + " of " + month + ": " + y);
-        //             }
-        //         }
-        //         else {
-        //             $("#tooltip").remove();
-        //             previousPoint = null;
-        //         }
-        //     });
-        // });
+            //点击确认删除
+            function deletebook(bookid)
+            {
+                var mymessage=confirm("确定删除书籍信息？");
+                if(mymessage==true)
+                {
+                    $.ajax({
+                        type: "post",
+                        dataType: "json",
+                        contentType: 'application/json',
+                        url: "http://localhost:8080/laofuzi/book/delete",
+                        data:JSON.stringify({
+                            "id":bookid
+                        }),
+                        success: function (result) {
+                            console.log(result);
+                            $('#deleteBook').modal('hide');
+                            location.reload(true);
+                        }
+                    });
+                }
+            }
+            //点击确认修改按钮
+            function  editok1(bookid) {
+                $.ajax({
+                    type: "post",
+                    dataType: "json",
+                    contentType: 'application/json',
+                    url: "http://localhost:8080/laofuzi/book/update",
+                    data:JSON.stringify({
+                        "id":bookid,
+                        "name":$('#bookname').val(),
+                        "author":$('#author').val(),
+                        "describe":$('#description').val(),
+                        "unitprice":$('#price').val(),
+                        "quantity":$('#amount').val(),
+                    }),
+                    success: function (data) {
+                        console.log(data);
+                        alert("修改成功！");
+                        $('#bookwindow').modal('hide');
+                        location.reload(true);
+                    }
+                })
+            }
     </script>
 
 </body>
