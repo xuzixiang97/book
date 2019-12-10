@@ -182,17 +182,3 @@ $('.ss_list').mouseenter(function() {
         }
     })
 })()
-
-function ajaxmethod(url,parameters){
-    $.ajax({
-        url: url,
-        type: "POST",
-        dataType:"json",
-        contentType : 'application/json',
-        data: parameters,
-        async: false,
-        success: function(result){
-            return result;
-        }
-    });
-}

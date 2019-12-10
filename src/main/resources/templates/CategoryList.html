@@ -42,40 +42,24 @@
 <section class="center">
     <!--End Menu End-->
     <div class="i_bg">
-        <div class="postion">
-            <span class="fl">全部 > 珠宝饰品 > 珍珠项链 > </span>
-        <span class="n_ch">
-            <span class="fl">品牌：<i>珠韵首饰</i></span>
-        </span>
+        <div class="dreamcrub">
+            <ul id="nowpage" class="breadcrumbs">
+                <li class="home">
+                    <a href="index" title="返回首页">首页</a>&nbsp;
+                    <span>&gt;</span>
+                </li>
+            </ul>
+            <ul class="previous">
+                <li><a href="index">返回上一页</a></li>
+            </ul>
+            <div class="clearfix"></div>
         </div>
         <!--Begin 筛选条件 Begin-->
         <div class="content ">
             <table border="0" class="choice">
                 <tr>
-                    <td width="70">&nbsp; 品牌：</td>
-                    <td class="td_a">
-                        <a href="#" class="now">珠韵首饰/ZHUYUN JEWELLERY</a>
-                        <a href="#">施华洛世奇/Swarovski</a>
-                        <a href="#">海瞳</a>
-                        <a href="#">周大福/CHOW TAI FOOK</a>
-                        <a href="#">京润珍珠</a>
-                        <a href="#">佰色传情 /BRI.R</a>
-                        <a href="#">迈姿/Maizi</a>
-                        <a href="#">Ginasy Jewelry</a>
-                        <a href="#">心鑫圆</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>&nbsp; 价格：</td>
-                    <td class="td_a">
-                        <a href="#">0-199</a>
-                        <a href="#" class="now">200-399</a>
-                        <a href="#">400-599</a>
-                        <a href="#">600-899</a>
-                        <a href="#">900-1299</a>
-                        <a href="#">1300-1399</a>
-                        <a href="#">1400以上</a>
-                    </td>
+                    <td width="70">&nbsp; 类别：</td>
+                    <td id="leibie" class="td_a"></td>
                 </tr>
             </table>
         </div>
@@ -83,72 +67,11 @@
 
         <div class="content ">
             <div class="l_list">
-                <div class="list_t">
-            	<span class="fl list_or">
-                	<a href="#">默认</a>
-                    <a href="#">
-                        <span class="fl">销量</span>
-                        <span class="i_up">销量从低到高显示</span>
-                        <span class="i_down">销量从高到低显示</span>
-                    </a>
-                    <a href="#" id="sortPrice"  class="now">
-                        <span class="fl" data-key="0">价格</span>
-                        <span class="i_up" data-key="1">价格从低到高显示</span>
-                        <span class="i_down" data-key="2">价格从高到低显示</span>
-                    </a>
-                    <a href="#">新品</a>
-                </span>
-                    <span class="fr">共发现120件</span>
+                <div id="count" class="list_t">
+
                 </div>
                 <div class="list_c">
-
-                    <ul id="catsbook" class="cate_list">
-                        <li>
-                            <div class="img"><a href="#"><img src="/laofuzi/images/001.jpg"/></a></div>
-                            <div class="price">
-                                <span>￥198.00</span>
-                            </div>
-                            <div class="name"><a href="#"> 超强光珍珠吊坠项链</a></div>
-                            <div class="carbg">
-                                <a href="#" class="ss">收藏</a>
-                                <a href="#" class="j_car">加入购物车</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img"><a href="#"><img src="/laofuzi/images/001.jpg" width="210" height="185"/></a></div>
-                            <div class="price">
-                                <span>￥865.00</span>
-                            </div>
-                            <div class="name"><a href="#"> 节节高升花生款(玫瑰色款)</a></div>
-                            <div class="carbg">
-                                <a href="#" class="ss">收藏</a>
-                                <a href="#" class="j_car">加入购物车</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img"><a href="#"><img src="/laofuzi/images/001.jpg" width="210" height="185"/></a></div>
-                            <div class="price">
-                                <span>￥198.00</span>
-                            </div>
-                            <div class="name"><a href="#">佰色传情 编织款珍珠项链</a></div>
-                            <div class="carbg">
-                                <a href="#" class="ss">收藏</a>
-                                <a href="#" class="j_car">加入购物车</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img"><a href="#"><img src="images/per_12.jpg" width="210" height="185"/></a></div>
-                            <div class="price">
-                                <span>￥2198.00</span>
-                            </div>
-                            <div class="name"><a href="#">珠圆玉润 送爱人 </a></div>
-                            <div class="carbg">
-                                <a href="#" class="ss">收藏</a>
-                                <a href="#" class="j_car">加入购物车</a>
-                            </div>
-                        </li>
-                    </ul>
-
+                    <ul id="catsbook" class="cate_list"></ul>
                     <div class="pages">
                         <a href="#" class="p_pre">上一页</a>
                         <a href="#" class="cur">1</a>
@@ -174,12 +97,8 @@
             </div>
         </div>
     </div>
+<script type="text/javascript" src="/laofuzi/js/base.js"></script>
 <script>
-    var userid = window.localStorage.getItem('userid');
-    var user = window.localStorage.getItem('user');
-    var user1 = window.localStorage.getItem('user1');
-    var categoryid = window.localStorage.getItem('categoryid');
-    console.log("userid:",userid);
     // 判断顶部导航显示信息
     if(userid != undefined | userid != "" | userid != "null"){
         var infouser = "欢迎! &nbsp;<a href=\"#\" style=\"color:#ff4e00;\">"+ user +"</a>&nbsp;|&nbsp;\n" +
@@ -188,10 +107,7 @@
             "<a href=\"order\">我的订单</a>&nbsp;&nbsp;|&nbsp;\n" +
             "<a class=\"car_t\" href=\"checkout\">&nbsp;&nbsp;购物车 </a>";
         quanxian += "<div class=\"last\">\n<div class=\"shop\">\n" +
-            "<ul id=\"lfzcart\"></ul>\n<div class=\"buy\">\n" +
-            "<p>合计 <span class=\"J_totalPrice\">￥300.8</span></p>\n" +
-            "<a href=\"#\">立即结算 <span class=\"J_totalCount\">(3)</span></a>\n" +
-            "</div>\n</div>\n</div>";
+            "<h4 class='lih4'>老夫子</h4><ul id=\"lfzcart\"></ul>\n</div>\n</div>";
     }else if(user1 != undefined | user1 != "" | user1 != "null"){
         var infouser = "欢迎! &nbsp;<a href=\"#\" style=\"color:#ff4e00;\">"+ user1 +"</a>&nbsp;|&nbsp;\n" +
             "<a href=\"login\" style=\"color:#ff4e00;\">退出</a>";
@@ -199,10 +115,7 @@
             "<a href=\"order\">我的订单</a>&nbsp;&nbsp;|&nbsp;\n" +
             "<a class=\"car_t\" href=\"checkout\">&nbsp;&nbsp;购物车 </a>";
         quanxian += "<div class=\"last\">\n<div class=\"shop\">\n" +
-            "<ul id=\"lfzcart\"></ul>\n<div class=\"buy\">\n" +
-            "<p>合计 <span class=\"J_totalPrice\">￥300.8</span></p>\n" +
-            "<a href=\"#\">立即结算 <span class=\"J_totalCount\">(3)</span></a>\n" +
-            "</div>\n</div>\n</div>";
+            "<h4 class='lih4'>老夫子</h4><ul id=\"lfzcart\"></ul>\n</div>\n</div>";
     }else{
         infouser = "你好! 请&nbsp;<a href=\"login\" style=\"color:#ff4e00;\">登录</a>&nbsp;|&nbsp;\n" +
             "<a href=\"register\" style=\"color:#ff4e00;\">免费注册</a>";
@@ -246,10 +159,10 @@
                     "<h3>你的购物车还是空的</h3>\n</li>";
                 $("#lfzcart").append(cartpro);
             }
-            for(var i=0 ; i < result.length; i++ ){
-                var cartpro = "<li>\n<h4>老夫子 <span class=\"J_count\">共1件商品</span></h4>\n" +
-                    "<div class=\"clear\">\n<div class=\"shopImg\">";
-                cartpro +=  "<img src=\""+ result[i].img +"\" alt=\"\" />\n</div>\n" +
+            for(var i=0 ; i < 3; i++ ){
+                var cartpro = "<li>\n" +
+                    "<div class=\"clear\">\n<div class=\"shopImg\" onclick='bookclick("+result[i].categoryId+","+result[i].id+")'>";
+                cartpro +=  "<img src=\""+ result[i].img +"\" alt=\"\"/>\n</div>\n" +
                     "<div class=\"shopText\">\n<div class=\"clear\">";
                 cartpro += "<h5>"+ result[i].name +"</h5>\n" +
                     "<a href=\"#\" class=\"close J_btnDelete\">X</a>\n" +
@@ -263,7 +176,24 @@
             }
         }
     });
+    $.ajax({
+        url: "/laofuzi/category/findAll",
+        type: "POST",
+        dataType:"json",
+        contentType : 'application/json',
+        data: "",
+        async: false,
+        success: function(result){
+            console.log(result);
+            for(var i=0; i < result.length; i++){
+                if(result[i].id == parentid){
+                    $("#nowpage").append("<li class=\"home\">&nbsp;"+result[i].name+"&nbsp;</li>");
+                }
+            }
+        }
+    });
 
+    //查询某类别的书籍
     $.ajax({
         url: "/laofuzi/book/findByCategoryId",
         type: "POST",
@@ -273,18 +203,97 @@
         async: false,
         success: function(result){
             console.log(result);
+            $("#count").append("<span class=\"fl\">共发现&nbsp;<strong>"+
+                result.length+"&nbsp;</strong>本</span>");
             for(var i=0; i < result.length; i++){
-                var cats = "<li>\n<div class=\"img\"><a href=\"#\">"+
+                var cats = "<li>\n<div class=\"img\">"+
+                    "<a href=\"javascript:bookclick("+result[i].categoryId+","+result[i].id+");\">"+
                     "<img src=\""+result[i].img+"\"/></a></div>\n" +
                     "<div class=\"price\">\n<span>￥"+ result[i].unitprice +"</span>\n" +
                     "</div>\n<div class=\"name\"><a href=\"#\">"+result[i].name+"</a></div>\n" +
                     "<div class=\"carbg\">\n" +
-                    "<a href=\"#\" class=\"j_car\">加入购物车</a>\n" +
+                    "<a href=\"javascript:addcart("+result[i].id+","+userid+");\" class=\"j_car\">加入购物车</a>\n" +
                     "</div>\n</li>";
                 $("#catsbook").append(cats);
             }
         }
     });
+
+    $.ajax({
+        url: "/laofuzi/book/findAll",
+        type: "POST",
+        dataType:"json",
+        contentType : 'application/json',
+        data: "",
+        async: false,
+        success: function(result) {
+            console.log(result);
+            for (var j = 0; j < 5; j++) {
+                var bookpop = "<a href=\"javascript:bookclick(" +result[j].categoryId+","+ result[j].id + ");\">" +
+                    result[j].name + "</a>";
+                $("#popular").append(bookpop);
+            }
+        }
+    });
+
+    $.ajax({
+        url: "/laofuzi/category/findByParentId",
+        type: "POST",
+        dataType:"json",
+        contentType : 'application/json',
+        data:JSON.stringify({"parentId":parentid}),
+        async: false,
+        success: function(data){
+            console.log("ppp:",data);
+            for(var i=0 ; i < data.length; i++ ){
+                var categories = "<a href=\"javascript:leibieclick(" + i + ","+ data[i].id+");\">"+
+                    data[i].name+"</a>";
+                $("#leibie").append(categories);
+                if(data[i].id == categoryid){
+                    document.getElementById("leibie").getElementsByTagName("a")[i].className = "now";
+                }
+            }
+        }
+    });
+    function leibieclick(lid,cid){
+        document.getElementById("catsbook").innerHTML = "";
+        document.getElementById("count").innerHTML = "";
+        var atag = document.getElementById("leibie").getElementsByTagName("a");
+        console.log("atag:",atag[lid]);
+        for(var i=0; i < atag.length; i++){
+            if(i == lid){
+                atag[lid].className = "now";
+            }else{
+                atag[i].className = "";
+            }
+        }
+        $.ajax({
+            url: "/laofuzi/book/findByCategoryId",
+            type: "POST",
+            dataType:"json",
+            contentType : 'application/json',
+            data: JSON.stringify({"categoryId":cid}),
+            async: false,
+            success: function(result){
+                console.log(result);
+                $("#count").append("<span class=\"fl\">共发现&nbsp;<strong>"+
+                    result.length+"&nbsp;</strong>本</span>");
+                for(var i=0; i < result.length; i++){
+                    var cats = "<li>\n<div class=\"img\">"+
+                        "<a href=\"javascript:bookclick("+result[i].categoryId+","+result[i].id+");\">"+
+                        "<img src=\""+result[i].img+"\"/></a></div>\n" +
+                        "<div class=\"price\">\n<span>￥"+ result[i].unitprice +"</span>\n" +
+                        "</div>\n<div class=\"name\"><a href=\"#\">"+result[i].name+"</a></div>\n" +
+                        "<div class=\"carbg\">\n" +
+                        "<a href=\"javascript:addcart("+result[i].id+","+userid+");\" class=\"j_car\">"+
+                        "加入购物车</a>\n" +
+                        "</div>\n</li>";
+                    $("#catsbook").append(cats);
+                }
+            }
+        });
+    }
+
 </script>
 <script src="/laofuzi/js/jquery-1.11.1.min.js"></script>
 <script src="/laofuzi/js/CategoryList.js"></script>

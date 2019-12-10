@@ -30,11 +30,8 @@
                 <a class="car_t" href="checkout">&nbsp;&nbsp;购物车 </a>
                 <div class="last">
                     <div class="shop">
+                        <h4 class='lih4'>老夫子</h4>
                         <ul id="lfzcart"></ul>
-                        <div class="buy">
-                            <p>合计 <span class="J_totalPrice">￥300.8</span></p>
-                            <a href="#">立即结算 <span class="J_totalCount">(3)</span></a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -73,11 +70,11 @@
                 </div>
                 <div style="margin: 30px;">
                     <nav class="nav">
-                        <ul class="menu_r">
-                            <li class="active"><a href="">全部</a></li>
-                            <li><a href="javascript:clickstatus()">待发货</a></li>
-                            <li><a href="">待收货</a></li>
-                            <li><a href="">已完成</a></li>
+                        <ul id="status" class="menu_r">
+                            <li class="active"><a href="javascript:clickstatus(0);" value="">全部</a></li>
+                            <li><a href="javascript:clickstatus(1);" value="0">待发货</a></li>
+                            <li><a href="javascript:clickstatus(2);" value="1">待收货</a></li>
+                            <li><a href="javascript:clickstatus(3);" value="2">已完成</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -97,12 +94,8 @@
         </div>
 
 </body>
-
+<script type="text/javascript" src="/laofuzi/js/base.js"></script>
 <script>
-    var userid = window.localStorage.getItem('userid');
-    var user = window.localStorage.getItem('user');
-    var user1 = window.localStorage.getItem('user1');
-    console.log("userid:",userid);
     //判断顶部导航显示信息
     if(userid != undefined | userid != "" | userid != "null"){
         var infouser = "欢迎! &nbsp;<a href=\"#\" style=\"color:#ff4e00;\">"+ user +"</a>&nbsp;|&nbsp;\n" +
@@ -166,11 +159,12 @@
                     contentType : 'application/json',
                     data:JSON.stringify({"parentId":result[i].id}),
                     async: false,
-                    success: function(result){
-                        console.log(result);
-                        for(var j=0 ; j < result.length; j++ ){
+                    success: function(data){
+                        console.log(data);
+                        for(var j=0 ; j < data.length; j++ ){
                             categories += "<li class=\"subitem1\">"+
-                                "<a href=\"single.html\">"+result[j].name+"</a></li>\n"
+                                "<a href=\"javascript:catclick("+result[i].id+","+data[j].id+");\">"+
+                                data[j].name+"</a></li>\n"
                         }
                     }
                 });
@@ -196,8 +190,8 @@
                     "<h3>你的购物车还是空的</h3>\n</li>";
                 $("#lfzcart").append(cartpro);
             }
-            for(var i=0 ; i < result.length; i++ ){
-                var cartpro = "<li>\n<h4>老夫子 <span class=\"J_count\">共1件商品</span></h4>\n" +
+            for(var i=0 ; i < 3; i++ ){
+                var cartpro = "<li>\n" +
                     "<div class=\"clear\">\n<div class=\"shopImg\">";
                 cartpro +=  "<img src=\""+ result[i].img +"\" alt=\"\" />\n</div>\n" +
                     "<div class=\"shopText\">\n<div class=\"clear\">";
@@ -234,7 +228,8 @@
                 $("#bookdetail").append(bookpro);
             }
             for(var j = 0; j < 5; j++){
-                var bookpop = "<a href=\"javascript:click("+result[j].id+");\">"+ result[j].name +"</a>";
+                var bookpop = "<a href=\"javascript:bookclick("+result[j].categoryId+","+result[j].id+");\">"+
+                    result[j].name +"</a>";
                 $("#popular").append(bookpop);
             }
         }
@@ -245,7 +240,7 @@
         type: "POST",
         dataType:"json",
         contentType : 'application/json',
-        data: JSON.stringify({"userId":userid}),
+        data: JSON.stringify({"userId":userid,"status":""}),
         async: false,
         success: function(result){
             console.log("orders:",result);
@@ -288,17 +283,84 @@
                                 "<div class=\"clearfix\"></div>\n</div>\n</li>";
                         }
                     }
-                 });
+                });
                 $("#userorders").append(orders);
             }
         }
     });
-    //点击书籍时跳转到书籍详情页
-    function click(aid){
-        console.log("aid:",aid);
-        window.localStorage.setItem('bookid',aid);
-        window.location.href= "single";
+    function clickstatus(index){
+        var uo = document.getElementById("userorders").innerHTML = "";
+        console.log("uo:",uo);
+        var ul = document.getElementById("status");
+        var li = ul.getElementsByTagName("li");
+        for(var c = 0; c < li.length; c++){
+            if(c == index){
+                li[index].className = "active";
+            }else{
+                li[c].className = "";
+            }
+        }
+        if(index == 0){
+            var statu = "";
+        }else{
+            var statu = index-1;
+        }
+        console.log("statu:",statu);
+        $.ajax({
+            url: "/laofuzi/order/selectByUserId",
+            type: "POST",
+            dataType:"json",
+            contentType : 'application/json',
+            data: JSON.stringify({"userId":userid,"status":statu}),
+            async: false,
+            success: function(result){
+                console.log("orders:",result);
+                for(var i=0; i< result.length; i++){
+                    var orders = "<h4 class=\"orderinfo\">\n" +
+                        "<span>订单编号："+ result[i].id +"&nbsp;&nbsp;&nbsp;&nbsp; </span>\n" +
+                        "<span>下单日期："+ result[i].createTime +"&nbsp;&nbsp;&nbsp;&nbsp; </span>\n" +
+                        "<span>订单总额："+ result[i].account +"&nbsp;&nbsp;&nbsp;&nbsp; </span>\n" +
+                        "<div class=\"caozuo\">\n"
+                    if(result[i].status == "0"){
+                        orders += "<span>订单状态：待发货&nbsp;&nbsp;&nbsp;&nbsp; </span>\n";
+                    }else if(result[i].status == "1"){
+                        orders += "<span>订单状态：待收货&nbsp;&nbsp;&nbsp;&nbsp; </span>\n" +
+                            "<span>操作：<a href='javascript:dealwith();'>确认收货</a></span>\n";
+                    }else{
+                        orders += "<span>订单状态：已完成&nbsp;&nbsp;&nbsp;&nbsp; </span>\n" +
+                            "<span>操作：<a href='javascript:dealwith();'>评价</a></span>\n";
+                    }
+                    orders += "</div>\n</h4>";
+                    $.ajax({
+                        url: "/laofuzi/order_items/findDetailByOrderId",
+                        type: "POST",
+                        dataType:"json",
+                        contentType : 'application/json',
+                        data: JSON.stringify({"orderId":result[i].id}),
+                        async: false,
+                        success: function(data){
+                            console.log("orderitems",data);
+                            for(var j=0; j < data.length; j++){
+                                orders += "<li>\n<div class=\"cart_box\">\n" +
+                                    "<div class=\"message\">\n<div class=\"list_img\">"+
+                                    "<img src=\""+data[j].img+"\" class=\"img-responsive\" alt=\"\" /></div>\n" +
+                                    "<div class=\"order_desc\">\n<div class=\"clear\">\n" +
+                                    "<h5>"+ data[j].bookName +"</h5>\n" +
+                                    "<h5>作者："+ data[j].author +"</h5>\n" +
+                                    "<h5>数量："+ data[j].quantity +"</h5>\n" +
+                                    "<h5>单价："+ data[j].unitprice +"</h5>\n" +
+                                    "<h5>小计："+ parseInt(data[j].quantity)*parseFloat(data[j].unitprice) +"</h5>\n" +
+                                    "</div>\n</div>\n</div>\n" +
+                                    "<div class=\"clearfix\"></div>\n</div>\n</li>";
+                            }
+                        }
+                    });
+                    $("#userorders").append(orders);
+                }
+            }
+        });
     }
+
 </script>
 <script src="/laofuzi/js/index.js"></script>
 <script src="/laofuzi/js/public.js"></script>

@@ -52,23 +52,9 @@
     <header>
         <div class="soubg">
             <div class="sou fl">
-                <div id="userinfo" class="fl">
-                </div>
+                <div id="userinfo" class="fl"></div>
             </div>
-            <div class="fr top_right">
-                <a href="index">首页</a>&nbsp;&nbsp;&nbsp;|&nbsp;
-                <a href="order">我的订单</a>&nbsp;&nbsp;|&nbsp;
-                <a class="car_t" href="checkout">&nbsp;&nbsp;购物车 </a>
-                <div class="last">
-                    <div class="shop">
-                        <ul id="lfzcart"></ul>
-                        <div class="buy">
-                            <p>合计 <span class="J_totalPrice">￥300.8</span></p>
-                            <a href="#">立即结算 <span class="J_totalCount">(3)</span></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div id="quanxian" class="fr top_right"></div>
         </div>
         <div class="top">
             <div class="logo">
@@ -89,14 +75,11 @@
             </div>
             <div class="col-md-9 content_right">
                 <div class="dreamcrub">
-                    <ul class="breadcrumbs">
+                    <ul id="nowpage" class="breadcrumbs">
                         <li class="home">
                             <a href="index" title="返回上一页">首页</a>
                             <span>&gt;</span>
                         </li>
-                        <li class="home">&nbsp; 教科书&nbsp;<span>&gt;</span></li>
-                        <li class="home">&nbsp;编程语言<span>&gt;</span></li>
-                        <li class="women">JAVA编程思想</li>
                     </ul>
                     <ul class="previous">
                         <li><a href="index">返回上一页</a></li>
@@ -105,9 +88,7 @@
                 </div>
                 <div class="singel_right">
                     <div class="labout span_1_of_a1">
-                        <!-- start product_slider -->
                         <ul id="etalage"></ul>
-                        <!-- end product_slider -->
                     </div>
                     <div id="bookdetail" class="cont1 span_2_of_a1">
 
@@ -118,7 +99,6 @@
                     <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
                         <ul class="resp-tabs-list">
                             <li class="resp-tab-item" aria-controls="tab_item-0" role="tab"><span>书籍描述</span></li>
-                            <!--<li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>目录</span></li>-->
                             <li class="resp-tab-item" aria-controls="tab_item-2" role="tab"><span>评价（写书面上有的译者或作者的话）</span></li>
                             <div class="clear"></div>
                         </ul>
@@ -168,23 +148,34 @@
         </div>
     </div>
 </body>
-
+<script type="text/javascript" src="/laofuzi/js/base.js"></script>
 <script>
-    var userid = window.localStorage.getItem('userid');
-    var user = window.localStorage.getItem('user');
-    var user1 = window.localStorage.getItem('user1');
-    console.log("userid:",userid);
+    // 判断顶部导航显示信息
     if(userid != undefined | userid != "" | userid != "null"){
         var infouser = "欢迎! &nbsp;<a href=\"#\" style=\"color:#ff4e00;\">"+ user +"</a>&nbsp;|&nbsp;\n" +
             "<a href=\"login\" style=\"color:#ff4e00;\">退出</a>";
+        var quanxian = "<a href=\"index\">首页</a>&nbsp;&nbsp;&nbsp;|&nbsp;\n" +
+            "<a href=\"order\">我的订单</a>&nbsp;&nbsp;|&nbsp;\n" +
+            "<a class=\"car_t\" href=\"checkout\">&nbsp;&nbsp;购物车 </a>";
+        quanxian += "<div class=\"last\">\n<div class=\"shop\">\n" +
+            "<h4 class='lih4'>老夫子</h4><ul id=\"lfzcart\"></ul>\n</div>\n</div>";
     }else if(user1 != undefined | user1 != "" | user1 != "null"){
         var infouser = "欢迎! &nbsp;<a href=\"#\" style=\"color:#ff4e00;\">"+ user1 +"</a>&nbsp;|&nbsp;\n" +
             "<a href=\"login\" style=\"color:#ff4e00;\">退出</a>";
+        quanxian = "<a href=\"index\">首页</a>&nbsp;&nbsp;&nbsp;|&nbsp;\n" +
+            "<a href=\"order\">我的订单</a>&nbsp;&nbsp;|&nbsp;\n" +
+            "<a class=\"car_t\" href=\"checkout\">&nbsp;&nbsp;购物车 </a>";
+        quanxian += "<div class=\"last\"><div class=\"shop\">\n" +
+            "<h4 class='lih4'>老夫子</h4><ul id=\"lfzcart\"></ul>\n</div>\n</div>";
     }else{
         infouser = "你好! 请&nbsp;<a href=\"login\" style=\"color:#ff4e00;\">登录</a>&nbsp;|&nbsp;\n" +
             "<a href=\"register\" style=\"color:#ff4e00;\">免费注册</a>";
+        quanxian = "<a href=\"index\">首页</a>&nbsp;&nbsp;&nbsp;|&nbsp;\n" +
+            "<a href=\"#\">我的订单</a>&nbsp;&nbsp;|&nbsp;\n" +
+            "<a class=\"car_t\" href=\"#\">&nbsp;&nbsp;购物车 </a>";
     }
     $("#userinfo").append(infouser);
+    $("#quanxian").append(quanxian);
     function search() {
         var keywords = document.getElementById("search").value;
         // alert(keywords);
@@ -202,8 +193,7 @@
             }
         });
     }
-    var bookid = window.localStorage.getItem('bookid');
-    console.log("bookid:",bookid);
+    //显示登录用户的购物车信息
     $.ajax({
         url: "/laofuzi/cart/findByUserId",
         type: "POST",
@@ -220,8 +210,8 @@
                     "<h3>你的购物车还是空的</h3>\n</li>";
                 $("#lfzcart").append(cartpro);
             }
-            for(var i=0 ; i < result.length; i++ ){
-                var cartpro = "<li>\n<h4>老夫子 <span class=\"J_count\">共1件商品</span></h4>\n" +
+            for(var i=0 ; i < 3; i++ ){
+                var cartpro = "<li>\n" +
                     "<div class=\"clear\">\n<div class=\"shopImg\">";
                 cartpro +=  "<img src=\""+ result[i].img +"\" alt=\"\" />\n</div>\n" +
                     "<div class=\"shopText\">\n<div class=\"clear\">";
@@ -234,53 +224,6 @@
                     "<strong class=\"J_smallTotalPrice\">"+ result[i].unitprice +"</strong>\n" +
                     "</div>\n</div>\n</div>\n</li>";
                 $("#lfzcart").append(cartpro);
-            }
-        }
-    });
-    $.ajax({
-        url: "/laofuzi/book/findAll",
-        type: "POST",
-        dataType:"json",
-        contentType : 'application/json',
-        data: "",
-        async: false,
-        success: function(result){
-            console.log(result);
-            console.log(result[0].img);
-            for(var i=0 ; i < result.length; i++ ){
-                if(result[i].id == bookid){
-                    var bimg = "<li>\n<a href=\"#\">\n" +
-                        "<img class=\"etalage_source_image img-responsive\" src=\""+result[i].img+"\" />\n" +
-                        " </a>\n</li>\n<div class=\"clearfix\"> </div>";
-                    $("#etalage").append(bimg);
-                    var cartpro = "<h1>"+result[i].name+"</h1>\n" +
-                        "<ul class=\"rating\">\n<li><a class=\"product-rate\" href=\"#\"> </a> <span> </span></li>\n" +
-                        "<li><p>作者："+result[i].author+"</p></li>\n<div class=\"clearfix\"></div>\n</ul>\n" +
-                        "<div class=\"price_single\">单价： ￥"+result[i].unitprice+"</div>\n" +
-                        "<h2 class=\"quick\">简单介绍:</h2>\n" +
-                        "<p class=\"quick_desc\"> "+result[i].describe+"</p>\n<ul class=\"product-qty\">\n" +
-                        "<div class=\"clear\">\n<div class=\"plush\">\n" +
-                        "<span class=\"J_btnDelCount\">-</span>\n" +
-                        "<input class=\"J_inputCount\" type=\"text\" value=\"1\" />\n" +
-                        "<span class=\"J_btnAddCount\">+</span>\n" +
-                        "</div>\n</div>\n" +
-                        "<span>库存："+result[i].quantity+"</span>\n</ul>\n<div class=\"btn_form\">\n<form>\n" +
-                        "<input type=\"submit\" value=\"加入购物车\" title=\"\">\n" +
-                        "<input type=\"submit\" value=\"结算\" title=\"\">\n</form>\n</div>";
-                    $("#bookdetail").append(cartpro);
-
-                }
-            }
-            for(var j = 0; j < 5; j++){
-                var bookpop = "<a href=\"javascript:click("+result[j].id+");\">"+ result[j].name +"</a>";
-                $("#popular").append(bookpop);
-            }
-            for(var m=0; m < 6; m++){
-                var like="<li class=\"bookdetail\">"+
-                    "<img src='"+ result[m].img +"' class=\"img-responsive\" />\n" +
-                    "<div class=\"grid-flex\"><a href=\"#\">"+ result[m].name +"</a>\n" +
-                    "<p>价格 ￥"+ result[m].unitprice +"</p>\n</div>\n</li>"
-                $("#flexiselDemo3").append(like);
             }
         }
     });
@@ -322,11 +265,32 @@
                     contentType : 'application/json',
                     data:JSON.stringify({"parentId":result[i].id}),
                     async: false,
-                    success: function(result){
-                        console.log(result);
-                        for(var j=0 ; j < result.length; j++ ){
+                    success: function(data){
+                        console.log(data);
+                        for(var j=0 ; j < data.length; j++ ){
                             categories += "<li class=\"subitem1\">"+
-                                "<a href=\"single.html\">"+result[j].name+"</a></li>\n"
+                                "<a href=\"javascript:catclick("+result[i].id+","+data[j].id+");\">"+
+                                data[j].name+"</a></li>\n";
+                            if(data[j].id == bookcatid){
+                                var pid = data[j].parentId;
+                                $.ajax({
+                                    url: "/laofuzi/category/findByParentId",
+                                    type: "POST",
+                                    dataType:"json",
+                                    contentType : 'application/json',
+                                    data:JSON.stringify({"parentId":"0"}),
+                                    async: false,
+                                    success: function(rs){
+                                        for(var m=0 ; m < data.length; m++ ){
+                                            if(rs[m].id == pid){
+                                                $("#nowpage").append("<li class='home'>&nbsp;"+rs[m].name+"&nbsp;<span>&gt;</span></li>");
+                                                $("#nowpage").append("<li class='home'>&nbsp;"+data[j].name+"</li>");
+                                            }
+                                        }
+                                    }
+                                });
+                            }
+
                         }
                     }
                 });
@@ -335,11 +299,56 @@
             }
         }
     });
-    function click(aid){
-        console.log("aid:",aid);
-        window.localStorage.setItem('bookid',aid);
-        window.location.href= "single";
-    }
+
+    $.ajax({
+        url: "/laofuzi/book/findAll",
+        type: "POST",
+        dataType:"json",
+        contentType : 'application/json',
+        data: "",
+        async: false,
+        success: function(result){
+            console.log(result);
+            console.log(result[0].img);
+            for(var i=0 ; i < result.length; i++ ){
+                if(result[i].id == bookid){
+                    var bimg = "<li>\n<a href=\"#\">\n" +
+                        "<img class=\"etalage_source_image img-responsive\" src=\""+result[i].img+"\" />\n" +
+                        " </a>\n</li>\n<div class=\"clearfix\"> </div>";
+                    $("#etalage").append(bimg);
+                    var cartpro = "<h1>"+result[i].name+"</h1>\n" +
+                        "<ul class=\"rating\">\n<li><a class=\"product-rate\" href=\"#\"> </a> <span> </span></li>\n" +
+                        "<li><p>作者："+result[i].author+"</p></li>\n<div class=\"clearfix\"></div>\n</ul>\n" +
+                        "<div class=\"price_single\">单价： ￥"+result[i].unitprice+"</div>\n" +
+                        "<h2 class=\"quick\">简单介绍:</h2>\n" +
+                        "<p class=\"quick_desc\"> "+result[i].describe+"</p>\n<ul class=\"product-qty\">\n" +
+                        "<div class=\"clear\">\n<div class=\"plush\">\n" +
+                        "<span class=\"J_btnDelCount\">-</span>\n" +
+                        "<input class=\"J_inputCount\" type=\"text\" value=\"1\" />\n" +
+                        "<span class=\"J_btnAddCount\">+</span>\n" +
+                        "</div>\n</div>\n" +
+                        "<span>库存："+result[i].quantity+"</span>\n</ul>\n<div class=\"btn_form\">\n<form>\n" +
+                        "<input onclick='addcart("+result[i].id+","+userid+")' "+
+                        "type=\"submit\" value=\"加入购物车\" title=\"\">\n" +
+                        "<input type=\"submit\" value=\"结算\" title=\"\">\n</form>\n</div>";
+                    $("#bookdetail").append(cartpro);
+
+                }
+            }
+            for(var j = 0; j < 5; j++){
+                var bookpop = "<a href=\"javascript:bookclick("+result[j].categoryId+","+result[j].id+");\">"+
+                    result[j].name +"</a>";
+                $("#popular").append(bookpop);
+            }
+            for(var m=0; m < 3; m++){
+                var like="<a href='javascript:bookclick("+result[m].categoryId+","+result[m].id+");'><li class=\"bookdetail\">"+
+                    "<img src='"+ result[m].img +"' class=\"img-responsive\" />\n" +
+                    "<div class=\"grid-flex\"><a href=\"#\">"+ result[m].name +"</a>\n" +
+                    "<p>价格 ￥"+ result[m].unitprice +"</p>\n</div>\n</li></a>"
+                $("#flexiselDemo3").append(like);
+            }
+        }
+    });
 </script>
 <script src="/laofuzi/js/index.js"></script>
 <script src="/laofuzi/js/public.js"></script>
