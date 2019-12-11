@@ -12,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(path = "/order")
@@ -54,7 +56,7 @@ public class OrderController {
 
         Order order = new Order();
         order.setUserId(createOrderRequest.getUserId());
-        order.setStatus(1);
+        order.setStatus(0);
         order.setAddressId(createOrderRequest.getAddressId());
         int account = 0;
         List<Cart> cartList = new ArrayList<>();
@@ -70,6 +72,7 @@ public class OrderController {
         order.setAccount(account);
         Order newOrder = orderService.insert(order);
 
+        List<OrderItems> orderItemsList = new ArrayList<>();
         //生成订单项
         for (Cart cart : cartList) {
             OrderItems orderItems = new OrderItems();
@@ -79,16 +82,18 @@ public class OrderController {
             orderItems.setOrderId(newOrder.getId());
             orderItems.setQuantity(cart.getNumber());
             orderItems.setUnitprice(book.getUnitprice());
-            orderItemsService.insert(orderItems);
-
+            OrderItems insert = orderItemsService.insert(orderItems);
+            orderItemsList.add(insert);
         }
 
         //清空购物车
         for (Cart cart : cartList) {
            cartService.deleteById(cart.getId());
         }
-
-        return JSON.toJSONString(new Result(true));
+        Map<String,Object> map = new HashMap<>();
+        map.put("order",newOrder);
+        map.put("orderitems",orderItemsList);
+        return JSON.toJSONString(map);
     }
 
     /**
