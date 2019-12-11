@@ -12,6 +12,8 @@ public interface CartService {
 
     Cart selectById(Long id);
 
+    UserCartResponse selectDetailById(Long id);
+
     int updateById(Cart record);
 
     List<Cart> selectAll();

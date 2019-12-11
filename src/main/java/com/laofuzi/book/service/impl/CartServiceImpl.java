@@ -37,6 +37,28 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
+    public UserCartResponse selectDetailById(Long id) {
+        Cart cart = cartMapper.selectByPrimaryKey(id);
+        UserCartResponse userCartResponse = new UserCartResponse();
+        userCartResponse.setId(cart.getId());
+        userCartResponse.setUserId(cart.getUserId());
+        userCartResponse.setBookId(cart.getBookId());
+        userCartResponse.setNumber(cart.getNumber());
+        Book book = bookMapper.selectByPrimaryKey(cart.getBookId());
+        userCartResponse.setName(book.getName());
+        userCartResponse.setDescribe(book.getDescribe());
+        userCartResponse.setAuthor(book.getAuthor());
+        userCartResponse.setPublisher(book.getPublisher());
+        userCartResponse.setPublishDate(book.getPublishDate());
+        userCartResponse.setUnitprice(book.getUnitprice());
+        userCartResponse.setQuantity(book.getQuantity());
+        userCartResponse.setCategoryId(book.getCategoryId());
+        userCartResponse.setImg(book.getImg());
+        userCartResponse.setScore(book.getScore());
+        return userCartResponse;
+    }
+
+    @Override
     public int updateById(Cart record) {
         return cartMapper.updateByPrimaryKey(record);
     }

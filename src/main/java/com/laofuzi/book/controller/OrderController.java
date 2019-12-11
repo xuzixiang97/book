@@ -3,6 +3,7 @@ package com.laofuzi.book.controller;
 import com.alibaba.fastjson.JSON;
 import com.laofuzi.book.entity.*;
 import com.laofuzi.book.entity.request.CreateOrderRequest;
+import com.laofuzi.book.entity.response.UserCartResponse;
 import com.laofuzi.book.service.BookService;
 import com.laofuzi.book.service.CartService;
 import com.laofuzi.book.service.OrderItemsService;
@@ -73,6 +74,8 @@ public class OrderController {
         Order newOrder = orderService.insert(order);
 
         List<OrderItems> orderItemsList = new ArrayList<>();
+        List<UserCartResponse> orderDetailItemsList = new ArrayList<>();
+
         //生成订单项
         for (Cart cart : cartList) {
             OrderItems orderItems = new OrderItems();
@@ -83,6 +86,7 @@ public class OrderController {
             orderItems.setQuantity(cart.getNumber());
             orderItems.setUnitprice(book.getUnitprice());
             OrderItems insert = orderItemsService.insert(orderItems);
+            orderDetailItemsList.add(cartService.selectDetailById(cart.getId()));
             orderItemsList.add(insert);
         }
 
@@ -92,7 +96,7 @@ public class OrderController {
         }
         Map<String,Object> map = new HashMap<>();
         map.put("order",newOrder);
-        map.put("orderitems",orderItemsList);
+        map.put("orderitems",orderDetailItemsList);
         return JSON.toJSONString(map);
     }
 
