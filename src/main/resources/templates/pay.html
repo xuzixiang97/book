@@ -1,0 +1,329 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Pay</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="application/x-javascript">
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+        }, false);
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link href="/laofuzi/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="/laofuzi/css/style.css" rel='stylesheet' type='text/css' />
+    <link href="/laofuzi/css/style1.css" rel='stylesheet' type='text/css' />
+    <script type="text/javascript" src="/laofuzi/js/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+<header>
+    <div class="soubg">
+        <div class="sou fl">
+            <div id="userinfo" class="fl"></div>
+        </div>
+        <div class="fr top_right">
+            <a href="index">首页</a>&nbsp;&nbsp;&nbsp;|&nbsp;
+            <a href="order">我的订单</a>&nbsp;&nbsp;|&nbsp;
+            <a class="car_t" href="checkout">&nbsp;&nbsp;购物车 </a>
+            <div class="last">
+                <div class="shop">
+                    <h4 class='lih4'>老夫子</h4>
+                    <ul id="lfzcart"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="top">
+        <div class="logo">
+            <a href="#"><img src="/laofuzi/images/lfz.png" /></a>
+        </div>
+        <div class="search">
+            <input id="search" type="search" value="" placeholder="请输入关键字" class="s_ipt" />
+            <input id="submit" type="submit" value="搜索" class="s_btn" onclick="search()"/>
+            <div id="popular" class="fl"></div>
+        </div>
+    </div>
+</header>
+
+<div class="about_top">
+    <div class="container">
+        <div class="col-md-3">
+            <ul id="categories" class="menu1"></ul>
+        </div>
+        <div class="col-md-9 content_right">
+            <div class="dreamcrub">
+                <ul class="breadcrumbs">
+                    <li class="home">
+                        <a href="index" title="返回首页">首页</a>&nbsp;
+                        <span>&gt;</span>
+                    </li>
+                    <li class="women">提交订单</li>
+                </ul>
+                <ul class="previous">
+                    <li><a href="single">返回上一页</a></li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div id="useraddress" class="content address" style="margin: 30px;">
+            </div>
+
+            <div id="userorders" class="shopping_cart shop"></div>
+            <div class="clearfix"> </div>
+            <div class="fr">
+                <div id="amount" class="amount">
+
+                </div>
+                <input id="singlebtn" type="submit" class='singlebtn' value="提交订单" title=""/>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="container">
+        <p><a href="index">www.laofuzi.cn</a></p>
+        <div class="copy">
+            <p>Copyright &copy; 老夫子网上书城 2019-2029，All Rights Reserved</p>
+        </div>
+    </div>
+</div>
+
+</body>
+<script type="text/javascript" src="/laofuzi/js/base.js"></script>
+<script>
+    document.getElementById("singlebtn").onclick = function(){
+        alert("提交成功！");
+        window.location.href = "order";
+    }
+
+    //判断顶部导航显示信息
+    if(userid != undefined | userid != "" | userid != "null"){
+        var infouser = "欢迎! &nbsp;<a href=\"#\" style=\"color:#ff4e00;\">"+ user +"</a>&nbsp;|&nbsp;\n" +
+            "<a href=\"login\" style=\"color:#ff4e00;\">退出</a>";
+    }else if(user1 != undefined | user1 != "" | user1 != "null"){
+        var infouser = "欢迎! &nbsp;<a href=\"#\" style=\"color:#ff4e00;\">"+ user1 +"</a>&nbsp;|&nbsp;\n" +
+            "<a href=\"login\" style=\"color:#ff4e00;\">退出</a>";
+    }
+    $("#userinfo").append(infouser);
+    //显示书籍列表以及搜索框下方的热销书籍
+    function search() {
+        var keywords = document.getElementById("search").value;
+        $.ajax({
+            url: "/laofuzi/book/findByCondition",
+            type: "POST",
+            dataType:"json",
+            contentType : 'application/json',
+            data: JSON.stringify({"name":keywords}),
+            async: false,
+            success: function(result){
+                console.log(result);
+                window.localStorage.setItem('bookid',result[0].id);
+                window.location.href= "single";
+            }
+        });
+    }
+    //左侧书籍类别
+    $(function() {
+        var menu1_ul = $('.menu1> li > ul'),
+            menu1_a = $('.menu1 > li > a');
+        menu1_ul.hide();
+        menu1_a.click(function(e) {
+            e.preventDefault();
+            if (!$(this).hasClass('active')) {
+                menu1_a.removeClass('active');
+                menu1_ul.filter(':visible').slideUp('normal');
+                $(this).addClass('active').next().stop(true, true).slideDown('normal');
+            } else {
+                $(this).removeClass('active');
+                $(this).next().stop(true, true).slideUp('normal');
+            }
+        });
+    });
+    $.ajax({
+        url: "/laofuzi/category/findByParentId",
+        type: "POST",
+        dataType:"json",
+        contentType : 'application/json',
+        data: JSON.stringify({"parentId":"0"}),
+        async: false,
+        success: function(result){
+            console.log("categories:",result);
+            for(var i=0 ; i < result.length; i++ ){
+                var categories = "<li class=\"item1\"><a href=\"#\" class=\"\">"+result[i].name+
+                    "<img class=\"arrow-img\" src=\"/laofuzi/images/arrow.png\" alt=\"\"/> </a>\n" +
+                    "<ul id='childcat' class=\"cute\" style=\"display: none; overflow: hidden;\">\n"
+                $.ajax({
+                    url: "/laofuzi/category/findByParentId",
+                    type: "POST",
+                    dataType:"json",
+                    contentType : 'application/json',
+                    data:JSON.stringify({"parentId":result[i].id}),
+                    async: false,
+                    success: function(data){
+                        console.log(data);
+                        for(var j=0 ; j < data.length; j++ ){
+                            categories += "<li class=\"subitem1\">"+
+                                "<a href=\"javascript:catclick("+result[i].id+","+data[j].id+");\">"+
+                                data[j].name+"</a></li>\n"
+                        }
+                    }
+                });
+                categories+= "</ul>\n</li>\n";
+                $("#categories").append(categories);
+            }
+        }
+    });
+    //显示登录用户的购物车信息
+    $.ajax({
+        url: "/laofuzi/cart/findByUserId",
+        type: "POST",
+        dataType:"json",
+        contentType : 'application/json',
+        data: JSON.stringify({"userId":userid}),
+        async: false,
+        success: function(result){
+            console.log(result);
+            console.log(result[0].img);
+            if(result.length <= 0){
+                var cartpro = "<li class=\"noshop\">\n" +
+                    "<img src=\"/laofuzi/images/icon_tips2.png\" alt=\"\" />\n" +
+                    "<h3>你的购物车还是空的</h3>\n</li>";
+                $("#lfzcart").append(cartpro);
+            }
+            for(var i=0 ; i < 3; i++ ){
+                var cartpro = "<li>\n" +
+                    "<div class=\"clear\">\n<div class=\"shopImg\">";
+                cartpro +=  "<img src=\""+ result[i].img +"\" alt=\"\" />\n</div>\n" +
+                    "<div class=\"shopText\">\n<div class=\"clear\">";
+                cartpro += "<h5>"+ result[i].name +"</h5>\n" +
+                    "<a href=\"#\" class=\"close J_btnDelete\">X</a>\n" +
+                    "</div>\n<div class=\"clear\">\n<div class=\"plush\">\n" +
+                    "<span class=\"J_btnDelCount\">-</span>\n" +
+                    "<input class=\"J_inputCount\" type=\"text\" value=\""+ result[i].number +"\" />\n" +
+                    "<span class=\"J_btnAddCount\">+</span>\n</div>\n" +
+                    "<strong class=\"J_smallTotalPrice\">"+ result[i].unitprice +"</strong>\n" +
+                    "</div>\n</div>\n</div>\n</li>";
+                $("#lfzcart").append(cartpro);
+            }
+        }
+    });
+    //显示书籍列表以及搜索框下方的热销书籍
+    $.ajax({
+        url: "/laofuzi/book/findAll",
+        type: "POST",
+        dataType:"json",
+        contentType : 'application/json',
+        data: "",
+        async: false,
+        success: function(result){
+            console.log(result);
+            for(var i=0 ; i < result.length; i++ ){
+                var bookpro = "<a href=\"single.html\">\n" +
+                    "<div class=\"grid2 bookdetail\">\n" +
+                    "<div class=\"view view-first\">\n" +
+                    "<img src=\""+ result[i].img +"\" class=\"img-responsive\" alt=\"\" />\n" +
+                    "<h5>"+ result[i].name +"&nbsp;&nbsp;&nbsp;"+ result[i].author +"</h5>\n" +
+                    "<h6>"+ result[i].unitprice +"</h6>\n" +
+                    "</div>\n</div>\n</a>";
+                $("#bookdetail").append(bookpro);
+            }
+            for(var j = 0; j < 5; j++){
+                var bookpop = "<a href=\"javascript:bookclick("+result[j].categoryId+","+result[j].id+");\">"+
+                    result[j].name +"</a>";
+                $("#popular").append(bookpop);
+            }
+        }
+    });
+
+    $.ajax({
+        url: "/laofuzi/address/findAll",
+        type: "POST",
+        dataType:"json",
+        contentType : 'application/json',
+        data: "",
+        async: false,
+        success: function(result) {
+            console.log("address:",result);
+            for(var i = 0; i < result.length; i++){
+                if(userid == result[i].userId){
+                    var address = "<div>"+result[i].name+"</div>"+
+                        "<div>"+result[i].phone+"</div>"+
+                        "<div>"+result[i].addressDetail+"</div>"
+                    $("#useraddress").append(address);
+                }
+            }
+        }
+    });
+    // $.ajax({
+    //     url: "/laofuzi/order/createOrderByCart",
+    //     type: "POST",
+    //     dataType:"json",
+    //     contentType : 'application/json',
+    //     data: JSON.stringify({"userId":userid,"bookId":bookid,"id":"1"}),
+    //     async: false,
+    //     success: function(result){
+    //         console.log("create:",result);
+    //     }
+    // });
+    //显示用户的结算信息
+    $.ajax({
+        url: "/laofuzi/book/findById",
+        type: "POST",
+        dataType:"json",
+        contentType : 'application/json',
+        data: JSON.stringify({"id":bookid}),
+        async: false,
+        success: function(result){
+            console.log("orders:",result);
+            for(var i=0; i< result.length; i++){
+                if(result[i].status == "0"){
+                    var index = i;
+                }
+            }
+            var date = new Date(+new Date()+8*3600*1000).toISOString().replace(/T/g,' ').replace(/\.[\d]{3}Z/,'');
+
+            var orders = "<h4 class=\"orderinfo\">\n" +
+                "<span>订单编号："+ result[index].id +"&nbsp;&nbsp;&nbsp;&nbsp; </span>\n" +
+                "<span>下单日期："+ date +"&nbsp;&nbsp;&nbsp;&nbsp; </span>\n" +
+                "<div class=\"caozuo\">\n"
+            orders += "</div>\n</h4>";
+            $.ajax({
+                url: "/laofuzi/order_items/findDetailByOrderId",
+                type: "POST",
+                dataType:"json",
+                contentType : 'application/json',
+                data: JSON.stringify({"orderId":result[index].id}),
+                async: false,
+                success: function(data){
+                    console.log("orderitems",data);
+                    for(var j=0; j < data.length; j++){
+                        orders += "<li>\n<div class=\"cart_box\">\n" +
+                            "<div class=\"message\">\n<div class=\"list_img\">"+
+                            "<img src=\""+data[j].img+"\" class=\"img-responsive\" alt=\"\" /></div>\n" +
+                            "<div class=\"order_desc\">\n<div class=\"clear\">\n" +
+                            "<h5>"+ data[j].bookName +"</h5>\n" +
+                            "<h5>作者："+ data[j].author +"</h5>\n" +
+                            "<h5>数量："+ data[j].quantity +"</h5>\n" +
+                            "<h5>单价："+ data[j].unitprice +"</h5>\n" +
+                            "<h5>小计："+ parseInt(data[j].quantity)*parseFloat(data[j].unitprice) +"</h5>\n" +
+                            "</div>\n</div>\n</div>\n" +
+                            "<div class=\"clearfix\"></div>\n</div>\n</li>";
+                        var aaa = "<div style=\"padding: 20px\">总计："+parseInt(data[j].quantity)*parseFloat(data[j].unitprice)+"</div>"
+                        $("#amount").append(aaa);
+                    }
+                }
+            });
+            $("#userorders").append(orders);
+        }
+    });
+
+</script>
+<script src="/laofuzi/js/index.js"></script>
+<script src="/laofuzi/js/public.js"></script>
+</html>

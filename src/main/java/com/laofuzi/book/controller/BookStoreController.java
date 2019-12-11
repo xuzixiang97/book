@@ -55,4 +55,11 @@ public class BookStoreController {
     public String test6(){
         return "/CategoryList";
     }
+
+    @RequestMapping("/pay")
+
+    //@ResponseBody
+    public String test7(){
+        return "/pay";
+    }
 }

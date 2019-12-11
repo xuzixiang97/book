@@ -48,7 +48,7 @@
     insert into cart (id, user_id, book_id, 
       `number`, create_time, update_time,
       version, is_vailed)
-    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{bookId,jdbcType=BIGINT}, 
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{bookId,jdbcType=BIGINT},
       #{number,jdbcType=INTEGER},UNIX_TIMESTAMP(NOW(3)) * 1000, UNIX_TIMESTAMP(NOW(3)) * 1000,
       0, 1)
   </insert>

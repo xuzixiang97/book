@@ -65,13 +65,13 @@
 
                 <div id="lfzcart" class="shopping_cart shop">
                 </div>
-                <div class="total">
+                <div id="total" class="total">
                     <div class="total_left">共计 : <span class="J_totalCount">3</span>件商品</div>
                     <div class="total_right">总价 <span class="J_totalPrice">￥300.8</span></div>
                     <div class="clearfix"> </div>
                 </div>
                 <div class="login_buttons">
-                    <div class="login_button"><a href="order.html">确认</a></div>
+                    <div class="login_button"><a href="pay">结算</a></div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="clearfix"></div>
@@ -144,33 +144,34 @@
         async: false,
         success: function(result){
             console.log(result);
-            console.log(result[0].img);
             if(result.length <= 0){
                 var cartpro = "<li class=\"cart_box\">\n" +
                     "<img src=\"/laofuzi/images/icon_tips2.png\" alt=\"\" />\n" +
                     "<h3>你的购物车还是空的</h3>\n</li>";
                 $("#lfzcart").append(cartpro);
+            }else{
+                for(var i=0 ; i < result.length; i++ ){
+                    var cartpro = "<li>\n"+
+                        "<input id='checkbox' type=\"checkbox\" name=\"vehicle\" checked='checked'/>"+
+                        "<div class=\"cart_box\">\n<div class=\"message\">\n"+
+                        "<div class=\"alert-close\"> </div>\n" +
+                        "<div class=\"list_img\">"+
+                        "<img src=\""+ result[i].img +"\" class=\"img-responsive\" alt=\"\" /></div>\n" +
+                        "<div class=\"list_desc\">\n<div class=\"shopText\">\n<div class=\"clear\">\n" +
+                        "<h5>"+ result[i].name +"</h5>\n" +
+                        "<h5>作者："+ result[i].author +"</h5>\n</div>\n" +
+                        "<div class=\"clear\">\n<div class=\"plush\">\n" +
+                        "<span id='delcount' onclick='click("+i+")' class=\"J_btnDelCount\">-</span>\n" +
+                        "<input id='inputcount' class=\"J_inputCount\" type=\"text\" value=\""+ result[i].number +"\" />\n" +
+                        "<span id='countadd' onclick='click("+i+")' class=\"J_btnAddCount\">+</span>\n</div>\n" +
+                        "<strong class=\"J_smallTotalPrice\">小计："+ result[i].unitprice*result[i].number+"</strong>\n" +
+                        "<h5>单价："+ result[i].unitprice +"</h5>\n</div>\n" +
+                        "<h5>库存："+ result[i].quantity+"</h5>\n</div>\n</d  >\n</div>\n" +
+                        "<div class=\"clearfix\"></div>\n</div>\n</div>\n</li>";
+                    $("#lfzcart").append(cartpro);
+                }
             }
-            for(var i=0 ; i < result.length; i++ ){
-                var cartpro = "<li>\n"+
-                    "<input id='checkbox' type=\"checkbox\" name=\"vehicle\" checked='checked'/>"+
-                    "<div class=\"cart_box\">\n<div class=\"message\">\n"+
-                    "<div class=\"alert-close\"> </div>\n" +
-                    "<div class=\"list_img\">"+
-                    "<img src=\""+ result[i].img +"\" class=\"img-responsive\" alt=\"\" /></div>\n" +
-                    "<div class=\"list_desc\">\n<div class=\"shopText\">\n<div class=\"clear\">\n" +
-                    "<h5>"+ result[i].name +"</h5>\n" +
-                    "<h5>作者："+ result[i].author +"</h5>\n</div>\n" +
-                    "<div class=\"clear\">\n<div class=\"plush\">\n" +
-                    "<span class=\"J_btnDelCount\">-</span>\n" +
-                    "<input class=\"J_inputCount\" type=\"text\" value=\""+ result[i].number +"\" />\n" +
-                    "<span class=\"J_btnAddCount\">+</span>\n</div>\n" +
-                    "<strong class=\"J_smallTotalPrice\">小计："+ result[i].unitprice +"</strong>\n" +
-                    "<h5>单价："+ result[i].unitprice +"</h5>\n</div>\n" +
-                    "<h5>库存："+ result[i].quantity+"</h5>\n</div>\n</d  >\n</div>\n" +
-                    "<div class=\"clearfix\"></div>\n</div>\n</div>\n</li>";
-                $("#lfzcart").append(cartpro);
-            }
+
             var cbox = document.getElementById("checkbox");
             for(var i = 0; i < cbox.length; i++){
                 if(cbox[i].checked == "checked"){
@@ -179,7 +180,25 @@
             }
         }
     });
-
+    function click(index){
+        var countadd = document.getElementById("countadd");
+        console.log("ccc:",countadd);
+        // var delcount = document.getElementById("delcount")[i];
+        // var number = document.getElementById("inputcount")[i].value;
+        // console.log("12121:",number);
+        // countadd.onclick = function(){
+        //     number = document.getElementById("inputcount")[i].value;
+        //     document.getElementById("inputcount")[i].value = parseInt(number) + 1;
+        //     number = parseInt(number) + 1;
+        // }
+        // delcount.onclick = function(){
+        //     number = document.getElementById("inputcount")[i].value;
+        //     if(number > 1){
+        //         document.getElementById("inputcount")[i].value = parseInt(number) - 1;
+        //         number = parseInt(number) - 1;
+        //     }
+        // }
+    }
 
 
 
