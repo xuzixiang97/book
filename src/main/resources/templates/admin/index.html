@@ -1,26 +1,26 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>首页77</title>
+	<title>首页</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
     <!-- bootstrap -->
-    <link href="/laofuzi/admin/css/bootstrap/bootstrap.css" rel="stylesheet" />
-    <link href="/laofuzi/admin/css/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
-    <link href="/laofuzi/admin/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+    <link href="css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
 
     <!-- libraries -->
-    <link href="/laofuzi/admin/css/lib/jquery-ui-1.10.2.custom.css" rel="stylesheet" type="text/css" />
-    <link href="/laofuzi/admin/css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
+    <link href="css/lib/jquery-ui-1.10.2.custom.css" rel="stylesheet" type="text/css" />
+    <link href="css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
 
     <!-- global styles -->
-    <link rel="stylesheet" type="text/css" href="/laofuzi/admin/css/layout.css" />
-    <link rel="stylesheet" type="text/css" href="/laofuzi/admin/css/elements.css" />
-    <link rel="stylesheet" type="text/css" href="/laofuzi/admin/css/icons.css" />
+    <link rel="stylesheet" type="text/css" href="css/layout.css" />
+    <link rel="stylesheet" type="text/css" href="css/elements.css" />
+    <link rel="stylesheet" type="text/css" href="css/icons.css" />
 
     <!-- this page specific styles -->
-    <link rel="stylesheet" href="/laofuzi/admin/css/compiled/index.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/compiled/index.css" type="text/css" media="screen" />
 
     
 
@@ -114,8 +114,8 @@
                                 </select>
                             </div>
 							-->
-                            <input type="text" class="search" />
-                            <a class="btn-flat new-product" th:href="@{/admin/upbook}">+ 添加书籍</a>
+                            <input id="keyword" type="text" class="search" onkeypress="search(event)" />
+                            <a class="btn-flat new-product" href="upbook">+ 添加书籍</a>
                         </div>
                     </div>
 
@@ -210,7 +210,7 @@
                                     <span class="input-group-addon" id="book-addon2">作者：&nbsp;&nbsp;&nbsp;&nbsp; </span>
                                     <input type="text" class="input-sm" id="author" aria-describedby="book-addon3" >
                                     <div class="input-group">
-                                        <span class="input-group-addon" id="book-addon3">简介：</span>
+                                        <span class="input-group-addon" id="book-addon3">简介：&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                         <!--<input type="text" class="input-sm" id="description" aria-describedby="book-addon3" placeholder="">-->
                                         <textarea id="description"  style="width:300px;height:150px;" >
 										</textarea>
@@ -260,17 +260,136 @@
 
 	<!-- scripts -->
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="/laofuzi/admin/js/bootstrap.min.js"></script>
-    <script src="/laofuzi/admin/js/jquery-ui-1.10.2.custom.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-ui-1.10.2.custom.min.js"></script>
     <!-- knob -->
-    <script src="/laofuzi/admin/js/jquery.knob.js"></script>
+    <script src="js/jquery.knob.js"></script>
     <!-- flot charts -->
-    <script src="/laofuzi/admin/js/jquery.flot.js"></script>
-    <script src="/laofuzi/admin/js/jquery.flot.stack.js"></script>
-    <script src="/laofuzi/admin/js/jquery.flot.resize.js"></script>
-    <script src="/laofuzi/admin/js/theme.js"></script>
+    <script src="js/jquery.flot.js"></script>
+    <script src="js/jquery.flot.stack.js"></script>
+    <script src="js/jquery.flot.resize.js"></script>
+    <script src="js/theme.js"></script>
 
     <script type="text/javascript">
+        //关键字搜索
+        function search(e){
+            var evt = window.event || e;
+            console.log($('#keyword').val());
+            if(evt.keyCode==13){
+                $.ajax({
+                    type: "post",
+                    dataType: "json",
+                    contentType: 'application/json',
+                    url: "http://localhost:8080/laofuzi/book/findByCondition",
+                    data:JSON.stringify({
+                        "name":$('#keyword').val(),
+                    }),
+                    success: function (result) {
+                        console.log(result);
+                        $("#books").empty("");
+                        str= '';
+                        for (i = 0; i < result.length; i++) {
+                            str += '<tr class="row' + i + '"><td><img  id="bookimg' + i + '" alt="书籍封面" src=""/> </td>';
+                            str += '<td><input type="text"  id="bookname' + i + '"value="' + result[i].name+ '" style="width:140px" readonly="true"/> </td>';
+                            str += '<td><input type="text"  id="author' + i + '" value="' + result[i].author+ '" style="width:140px" readonly="true"/> </td>';
+                            str += '<td><textarea id="description"  style="width:300px;height:150px;" readonly="true">'+result[i].describe+'</textarea></td> ';
+                            str += '<td><input type="text"  id="price' + i + '"value="' + result[i].unitprice + '" style="width:140px" readonly="true"/> </td>';
+                            str += '<td><input type="text"  id="quantity' + i + '"value="' + result[i].quantity + '" style="width:140px" readonly="true"/> </td>';
+                            str += '</tr>';
+
+                        }//循环结束
+                        $('#books').append($(str));
+                    }
+                });
+            }
+        }
+        $(function () {
+            $('#bookname1').attr('readonly', true);
+            //编辑事件
+            $('#edit1').on('click', function (c) {
+                $('#bookname1').attr('readonly', false);
+                $('#author1').attr('readonly', false);
+                $('#description1').attr('readonly', false);
+                $('#price1').attr('readonly', false);
+                $('#amount1').attr('readonly', false);
+            });
+            $('#edit2').on('click', function (c) {
+                $('#bookname2').attr('readonly', false);
+                $('#author2').attr('readonly', false);
+                $('#description2').attr('readonly', false);
+                $('#price2').attr('readonly', false);
+                $('#amount2').attr('readonly', false);
+            });
+            $('#edit3').on('click', function (c) {
+                $('#bookname3').attr('readonly', false);
+                $('#author3').attr('readonly', false);
+                $('#description3').attr('readonly', false);
+                $('#price3').attr('readonly', false);
+                $('#amount3').attr('readonly', false);
+            });
+            $('#edit4').on('click', function (c) {
+                $('#bookname4').attr('readonly', false);
+                $('#author4').attr('readonly', false);
+                $('#description4').attr('readonly', false);
+                $('#price4').attr('readonly', false);
+                $('#amount4').attr('readonly', false);
+            });
+            $('#edit5').on('click', function (c) {
+                $('#bookname5').attr('readonly', false);
+                $('#author5').attr('readonly', false);
+                $('#description5').attr('readonly', false);
+                $('#price5').attr('readonly', false);
+                $('#amount5').attr('readonly', false);
+            });
+            //删除事件
+            $('#delete1').on('click', function (c) {
+                $('.row1').fadeOut('slow', function (c) {
+                    $('.row1').remove();
+                });
+            });
+            $('#delete2').on('click', function (c) {
+                $('.row2').fadeOut('slow', function (c) {
+                    $('.row2').remove();
+                });
+            });
+            $('#delete3').on('click', function (c) {
+                $('.row3').fadeOut('slow', function (c) {
+                    $('.row3').remove();
+                });
+            });
+            $('#delete4').on('click', function (c) {
+                $('.row4').fadeOut('slow', function (c) {
+                    $('.row4').remove();
+                });
+            });
+            $('#delete5').on('click', function (c) {
+                $('.row5').fadeOut('slow', function (c) {
+                    $('.row5').remove();
+                });
+            });
+            // jQuery Knobs
+            $(".knob").knob();
+
+
+            // jQuery UI Sliders
+            $(".slider-sample1").slider({
+                value: 100,
+                min: 1,
+                max: 500
+            });
+            $(".slider-sample2").slider({
+                range: "min",
+                value: 130,
+                min: 1,
+                max: 500
+            });
+            $(".slider-sample3").slider({
+                range: true,
+                min: 0,
+                max: 500,
+                values: [40, 170],
+            });
+        })
             //点击编辑按钮
             function updatebook(bookid){
                 $('#addYesId1').remove();
