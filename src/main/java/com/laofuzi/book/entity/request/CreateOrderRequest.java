@@ -9,5 +9,5 @@ import java.util.List;
 public class CreateOrderRequest {
     private Long userId;
     private Long addressId;
-    private List<Cart> cartList;
+    private List<Long> cartList;
 }

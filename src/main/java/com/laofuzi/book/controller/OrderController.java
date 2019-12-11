@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -56,8 +57,13 @@ public class OrderController {
         order.setStatus(1);
         order.setAddressId(createOrderRequest.getAddressId());
         int account = 0;
+        List<Cart> cartList = new ArrayList<>();
+        for (Long aLong : createOrderRequest.getCartList()) {
+            Cart cart = cartService.selectById(aLong);
+            cartList.add(cart);
+        }
         //计算总金额
-        for (Cart cart : createOrderRequest.getCartList()) {
+        for (Cart cart : cartList) {
             Book book = bookService.selectById(cart.getBookId());
             account = account + book.getUnitprice() * cart.getNumber();
         }
@@ -65,7 +71,7 @@ public class OrderController {
         Order newOrder = orderService.insert(order);
 
         //生成订单项
-        for (Cart cart : createOrderRequest.getCartList()) {
+        for (Cart cart : cartList) {
             OrderItems orderItems = new OrderItems();
             Book book = bookService.selectById(cart.getBookId());
             orderItems.setBookId(cart.getBookId());
@@ -78,7 +84,7 @@ public class OrderController {
         }
 
         //清空购物车
-        for (Cart cart : createOrderRequest.getCartList()) {
+        for (Cart cart : cartList) {
            cartService.deleteById(cart.getId());
         }
 
