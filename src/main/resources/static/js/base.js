@@ -18,18 +18,81 @@ function catclick(pid,cid){
 }
 
 //图书加入购物车
-function addcart(bid,uid){
+function addcart(number,bid,uid){
     $.ajax({
-        url: "/laofuzi/cart/add",
+        url: "/laofuzi/cart/findByUserId",
         type: "POST",
         dataType:"json",
         contentType : 'application/json',
-        data: JSON.stringify({"userId":uid,"bookId":bid,"number":1}),
+        data: JSON.stringify({"userId":uid}),
         async: false,
         success: function(result){
-            console.log("addcart:",result);
+            console.log(result);
+            var count = 0;
+            var index;
+            for(var i =0; i < result.length; i++){
+                console.log(bid,result[i].bookId);
+                if(bid == result[i].id){
+                    count ++;
+                    index = i;
+                }
+            }
+            console.log("nnn:",number);
+            var num = result[index].number +parseInt(number);
+            if(count > 0){
+                $.ajax({
+                    url: "/laofuzi/cart/update",
+                    type: "POST",
+                    dataType:"json",
+                    contentType : 'application/json',
+                    data: JSON.stringify({"userId":uid,"bookId":bid,"number":num,"id":result[index].id}),
+                    async: false,
+                    success: function(data){
+                        console.log("updatecart:",data);
+                        alert(111);
+                        // window.location.href = "checkout";
+                    }
+                });
+            }else{
+                $.ajax({
+                    url: "/laofuzi/cart/add",
+                    type: "POST",
+                    dataType:"json",
+                    contentType : 'application/json',
+                    data: JSON.stringify({"userId":uid,"bookId":bid,"number":1}),
+                    async: false,
+                    success: function(result){
+                        console.log("addcart:",result);
+                        window.location.href = "checkout";
+                    }
+                });
+            }
         }
     });
+}
+
+//结算
+function payclick(bid,uid){
+    window.localStorage.setItem('bookid',bid);
+    window.location.href = "pay";
+    // $.ajax({
+    //     url: "/laofuzi/order/createOrderByCart",
+    //     type: "POST",
+    //     dataType:"json",
+    //     contentType : 'application/json',
+    //     data: JSON.stringify({"userId":uid,"bookId":bid}),
+    //     async: false,
+    //     success: function(result){
+    //         console.log("addcart:",result);
+    //     }
+    // });
+}
+
+function account(number,unitprice){
+    console.log(number,unitprice);
+    number = parseInt(number)+ 1;
+    amount = parseInt(number)*parseFloat(unitprice);
+    console.log(number,amount);
 }
 
 // function ajaxmethod(url,parameters){

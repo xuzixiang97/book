@@ -1351,6 +1351,24 @@ ul.product-qty {
     border: 1px solid #EEE;
 }
 
+.singlebtn{
+    cursor: pointer;
+    border: none;
+    outline: none;
+    display: inline-block;
+    font-size: 1em;
+    padding: 13px 20px;
+    background: #ff0d40;
+    color: #FFF;
+    text-transform: uppercase;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    margin-top: 2em;
+}
+
+
 .btn_form form input[type="submit"] {
     cursor: pointer;
     border: none;
@@ -1366,6 +1384,10 @@ ul.product-qty {
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     margin-top: 2em;
+}
+
+.singlebtn:hover{
+    background: #f6b71a;
 }
 
 .btn_form form input[type="submit"]:hover {

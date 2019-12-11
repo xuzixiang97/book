@@ -312,6 +312,7 @@
             console.log(result[0].img);
             for(var i=0 ; i < result.length; i++ ){
                 if(result[i].id == bookid){
+                    var index = i;
                     var bimg = "<li>\n<a href=\"#\">\n" +
                         "<img class=\"etalage_source_image img-responsive\" src=\""+result[i].img+"\" />\n" +
                         " </a>\n</li>\n<div class=\"clearfix\"> </div>";
@@ -323,16 +324,12 @@
                         "<h2 class=\"quick\">简单介绍:</h2>\n" +
                         "<p class=\"quick_desc\"> "+result[i].describe+"</p>\n<ul class=\"product-qty\">\n" +
                         "<div class=\"clear\">\n<div class=\"plush\">\n" +
-                        "<span class=\"J_btnDelCount\">-</span>\n" +
-                        "<input class=\"J_inputCount\" type=\"text\" value=\"1\" />\n" +
-                        "<span class=\"J_btnAddCount\">+</span>\n" +
+                        "<span id='delaccount' class=\"J_btnDelCount\">-</span>\n" +
+                        "<input id='inputcount' class=\"J_inputCount\" type=\"text\" value=\"1\" />\n" +
+                        "<span id='countadd' class=\"J_btnAddCount\">+</span>\n" +
                         "</div>\n</div>\n" +
-                        "<span>库存："+result[i].quantity+"</span>\n</ul>\n<div class=\"btn_form\">\n<form>\n" +
-                        "<input onclick='addcart("+result[i].id+","+userid+")' "+
-                        "type=\"submit\" value=\"加入购物车\" title=\"\">\n" +
-                        "<input type=\"submit\" value=\"结算\" title=\"\">\n</form>\n</div>";
+                        "<span>库存："+result[i].quantity+"</span>\n</ul>\n<div class=\"btn_form\">\n"
                     $("#bookdetail").append(cartpro);
-
                 }
             }
             for(var j = 0; j < 5; j++){
@@ -347,6 +344,36 @@
                     "<p>价格 ￥"+ result[m].unitprice +"</p>\n</div>\n</li></a>"
                 $("#flexiselDemo3").append(like);
             }
+            var countadd = document.getElementById("countadd");
+            var number = document.getElementById("inputcount").value;
+            var nnum;
+            var cartbtn = "<input onclick='addcart("+number+","+result[index].id+","+userid+")' "+
+            "type=\"submit\" class='singlebtn' value=\"加入购物车\" title=\"\">\n"
+
+            countadd.onclick = function(){
+                // account(number,result[index].unitprice);
+                number = document.getElementById("inputcount").value;
+                document.getElementById("inputcount").value = parseInt(number) + 1;
+                number = parseInt(number) + 1;
+                console.log("1212:",number,result[index].unitprice);
+                cartbtn = "<input onclick='addcart("+number+","+result[index].id+","+userid+")' "+
+                    "type=\"submit\" class='singlebtn' value=\"加入购物车\" title=\"\">\n"
+
+            }
+            delaccount.onclick = function(){
+                number = document.getElementById("inputcount").value;
+                if(number > 1){
+                   document.getElementById("inputcount").value = parseInt(number) - 1;
+                    number = parseInt(number) - 1;
+                    cartbtn = "<input onclick='addcart("+number+","+result[index].id+","+userid+")' "+
+                        "type=\"submit\" class='singlebtn' value=\"加入购物车\" title=\"\">\n"
+
+                }
+            }
+
+            cartbtn +="<input onclick='payclick("+result[index].id+","+userid+")'"+
+                " type=\"submit\" class='singlebtn' value=\"结算\" title=\"\">\n</div>";
+            $("#bookdetail").append(cartbtn);
         }
     });
 </script>

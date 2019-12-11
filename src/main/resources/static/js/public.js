@@ -90,17 +90,17 @@ $('.ss_list').mouseenter(function() {
     }
 
     // 数量改变
-    function setInputCount(index, count) {
-        var price = catObj.list[index].price
-        count = count - 0
-        catObj.list[index] = {
-            count: count,
-            price: price,
-            smallTotalPrice: count * price
-        }
-
-        $shop.trigger('onChange', index)
-    }
+    // function setInputCount(index, count) {
+    //     var price = catObj.list[index].price
+    //     count = count - 0
+    //     catObj.list[index] = {
+    //         count: count,
+    //         price: price,
+    //         smallTotalPrice: count * price
+    //     }
+    //
+    //     $shop.trigger('onChange', index)
+    // }
 
     // 初始化
     (function() {
@@ -145,40 +145,40 @@ $('.ss_list').mouseenter(function() {
     })
 
     // 追加数量
-    $('.J_btnAddCount').click(function() {
-        var $li = $('li', $shop)
-        var index = $li.index($(this).parents('li'))
-        var count = $('.J_inputCount', $li.eq(index)).val()
-        setInputCount(index, ++count)
-    })
+    // $('.J_btnAddCount').click(function() {
+    //     var $li = $('li', $shop)
+    //     var index = $li.index($(this).parents('li'))
+    //     var count = $('.J_inputCount', $li.eq(index)).val()
+    //     setInputCount(index, ++count)
+    // })
 
 
     // 减少数量
-    $('.J_btnDelCount').click(function() {
+    // $('.J_btnDelCount').click(function() {
+    //
+    //     var $li = $('li', $shop)
+    //     var index = $li.index($(this).parents('li'))
+    //     var count = $('.J_inputCount', $li.eq(index)).val()
+    //     if (--count < 1) {
+    //         if (!window.confirm('确定要删除吗？')) return
+    //
+    //         $li.eq(index).remove()
+    //         $shop.trigger('onDelete', [index])
+    //     } else {
+    //         setInputCount(index, count)
+    //     }
+    // })
 
-        var $li = $('li', $shop)
-        var index = $li.index($(this).parents('li'))
-        var count = $('.J_inputCount', $li.eq(index)).val()
-        if (--count < 1) {
-            if (!window.confirm('确定要删除吗？')) return
-
-            $li.eq(index).remove()
-            $shop.trigger('onDelete', [index])
-        } else {
-            setInputCount(index, count)
-        }
-    })
-
-    // 改变数量
-    $('.J_inputCount').change(function(e) {
-        var $li = $('li', $shop)
-        var index = $li.index($(this).parents('li'))
-        var newCount = $(this).val()
-
-        if (/^[1-9]\d*$/.test(newCount)) {
-            setInputCount(index, newCount)
-        } else {
-            $(this).val(catObj.list[index].count)
-        }
-    })
+    // // 改变数量
+    // $('.J_inputCount').change(function(e) {
+    //     var $li = $('li', $shop)
+    //     var index = $li.index($(this).parents('li'))
+    //     var newCount = $(this).val()
+    //
+    //     if (/^[1-9]\d*$/.test(newCount)) {
+    //         setInputCount(index, newCount)
+    //     } else {
+    //         $(this).val(catObj.list[index].count)
+    //     }
+    // })
 })()
