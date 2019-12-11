@@ -43,6 +43,11 @@ public class AdminController {
         return "admin/orderdetail";
     }
 
+    @RequestMapping("/signin")
+    public String signin(){
+        return "admin/signin";
+    }
+
     /**
      * 后台index
      * @param model
@@ -54,6 +59,7 @@ public class AdminController {
         model.addAttribute("books",list);
         return "admin/index";
     }
+
 
     @RequestMapping(value = "/show")
     public String show(Model model){
