@@ -72,6 +72,7 @@ public class OrderController {
         }
         order.setAccount(account);
         Order newOrder = orderService.insert(order);
+        Order newOrder1 = orderService.selectById(order.getId());
 
         List<OrderItems> orderItemsList = new ArrayList<>();
         List<UserCartResponse> orderDetailItemsList = new ArrayList<>();
@@ -95,7 +96,7 @@ public class OrderController {
            cartService.deleteById(cart.getId());
         }
         Map<String,Object> map = new HashMap<>();
-        map.put("order",newOrder);
+        map.put("order",newOrder1);
         map.put("orderitems",orderDetailItemsList);
         return JSON.toJSONString(map);
     }
