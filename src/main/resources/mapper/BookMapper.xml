@@ -49,6 +49,7 @@
     select
     <include refid="Base_Column_List"/>
     FROM  book
+    order by id desc
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>书籍上传</title>
+    
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+    <!-- bootstrap -->
+    <link href="../../static/admin/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="../../static/admin/css/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="../../static/admin/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+
+    <!-- global styles -->
+    <link rel="stylesheet" type="text/css" href="../../static/admin/css/layout.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/admin/css/elements.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/admin/css/icons.css" />
+
+    <!-- libraries -->
+    <link rel="stylesheet" type="text/css" href="../../static/admin/css/lib/font-awesome.css" />
+    
+    <!-- this page specific styles -->
+    <link rel="stylesheet" href="../../static/admin/css/compiled/upbook.css" type="text/css" media="screen" />
+
+    <!-- open sans font -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+<body>
+
+    <!-- navbar -->
+    <div class="navbar navbar-inverse">
+        <div class="navbar-inner">
+            <a class="brand" href="index.html"><img src="../../static/images/logo.png" /></a>
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li><a href="index.html">书籍管理</a></li>
+                    <li><a href="user-list.html">用户管理</a></li>
+                    <li class="active"><a href="upbook.html">书籍编辑</a></li>
+                    
+                </ul>
+            </div>
+            
+             
+        </div>
+    </div>
+    <!-- end navbar -->
+
+	<!-- main container .wide-content is used for this layout without sidebar :)  -->
+    <div class="content wide-content">
+        <div class="container-fluid">
+            <div class="settings-wrapper" id="pad-wrapper">
+                <!-- avatar column -->
+                <div id="box">
+                    <img id="imgshow" src="" alt="" />
+                </div>
+                <div id="pox" >
+                    <input id="filed" type="file"  accept="image/*" />
+                </div>
+
+                <!-- edit form column -->
+                <div class="span7 personal-info">
+                    
+                    <h5 class="personal-title">书籍信息</h5>
+
+                    <form />
+                        <div class="field-box">
+                            <label>书名:</label>
+                            <input id="name" class="span5 inline-input" type="text" value="" />
+                        </div>
+                        <div class="field-box">
+                            <label>作者:</label>
+                            <input id="author" class="span5 inline-input" type="text" value="" />
+                        </div>
+                        <div class="field-box">
+                            <label>价格:</label>
+                            <input id="unitprice" class="span5 inline-input" type="text" value="" />
+                        </div>
+                        <div class="field-box">
+                            <label>数量:</label>
+                            <input id="quantity" class="span5 inline-input" type="text" value="" />
+                        </div>
+
+                        <div class="field-box">
+                            <label>简介:</label>
+                            
+                            <textarea id="describe" class="span5" style="height:200px;"></textarea>
+                        </div>
+                        
+                        <div class="span6 field-box actions">
+                            <input id="confirm" type="button" class="btn-glow primary" value="确定" />
+                            <input id="cancel" type="reset" value="取消" class="reset" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end main container -->
+
+
+	<!-- scripts -->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="../../static/admin/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../static/admin/js/jquery-1.5.2.min.js"></script>
+    <script src="../../static/admin/js/theme.js"></script>
+    <script type="text/javascript">
+       var currentShowCity=0;
+
+ $(document).ready(function(){
+   $("#num1").change(function(){
+	   $("#num1 option").each(function(i,o){
+		   if($(this).attr("selected"))
+		   {
+		 
+			   $(".num2").hide();
+			   $(".num2").eq(i).show();
+			   currentShowCity=i;
+		   }
+	   });
+   });
+     //确认添加图书信息按钮
+     $('#confirm').click(function(e) {
+         $.ajax({
+             type: "post",
+             dataType: "json",
+             contentType: 'application/json',
+             url: "http://localhost:8080/laofuzi/book/add",
+             data:JSON.stringify({
+                 "name":$('#name').val(),
+                 "author":$('#author').val(),
+                 "describe":$('#describe').val(),
+                 "unitprice":$('#unitprice').val(),
+                 "quantity":$('#quantity').val(),
+                 "publishDate":"2019-12-04",
+                 "publisher":"人民出版社",
+                 "categoryId":"101",
+                 "img":"xxx",
+                 "score":5,
+                 "status":1,
+                 "extendField":"",
+             }),
+             success: function (result) {
+                 console.log(result);
+                 alert("添加成功！");
+             }
+         })
+     });
+   $("#num1").change();
+     //在input file内容改变的时候触发事件
+     $('#filed').change(function () {
+         //获取input file的files文件数组;
+         //$('#filed')获取的是jQuery对象，.get(0)转为原生对象;
+         //这边默认只能选一个，但是存放形式仍然是数组，所以取第一个元素使用[0];
+         var file = $('#filed').get(0).files[0];
+         //创建用来读取此文件的对象
+         var reader = new FileReader();
+         //使用该对象读取file文件
+         reader.readAsDataURL(file);
+         //读取文件成功后执行的方法函数
+         reader.onload = function (e) {
+             //读取成功后返回的一个参数e，整个的一个进度事件
+             console.log(e);
+             //选择所要显示图片的img，要赋值给img的src就是e中target下result里面
+             //的base64编码格式的地址
+             $('#imgshow').get(0).src = e.target.result;
+         }
+     });
+
+});
+
+</script>
+
+</body>
+</html>

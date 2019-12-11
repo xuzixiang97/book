@@ -49,8 +49,8 @@ function addcart(number,bid,uid){
                     async: false,
                     success: function(data){
                         console.log("updatecart:",data);
-                        alert(111);
-                        // window.location.href = "checkout";
+                        // alert(111);
+                        window.location.href = "checkout";
                     }
                 });
             }else{
