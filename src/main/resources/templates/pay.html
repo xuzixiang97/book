@@ -273,11 +273,11 @@
     // });
     //显示用户的结算信息
     $.ajax({
-        url: "/laofuzi/book/findById",
+        url: "/laofuzi/order/selectByUserId",
         type: "POST",
         dataType:"json",
         contentType : 'application/json',
-        data: JSON.stringify({"id":bookid}),
+        data: JSON.stringify({"userId":userid,"status":""}),
         async: false,
         success: function(result){
             console.log("orders:",result);
