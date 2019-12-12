@@ -34,7 +34,7 @@ public class CreateOrderTest {
         cart.setNumber(1);
         cart.setBookId(2l);
         Carts.add(cart);
-        CreateOrderRequest.setCartList(Carts);
+//        CreateOrderRequest.setCartList(Carts);
         System.out.println(JSON.toJSONString(CreateOrderRequest));
     }
 }

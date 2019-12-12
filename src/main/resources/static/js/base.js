@@ -98,6 +98,11 @@ function formatDate(longDate) {
     return yyyy + "-" + mm + "-" + dd;
 }
 
+function exit(){
+    window.localStorage.clear();
+    window.location.href = "login"
+}
+
 var userid = window.localStorage.getItem('userid');// 用户id
 var user = window.localStorage.getItem('user');//登录成功的用户名
 var user1 = window.localStorage.getItem('user1');//注册成功的用户名

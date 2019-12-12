@@ -90,12 +90,12 @@
 <script type="text/javascript" src="/laofuzi/js/base.js"></script>
 <script>
     //判断顶部导航显示信息
-    if(userid != undefined | userid != "" | userid != "null"){
+    if(userid != undefined | userid != "" | userid != null){
         var infouser = "欢迎! &nbsp;<a href=\"#\" style=\"color:#ff4e00;\">"+ user +"</a>&nbsp;|&nbsp;\n" +
-            "<a href=\"login\" style=\"color:#ff4e00;\">退出</a>";
-    }else if(user1 != undefined | user1 != "" | user1 != "null"){
+            "<a href='javascript:exit()' style=\"color:#ff4e00;\">退出</a>";
+    }else if(user1 != undefined | user1 != "" | user1 != null){
         var infouser = "欢迎! &nbsp;<a href=\"#\" style=\"color:#ff4e00;\">"+ user1 +"</a>&nbsp;|&nbsp;\n" +
-            "<a href=\"login\" style=\"color:#ff4e00;\">退出</a>";
+            "<a href='javascript:exit()' style=\"color:#ff4e00;\">退出</a>";
     }
     $("#userinfo").append(infouser);
     //搜索功能
@@ -269,44 +269,86 @@
     });
 
     //显示用户的结算信息
-    var idss = ids.split(",");
-    console.log("iidsss:",idss);
-    $.ajax({
-        url: "/laofuzi/order/createOrderByCart",
-        type: "POST",
-        dataType:"json",
-        contentType : 'application/json',
-        data: JSON.stringify({"addressId":"1",
-            "userId":userid,
-            "cartList":idss
-        }),
-        async: false,
-        success: function(result){
-            console.log("addcart:",result);
-            var orders = "<h4 class=\"orderinfo\">\n" +
-                "<span>订单编号："+ result.order.id +"&nbsp;&nbsp;&nbsp;&nbsp; </span>\n" +
-                "<span>下单日期："+ formatDate(result.order.createTime) +"&nbsp;&nbsp;&nbsp;&nbsp; </span>\n" +
-                "<div class=\"caozuo\">\n"
-            orders += "</div>\n</h4>";
-            $("#userorders").append(orders);
-            var data = result.orderitems;
-            for(var j=0; j < data.length; j++){
+    var urlindex = document.referrer.lastIndexOf("/")
+    var historyurl = document.referrer.substring(urlindex+1,document.referrer.length);
+    console.log("abss:",historyurl);
+    if(historyurl == "checkout"){
+        var idss = ids.split(",");
+        console.log("iidsss:",idss);
+        $.ajax({
+            url: "/laofuzi/order/createOrderByCart",
+            type: "POST",
+            dataType:"json",
+            contentType : 'application/json',
+            data: JSON.stringify({"addressId":"1",
+                "userId":userid,
+                "cartList":idss
+            }),
+            async: false,
+            success: function(result){
+                console.log("addcart:",result);
+                var orders = "<h4 class=\"orderinfo\">\n" +
+                    "<span>订单编号："+ result.order.id +"&nbsp;&nbsp;&nbsp;&nbsp; </span>\n" +
+                    "<span>下单日期："+ formatDate(result.order.createTime) +"&nbsp;&nbsp;&nbsp;&nbsp; </span>\n" +
+                    "<div class=\"caozuo\">\n"
+                orders += "</div>\n</h4>";
+                $("#userorders").append(orders);
+                var data = result.orderitems;
+                for(var j=0; j < data.length; j++){
+                    var ordersdetail = "<li>\n<div class=\"cart_box\">\n" +
+                        "<div class=\"message\">\n<div class=\"list_img\">"+
+                        "<img src=\""+data[j].img+"\" class=\"img-responsive\" alt=\"\" /></div>\n" +
+                        "<div class=\"order_desc\">\n<div class=\"clear\">\n" +
+                        "<h5>"+ data[j].name +"</h5>\n" +
+                        "<h5>作者："+ data[j].author +"</h5>\n" +
+                        "<h5>数量："+ data[j].number +"</h5>\n" +
+                        "<h5>单价："+ data[j].unitprice +"</h5>\n" +
+                        "<h5>小计：<span class='xiaoji'>"+ parseInt(data[j].number)*parseFloat(data[j].unitprice) +"</span></h5>\n" +
+                        "</div>\n</div>\n</div>\n" +
+                        "<div class=\"clearfix\"></div>\n</div>\n</li>";
+                    $("#userorders").append(ordersdetail);
+                }
+
+            }
+        });
+    }else if(historyurl == "single"){
+        var ids1 = window.localStorage.getItem("ids1");
+        $.ajax({
+            url: "/laofuzi/order/createOrderByBookDetail",
+            type: "POST",
+            dataType:"json",
+            contentType : 'application/json',
+            data: JSON.stringify({"addressId":"1",
+                "userId":userid,
+                "bookId":ids1,
+                "account":2
+            }),
+            async: false,
+            success: function(result){
+                console.log("addcart:",result);
+                var orders = "<h4 class=\"orderinfo\">\n" +
+                    "<span>订单编号："+ result.order.id +"&nbsp;&nbsp;&nbsp;&nbsp; </span>\n" +
+                    "<span>下单日期："+ formatDate(result.order.createTime) +"&nbsp;&nbsp;&nbsp;&nbsp; </span>\n" +
+                    "<div class=\"caozuo\">\n"
+                orders += "</div>\n</h4>";
+                $("#userorders").append(orders);
+                var data = result.orderitems;
                 var ordersdetail = "<li>\n<div class=\"cart_box\">\n" +
                     "<div class=\"message\">\n<div class=\"list_img\">"+
-                    "<img src=\""+data[j].img+"\" class=\"img-responsive\" alt=\"\" /></div>\n" +
+                    "<img src=\""+data.img+"\" class=\"img-responsive\" alt=\"\" /></div>\n" +
                     "<div class=\"order_desc\">\n<div class=\"clear\">\n" +
-                    "<h5>"+ data[j].name +"</h5>\n" +
-                    "<h5>作者："+ data[j].author +"</h5>\n" +
-                    "<h5>数量："+ data[j].number +"</h5>\n" +
-                    "<h5>单价："+ data[j].unitprice +"</h5>\n" +
-                    "<h5>小计：<span class='xiaoji'>"+ parseInt(data[j].number)*parseFloat(data[j].unitprice) +"</span></h5>\n" +
+                    "<h5>"+ data.name +"</h5>\n" +
+                    "<h5>作者："+ data.author +"</h5>\n" +
+                    "<h5>数量："+ data.number +"</h5>\n" +
+                    "<h5>单价："+ data.unitprice +"</h5>\n" +
+                    "<h5>小计：<span class='xiaoji'>"+ parseInt(data.number)*parseFloat(data.unitprice) +"</span></h5>\n" +
                     "</div>\n</div>\n</div>\n" +
                     "<div class=\"clearfix\"></div>\n</div>\n</li>";
                 $("#userorders").append(ordersdetail);
             }
+        });
+    }
 
-        }
-    });
     var smalltotal = document.getElementsByClassName("xiaoji");
     var allaccount = 0;
     for(var i = 0; i < smalltotal.length; i++){
