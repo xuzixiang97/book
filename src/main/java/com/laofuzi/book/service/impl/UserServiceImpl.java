@@ -57,7 +57,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public Map<String, Object> register(User user) {
         Map<String, Object> map = new HashMap<>();
-        if(userMapper.selectByName(user.getUsername()) != null){
+        User name = userMapper.selectByName(user.getUsername());
+        if( name!= null){
             map.put("Msg", "用户名重复!");
             return map;
         }
