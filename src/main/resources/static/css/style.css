@@ -524,6 +524,7 @@ a.active-icon.c1:hover {
 
 .login_button a:hover {
     background: #f54d56;
+    color: #fff;
 }
 
 .check_button {
@@ -1349,6 +1350,10 @@ ul.product-qty {
 
 .product-qty option {
     border: 1px solid #EEE;
+}
+
+.ac{
+    margin-right: 75px;
 }
 
 .singlebtn{

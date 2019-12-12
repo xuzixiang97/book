@@ -105,7 +105,7 @@
             "<a href=\"login\" style=\"color:#ff4e00;\">退出</a>";
     }
     $("#userinfo").append(infouser);
-    //显示书籍列表以及搜索框下方的热销书籍
+    //搜索功能
     function search() {
         var keywords = document.getElementById("search").value;
         $.ajax({
@@ -122,6 +122,7 @@
             }
         });
     }
+
     //左侧书籍类别
     $(function() {
         var menu1_ul = $('.menu1> li > ul'),
@@ -173,6 +174,7 @@
             }
         }
     });
+
     //显示登录用户的购物车信息
     $.ajax({
         url: "/laofuzi/cart/findByUserId",
@@ -188,8 +190,24 @@
                     "<img src=\"/laofuzi/images/icon_tips2.png\" alt=\"\" />\n" +
                     "<h3>你的购物车还是空的</h3>\n</li>";
                 $("#lfzcart").append(cartpro);
-            }else{
+            }else if(result.length >= 3){
                 for(var i=0 ; i < 3; i++ ){
+                    var cartpro = "<li>\n" +
+                        "<div class=\"clear\">\n<div class=\"shopImg\">";
+                    cartpro +=  "<img src=\""+ result[i].img +"\" alt=\"\" />\n</div>\n" +
+                        "<div class=\"shopText\">\n<div class=\"clear\">";
+                    cartpro += "<h5>"+ result[i].name +"</h5>\n" +
+                        "<a href=\"#\" class=\"close J_btnDelete\">X</a>\n" +
+                        "</div>\n<div class=\"clear\">\n<div class=\"plush\">\n" +
+                        "<span class=\"J_btnDelCount\">-</span>\n" +
+                        "<input class=\"J_inputCount\" type=\"text\" value=\""+ result[i].number +"\" />\n" +
+                        "<span class=\"J_btnAddCount\">+</span>\n</div>\n" +
+                        "<strong class=\"J_smallTotalPrice\">"+ result[i].unitprice +"</strong>\n" +
+                        "</div>\n</div>\n</div>\n</li>";
+                    $("#lfzcart").append(cartpro);
+                }
+            }else{
+                for(var i=0 ; i < result.length; i++ ){
                     var cartpro = "<li>\n" +
                         "<div class=\"clear\">\n<div class=\"shopImg\">";
                     cartpro +=  "<img src=\""+ result[i].img +"\" alt=\"\" />\n</div>\n" +
@@ -208,6 +226,7 @@
 
         }
     });
+
     //显示书籍列表以及搜索框下方的热销书籍
     $.ajax({
         url: "/laofuzi/book/findAll",
@@ -229,12 +248,13 @@
                 $("#bookdetail").append(bookpro);
             }
             for(var j = 0; j < 5; j++){
-                var bookpop = "<a href=\"javascript:bookclick("+result[j].categoryId+","+result[j].id+");\">"+
-                    result[j].name +"</a>";
+                var bookpop = "<a href=\"javascript:bookclick("+result[j].categoryId+","+
+                    result[j].id+");\">"+result[j].name +"</a>";
                 $("#popular").append(bookpop);
             }
         }
     });
+
     //显示用户的订单信息
     $.ajax({
         url: "/laofuzi/order/selectByUserId",
@@ -248,17 +268,18 @@
             for(var i=0; i< result.length; i++){
                 var orders = "<h4 class=\"orderinfo\">\n" +
                     "<span>订单编号："+ result[i].id +"&nbsp;&nbsp;&nbsp;&nbsp; </span>\n" +
-                    "<span>下单日期："+ result[i].createTime +"&nbsp;&nbsp;&nbsp;&nbsp; </span>\n" +
+                    "<span>下单日期："+ formatDate(result[i].createTime) +"&nbsp;&nbsp;&nbsp;&nbsp; </span>\n" +
                     "<span>订单总额："+ result[i].account +"&nbsp;&nbsp;&nbsp;&nbsp; </span>\n" +
                     "<div class=\"caozuo\">\n"
                 if(result[i].status == "0"){
                     orders += "<span>订单状态：待发货&nbsp;&nbsp;&nbsp;&nbsp; </span>\n";
                 }else if(result[i].status == "1"){
-                    orders += "<span>订单状态：待收货&nbsp;&nbsp;&nbsp;&nbsp; </span>\n" +
+                    orders += "<span>发货日期："+ formatDate(result[i].deliverTime) +"&nbsp;&nbsp;&nbsp;&nbsp; </span>\n" +
+                        "<span>订单状态：待收货&nbsp;&nbsp;&nbsp;&nbsp; </span>\n" +
                         "<span>操作：<a href='javascript:dealwith();'>确认收货</a></span>\n";
                 }else{
-                    orders += "<span>订单状态：已完成&nbsp;&nbsp;&nbsp;&nbsp; </span>\n" +
-                        "<span>操作：<a href='javascript:dealwith();'>评价</a></span>\n";
+                    orders += "<span>收货日期："+ formatDate(result[i].receiveTime) +"&nbsp;&nbsp;&nbsp;&nbsp; </span>\n" +
+                        "<span>订单状态：已完成&nbsp;&nbsp;&nbsp;&nbsp; </span>\n"
                 }
                 orders += "</div>\n</h4>";
                 $.ajax({
@@ -289,6 +310,8 @@
             }
         }
     });
+
+    //点击订单状态tab，订单信息改变
     function clickstatus(index){
         var uo = document.getElementById("userorders").innerHTML = "";
         console.log("uo:",uo);

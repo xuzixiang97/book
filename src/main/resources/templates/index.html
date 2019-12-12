@@ -161,12 +161,13 @@
         data: JSON.stringify({"userId":userid}),
         async: false,
         success: function(result){
+            console.log(result);
             if(result.length <= 0){
                 var cartpro = "<li class=\"noshop\">\n" +
                     "<img src=\"/laofuzi/images/icon_tips2.png\" alt=\"\" />\n" +
                     "<h3>你的购物车还是空的</h3>\n</li>";
                 $("#lfzcart").append(cartpro);
-            }else{
+            }else if(result.length >= 3){
                 for(var i=0 ; i < 3; i++ ){
                     var cartpro = "<li>\n" +
                         "<div class=\"clear\">\n<div class=\"shopImg\">";
@@ -181,12 +182,22 @@
                         "<strong class=\"J_smallTotalPrice\">"+ result[i].unitprice +"</strong>\n" +
                         "</div>\n</div>\n</div>\n</li>";
                     $("#lfzcart").append(cartpro);
-                    var shopimg = document.getElementsByClassName("shopImg")[i];
-                    console.log("sss:",shopimg);
-                    console.log(result[i].categoryId,result[i].id);
-                    shopimg.onclick = function(){
-                        bookclick(result[i].categoryId,result[i].id);
-                    };
+                }
+            }else{
+                for(var i=0 ; i < result.length; i++ ){
+                    var cartpro = "<li>\n" +
+                        "<div class=\"clear\">\n<div class=\"shopImg\">";
+                    cartpro +=  "<img src=\""+ result[i].img +"\" alt=\"\" />\n</div>\n" +
+                        "<div class=\"shopText\">\n<div class=\"clear\">";
+                    cartpro += "<h5>"+ result[i].name +"</h5>\n" +
+                        "<a href=\"#\" class=\"close J_btnDelete\">X</a>\n" +
+                        "</div>\n<div class=\"clear\">\n<div class=\"plush\">\n" +
+                        "<span class=\"J_btnDelCount\">-</span>\n" +
+                        "<input class=\"J_inputCount\" type=\"text\" value=\""+ result[i].number +"\" />\n" +
+                        "<span class=\"J_btnAddCount\">+</span>\n</div>\n" +
+                        "<strong class=\"J_smallTotalPrice\">"+ result[i].unitprice +"</strong>\n" +
+                        "</div>\n</div>\n</div>\n</li>";
+                    $("#lfzcart").append(cartpro);
                 }
             }
 

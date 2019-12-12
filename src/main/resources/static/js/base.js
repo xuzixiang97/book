@@ -18,7 +18,7 @@ function catclick(pid,cid){
 }
 
 //图书加入购物车
-function addcart(number,bid,uid){
+function addcart(nnum,bid,uid){
     $.ajax({
         url: "/laofuzi/cart/findByUserId",
         type: "POST",
@@ -29,27 +29,25 @@ function addcart(number,bid,uid){
         success: function(result){
             console.log(result);
             var count = 0;
-            var index;
             for(var i =0; i < result.length; i++){
                 console.log(bid,result[i].bookId);
                 if(bid == result[i].id){
                     count ++;
-                    index = i;
+                    var num = result[i].number + parseInt(nnum);
+                    var cartid = result[i].id
                 }
             }
-            console.log("nnn:",number);
-            var num = result[index].number +parseInt(number);
+            console.log(count,num);
             if(count > 0){
                 $.ajax({
                     url: "/laofuzi/cart/update",
                     type: "POST",
                     dataType:"json",
                     contentType : 'application/json',
-                    data: JSON.stringify({"userId":uid,"bookId":bid,"number":num,"id":result[index].id}),
+                    data: JSON.stringify({"userId":uid,"bookId":bid,"number":num,"id":cartid}),
                     async: false,
                     success: function(data){
                         console.log("updatecart:",data);
-                        // alert(111);
                         window.location.href = "checkout";
                     }
                 });
@@ -59,7 +57,7 @@ function addcart(number,bid,uid){
                     type: "POST",
                     dataType:"json",
                     contentType : 'application/json',
-                    data: JSON.stringify({"userId":uid,"bookId":bid,"number":1}),
+                    data: JSON.stringify({"userId":uid,"bookId":bid,"number":parseInt(nnum)}),
                     async: false,
                     success: function(result){
                         console.log("addcart:",result);
@@ -67,25 +65,15 @@ function addcart(number,bid,uid){
                     }
                 });
             }
+
         }
     });
 }
 
 //结算
 function payclick(bid,uid){
-    window.localStorage.setItem('bookid',bid);
+    // window.localStorage.setItem('bookid',bid);
     window.location.href = "pay";
-    // $.ajax({
-    //     url: "/laofuzi/order/createOrderByCart",
-    //     type: "POST",
-    //     dataType:"json",
-    //     contentType : 'application/json',
-    //     data: JSON.stringify({"userId":uid,"bookId":bid}),
-    //     async: false,
-    //     success: function(result){
-    //         console.log("addcart:",result);
-    //     }
-    // });
 }
 
 function account(number,unitprice){
@@ -95,22 +83,20 @@ function account(number,unitprice){
     console.log(number,amount);
 }
 
-// function ajaxmethod(url,parameters){
-//     // console.log("url:",url);
-//     // console.log("parameters:",parameters);
-//     $.ajax({
-//         url: url,
-//         type: "POST",
-//         dataType:"json",
-//         contentType : 'application/json',
-//         data: JSON.stringify(parameters),
-//         async: false,
-//         success: function(result){
-//             console.log("rrs:",result);
-//             return result;
-//         }
-//     });
-// }
+//格式化long类型时间
+function formatDate(longDate) {
+    var date = new Date(longDate);
+    var yyyy = date.getFullYear();
+    var mm = date.getMonth() + 1;
+    if (mm < 10) {
+        mm = "0" + mm;
+    }
+    var dd = date.getDate();
+    if (dd < 10) {
+        dd = "0" + dd;
+    }
+    return yyyy + "-" + mm + "-" + dd;
+}
 
 var userid = window.localStorage.getItem('userid');// 用户id
 var user = window.localStorage.getItem('user');//登录成功的用户名
@@ -119,3 +105,4 @@ var parentid = window.localStorage.getItem('parentid');//一级类别的id
 var categoryid = window.localStorage.getItem('categoryid');//二级类别的id
 var bookcatid = window.localStorage.getItem('bookcatid');//书籍的类别id
 var bookid = window.localStorage.getItem('bookid');//书籍的id
+var ids = window.localStorage.getItem('ids');//书籍的id列表
