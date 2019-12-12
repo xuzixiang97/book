@@ -337,11 +337,11 @@
                     "<div class=\"message\">\n<div class=\"list_img\">"+
                     "<img src=\""+data.img+"\" class=\"img-responsive\" alt=\"\" /></div>\n" +
                     "<div class=\"order_desc\">\n<div class=\"clear\">\n" +
-                    "<h5>"+ data.name +"</h5>\n" +
+                    "<h5>"+ data.bookName +"</h5>\n" +
                     "<h5>作者："+ data.author +"</h5>\n" +
-                    "<h5>数量："+ data.number +"</h5>\n" +
+                    "<h5>数量："+ data.quantity +"</h5>\n" +
                     "<h5>单价："+ data.unitprice +"</h5>\n" +
-                    "<h5>小计：<span class='xiaoji'>"+ parseInt(data.number)*parseFloat(data.unitprice) +"</span></h5>\n" +
+                    "<h5>小计：<span class='xiaoji'>"+ parseInt(data.quantity)*parseFloat(data.unitprice) +"</span></h5>\n" +
                     "</div>\n</div>\n</div>\n" +
                     "<div class=\"clearfix\"></div>\n</div>\n</li>";
                 $("#userorders").append(ordersdetail);

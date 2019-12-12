@@ -303,8 +303,8 @@
                 data: JSON.stringify({"userId":userid}),
                 async: false,
                 success: function(result){
-                    console.log(result);
-                    ids.push(index);
+                    console.log(result,result[index].id);
+                    ids.push(result[index].id);
                     totalaccount += result[index].unitprice*result[index].number
                 }
             });
@@ -320,7 +320,7 @@
                 success: function(result){
                     console.log(result);
                     for(var i = 0; i < ids.length; i++){
-                        if(ids[i] == index){
+                        if(ids[i] == result[index].id){
                             ids.splice(i,1);
                             totalaccount -= result[index].unitprice*result[index].number
                         }
