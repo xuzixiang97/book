@@ -102,6 +102,41 @@ public class OrderController {
     }
 
     /**
+     * 书籍详情页下单
+     * @param createOrderRequest
+     * @return
+     */
+    @RequestMapping(path = "/createOrderByBookDetail", method = RequestMethod.POST)
+    @ResponseBody
+    public String createOrderByBookDetail(@RequestBody CreateOrderRequest createOrderRequest){
+
+        Order order = new Order();
+        order.setUserId(createOrderRequest.getUserId());
+        order.setStatus(0);
+        order.setAddressId(createOrderRequest.getAddressId());
+        Book book = bookService.selectById(createOrderRequest.getBookId());
+        Integer account = book.getUnitprice() * createOrderRequest.getAccount();
+
+        order.setAccount(account);
+        Order newOrder = orderService.insert(order);
+        Order newOrder1 = orderService.selectById(order.getId());
+        //生成订单项
+
+        OrderItems orderItems = new OrderItems();
+        orderItems.setBookId(book.getId());
+        orderItems.setBookName(book.getName());
+        orderItems.setOrderId(newOrder.getId());
+        orderItems.setQuantity(createOrderRequest.getAccount());
+        orderItems.setUnitprice(book.getUnitprice());
+        OrderItems insert = orderItemsService.insert(orderItems);
+
+        Map<String,Object> map = new HashMap<>();
+        map.put("order",newOrder1);
+        map.put("orderitems",orderItems);
+        return JSON.toJSONString(map);
+    }
+
+    /**
      * 修改订单
      * @param order
      * @return

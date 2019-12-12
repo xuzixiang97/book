@@ -10,4 +10,12 @@ public class CreateOrderRequest {
     private Long userId;
     private Long addressId;
     private List<Long> cartList;
+    /**
+     * 详情页下单 书籍id
+     */
+    private Long bookId;
+    /**
+     * 书籍数量
+     */
+    private Integer account;
 }
