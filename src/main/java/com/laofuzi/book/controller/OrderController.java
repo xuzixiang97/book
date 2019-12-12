@@ -3,6 +3,7 @@ package com.laofuzi.book.controller;
 import com.alibaba.fastjson.JSON;
 import com.laofuzi.book.entity.*;
 import com.laofuzi.book.entity.request.CreateOrderRequest;
+import com.laofuzi.book.entity.response.OrderItemDetailResponse;
 import com.laofuzi.book.entity.response.UserCartResponse;
 import com.laofuzi.book.service.BookService;
 import com.laofuzi.book.service.CartService;
@@ -12,10 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping(path = "/order")
@@ -130,9 +128,16 @@ public class OrderController {
         orderItems.setUnitprice(book.getUnitprice());
         OrderItems insert = orderItemsService.insert(orderItems);
 
+        OrderItemDetailResponse orderItemDetailResponse = new OrderItemDetailResponse();
+        orderItemDetailResponse.setAuthor(book.getAuthor());
+        orderItemDetailResponse.setBookName(book.getName());
+        orderItemDetailResponse.setImg(book.getImg());
+        orderItemDetailResponse.setBookId(book.getId());
+        orderItemDetailResponse.setQuantity(orderItems.getQuantity());
+        orderItemDetailResponse.setUnitprice(book.getUnitprice());
         Map<String,Object> map = new HashMap<>();
         map.put("order",newOrder1);
-        map.put("orderitems",orderItems);
+        map.put("orderitems",orderItemDetailResponse);
         return JSON.toJSONString(map);
     }
 
