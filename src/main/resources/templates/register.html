@@ -52,7 +52,7 @@
         var password = document.getElementById("password").value;
         var password1 = document.getElementById("password1").value;
         var email = document.getElementById("email").value;
-        var str =
+
             $.ajax({
                 url: "/laofuzi/user/register",
                 type: "POST",
@@ -74,7 +74,7 @@
                     newData = eval("("+userinfo+")");
                     if(username != ""){
                         if(newData.Msg == "注册成功!" ){
-                            window.localStorage.setItem('user1',result[i].username);
+                            window.localStorage.setItem('user1',username);
                             window.location.href="index";
                             alert(newData.Msg);
                         }else{

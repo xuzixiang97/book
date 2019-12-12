@@ -59,6 +59,8 @@
 <script type="text/javascript" src="/laofuzi/js/base.js"></script>
 <script>
     // 判断顶部导航显示信息
+    var ruser = user1;
+    console.log(ruser);
     if(userid != undefined | userid != "" | userid != null){
         var infouser = "欢迎! &nbsp;<a href=\"#\" style=\"color:#ff4e00;\">"+ user +"</a>&nbsp;|&nbsp;\n" +
             "<a href='javascript:exit()' style=\"color:#ff4e00;\">退出</a>";
@@ -68,7 +70,7 @@
         quanxian += "<div class=\"last\">\n<div class=\"shop\">\n" +
             "<h4 class='lih4'>老夫子</h4><ul id=\"lfzcart\"></ul>\n</div>\n</div>";
     }else if(user1 != undefined | user1 != "" | user1 != null){
-        var infouser = "欢迎! &nbsp;<a href=\"#\" style=\"color:#ff4e00;\">"+ user1 +"</a>&nbsp;|&nbsp;\n" +
+        var infouser = "欢迎! &nbsp;<a href=\"#\" style=\"color:#ff4e00;\">"+ ruser +"</a>&nbsp;|&nbsp;\n" +
             "<a href='javascript:exit()' style=\"color:#ff4e00;\">退出</a>";
         quanxian = "<a href=\"index\">首页</a>&nbsp;&nbsp;&nbsp;|&nbsp;\n" +
             "<a href=\"order\">我的订单</a>&nbsp;&nbsp;|&nbsp;\n" +
