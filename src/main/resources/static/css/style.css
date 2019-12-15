@@ -437,6 +437,55 @@ a.active-icon.c1:hover {
     padding: 0px;
 }
 
+.address_box{
+    width: 68%;
+    height: 120px;
+    margin: 30px 65px;
+    float: right;
+}
+
+.bt {
+    width: 100%;
+    display: flex;
+}
+
+.bt h4{
+    width: 20%;
+    height: 38px;
+    line-height: 38px;
+    font-size: 16px;
+    text-align: center;
+    background-color: #cfcfcf;
+    color: #fff;
+}
+
+.bt h4:nth-child(3){
+    width: 40%;
+}
+
+
+.bt h5{
+    width: 20%;
+    height: 32px;
+    line-height: 32px;
+    font-size: 13px;
+    text-align: center;
+}
+
+.bt h5:nth-child(3){
+    width: 40%;
+}
+
+.bt h5:last-of-type{
+    color: #0e90d2;
+}
+
+.hhr {
+    width: 100%;
+    float: right;
+    border: 0.5px solid #cfcfcf;
+}
+
 .cart_box,
 .cart_box1 {
     position: relative;
