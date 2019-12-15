@@ -349,7 +349,7 @@
                         orders += "<span>订单状态：待发货&nbsp;&nbsp;&nbsp;&nbsp; </span>\n";
                     }else if(result[i].status == "1"){
                         orders += "<span>订单状态：待收货&nbsp;&nbsp;&nbsp;&nbsp; </span>\n" +
-                            "<span>操作：<a href='javascript:dealwith();'>确认收货</a></span>\n";
+                            "<span>操作：<a class='done' href='javascript:dealwith("+result[i].id+");'>确认收货</a></span>\n";
                     }else{
                         orders += "<span>订单状态：已完成&nbsp;&nbsp;&nbsp;&nbsp; </span>\n"
                     }
@@ -380,6 +380,21 @@
                     });
                     $("#userorders").append(orders);
                 }
+            }
+        });
+    }
+
+    function dealwith(oid){
+        $.ajax({
+            url: "/laofuzi/order/update",
+            type: "POST",
+            dataType:"json",
+            contentType : 'application/json',
+            data: JSON.stringify({"id":oid,"status":"2"}),
+            async: false,
+            success: function(result) {
+                console.log(result);
+
             }
         });
     }

@@ -316,7 +316,16 @@
                 "<ul class=\"rating\">\n<li><a class=\"product-rate\" href=\"#\"></a>"+
                 "<span> </span></li>\n" +
                 "<li><p>作者："+result.author+"</p></li>\n<div class=\"clearfix\"></div>\n</ul>\n" +
-                "<div class=\"price_single\">单价： ￥"+result.unitprice+"</div>\n" +
+                "<div class=\"price_single\">"+
+                "<span class=\"reducedfrom\">原价：￥"+result.unitprice+"</span>"+
+                "<span class=\"actual\">现价：￥"+parseFloat(result.unitprice*0.8*0.9).toFixed(1)+"</span>"+
+                "</div>\n<div id=\"choice1\" class=\"des_choice\">\n" +
+                "<span class=\"fl\">新旧程度：</span>\n<ul>\n" +
+                "<li class=\"checked\">九成新<div class=\"ch_img\"></div>\n</li>\n" +
+                "<li>八成新<div class=\"ch_img\"></div>\n</li>\n" +
+                "<li>七成新<div class=\"ch_img\"></div>\n</li>\n" +
+                "<li>六成新<div class=\"ch_img\"></div>\n</li>\n" +
+                "<li>五成新<div class=\"ch_img\"></div>\n</li>\n</ul>\n</div>"+
                 "<h2 class=\"quick\">简单介绍:</h2>\n" +
                 "<p class=\"quick_desc\"> "+result.describe+"</p>\n<ul class=\"product-qty\">\n" +
                 "<div class=\"clear\">\n<div class=\"plush\">\n" +
@@ -347,7 +356,7 @@
             document.getElementById("totalaccount").onclick = function(){
                 payclick(result.id,userid);
             }
-            $("#intro").append("<p>"+result.describe+"</p>")
+            $("#intro").append("<p>本书九成新，折角较少、折痕较少、无笔记，保存较好</p>")
             window.localStorage.setItem("ids1",result.id);
         }
     });
@@ -380,4 +389,5 @@
 </script>
 <script src="/laofuzi/js/index.js"></script>
 <script src="/laofuzi/js/public.js"></script>
+<script type="text/javascript" src="/laofuzi/js/Product.js"></script>
 </html>
