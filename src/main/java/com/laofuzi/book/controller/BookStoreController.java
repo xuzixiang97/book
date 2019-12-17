@@ -62,4 +62,11 @@ public class BookStoreController {
     public String test7(){
         return "/pay";
     }
+
+    @RequestMapping("/address")
+
+    //@ResponseBody
+    public String test8(){
+        return "/address";
+    }
 }

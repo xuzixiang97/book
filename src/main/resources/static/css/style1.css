@@ -2529,6 +2529,7 @@ ul.brand li .name span {
     line-height: 40px;
     overflow: hidden;
     color: #888888;
+    margin-bottom: 10px;
 }
 
 .des_choice ul li {
@@ -2576,6 +2577,13 @@ ul.brand li .name span {
 }
 
 .des_choice ul li.checked .ch_img {
+    width: 18px;
+    height: 18px;
+    overflow: hidden;
+    background: url(../images/ch.png) no-repeat center top;
+    position: absolute;
+    right: 0;
+    bottom: 0;
     display: block;
 }
 
