@@ -30,6 +30,7 @@
     FROM  address
   </select>
 
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from address
     where id = #{id,jdbcType=BIGINT}
